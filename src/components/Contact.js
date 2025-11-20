@@ -370,7 +370,7 @@ const Contact = () => {
 
             <SocialLinks>
               <SocialLink
-                href="https://github.com/NidhalBoumaiza"
+                href="https://github.com/nidhalboumaiza-0"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}
