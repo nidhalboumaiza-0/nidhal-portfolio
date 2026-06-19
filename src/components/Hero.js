@@ -365,8 +365,8 @@ const Hero = () => {
             </Button>
             <Button
               className="secondary"
-              href="/cv%20poste%20ang.pdf"
-              download="Nidhal-Boumaiza-Full-Stack-CV.pdf"
+              href="/NIDHAL_BOUMAIZA_CV_.pdf"
+              download="NIDHAL_BOUMAIZA_CV_.pdf"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
