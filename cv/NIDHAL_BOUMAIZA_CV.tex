@@ -1,0 +1,123 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage[left=1.35cm,right=1.35cm,top=1.2cm,bottom=1.2cm]{geometry}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{tabularx}
+\usepackage{titlesec}
+
+\definecolor{accent}{HTML}{00A6D6}
+\definecolor{textgray}{HTML}{555555}
+
+\hypersetup{
+  colorlinks=true,
+  urlcolor=accent,
+  linkcolor=accent
+}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\setlist[itemize]{leftmargin=*, topsep=2pt, itemsep=2pt}
+
+\titleformat{\section}
+  {\large\bfseries\color{accent}}
+  {}
+  {0pt}
+  {}
+  [\titlerule]
+
+\newcommand{\cvitem}[2]{
+  \textbf{#1} \hfill {\color{textgray}#2}
+}
+
+\newcommand{\role}[4]{
+  \textbf{#1} -- #2 \hfill {\color{textgray}#3}\\
+  {\color{textgray}#4}
+}
+
+\begin{document}
+
+{\Huge \textbf{Nidhal BOUMAIZA}}\\
+{\Large Développeur full-stack mobile}\\[4pt]
+Étudiant en troisième année cycle ingénieur spécialité Génie Logiciel et Freelancer. Je suis à la recherche d'un stage de fin d'études (PFE) pour mettre en pratique mes compétences, relever des défis techniques et contribuer à des projets innovants. Je vise à devenir un ingénieur logiciel expert capable de concevoir des solutions performantes et évolutives.
+
+\vspace{6pt}
+\begin{tabularx}{\textwidth}{@{}X X@{}}
+\href{mailto:nidhal.boumaiza@outlook.com}{nidhal.boumaiza@outlook.com} & +216 28 316 089 \\
+Rue Madrid, Tunis, Tunisie & \href{https://github.com/NidhalBoumaiza}{Github.com/NidhalBoumaiza} \\
+\href{https://www.nidhalboumaiza.tech/}{www.nidhalboumaiza.tech} &
+\end{tabularx}
+
+\section{Compétences}
+\begin{tabularx}{\textwidth}{@{}XXXX@{}}
+ExpressJs & Flutter & Dart & JavaScript \\
+MongoDB & SQL & GitHub & NoSQL \\
+HTML & CSS & ReactJs & Python \\
+Java & Flask & Oracle & MySQL \\
+Firebase & Android Studio & Visual Studio Code & Postman \\
+MongoDB Compass & IntelliJ & & 
+\end{tabularx}
+
+\section{Expérience Professionnelle}
+
+\role{Freelance}{Flutter}{06/2023 -- Présent}{Projets réalisés}
+\begin{itemize}
+  \item \textbf{CAMPFIRE STORIES APP FRONTEND} : développement de l'interface de l'application et liaison avec le backend Django développé par mon collègue.
+  \item \textbf{B.LOC APP FRONTEND} : développement de l'interface de l'application et liaison avec le backend Django développé par mon collègue.
+  \item \textbf{DAYTE APP FRONTEND} : développement de l'interface de l'application et liaison avec le backend ExpressJs développé par mon collègue.
+  \item \textbf{GASPINO APP} : application de réduction du gaspillage de produits alimentaires développée avec Flutter et NodeJs.
+  \item \textbf{Medical App} : application mobile médicale avec Flutter, Firebase Authentication, base de données en temps réel et notifications. Elle permet aux patients de prendre des rendez-vous avec des médecins, de localiser les hôpitaux et pharmacies à proximité, et de communiquer avec leur médecin via une messagerie intégrée.
+\end{itemize}
+
+\role{Freelance}{ReactJs}{}{Projets réalisés}
+\begin{itemize}
+  \item \textbf{TeamFlow} : application web de gestion d'équipes avec un front-end React et un back-end Express.js. Elle permet de gérer les équipes, les membres, les projets, les tâches et les équipements de manière centralisée et efficace.
+  \item \textbf{Gestion de librairie} : application web de gestion de librairie avec React et Flask. Elle permet d'ajouter des livres et auteurs, de gérer les emprunts et retours, et de suivre l'état de chaque emprunt.
+\end{itemize}
+
+\role{Stage de fin d'études}{Neopolis Development}{02/2023 -- 05/2023}{Flutter / ExpressJs -- Nabeul}
+\begin{itemize}
+  \item Développement d'une version mobile et du back-end de la plateforme de gestion des ressources humaines pour Neopolis.
+  \item Automatisation et rationalisation de processus RH : gestion des congés, matériel informatique, subordonnés, documents partagés et suggestions.
+\end{itemize}
+
+\role{Stage de perfectionnement}{CPG Gafsa}{01/2023 -- 02/2023}{Flutter / ExpressJs -- Gafsa}
+\begin{itemize}
+  \item Développement d'une application mobile basée sur Node.js et Flutter pour faciliter la gestion des stagiaires au sein de l'entreprise.
+\end{itemize}
+
+\role{Stage d'initiation}{Evolve'Com}{01/2022 -- 02/2022}{CMS Prestashop -- Tunis}
+\begin{itemize}
+  \item Remplissage de la base de données d'un site e-commerce : \href{https://kmandi.net}{kmandi.net}.
+  \item Familiarisation avec le CMS Prestashop.
+\end{itemize}
+
+\section{Éducation}
+\cvitem{Cycle Ingénieur en Génie Logiciel -- 3ème année}{09/2023 -- 09/2026}\\
+Iteam University
+
+\cvitem{Licence en Développement des Systèmes d'Informations}{09/2022 -- 06/2023}\\
+Institut Supérieur des Études Technologiques de Nabeul
+
+\cvitem{Baccalauréat en sciences de l'informatique}{09/2019 -- 06/2020}\\
+Lycée Abd Laaziz El Akremi Gafsa
+
+\section{Langues}
+Français \quad Anglais \quad Arabe
+
+\section{Vie Associative}
+\cvitem{IEEE ISET NABEUL}{09/2022 -- 01/2023}\\
+Responsable des ressources humaines chargé du recrutement des nouveaux membres, de la communication interne et de la cohésion du groupe.
+
+\cvitem{Orange Tech Club ISET NABEUL}{10/2021 -- 01/2023}\\
+Trésorier.
+
+\section{Intérêts}
+Football \quad Anime \quad Tennis
+
+\end{document}

@@ -2,23 +2,30 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import {
-  SiFlutter,
   SiDart,
+  SiExpress,
+  SiFirebase,
+  SiFlutter,
   SiJavascript,
   SiMongodb,
   SiMysql,
-  SiExpress,
-  SiReact,
-  SiPython,
-  SiAndroidstudio,
   SiPostman,
-  SiFirebase,
+  SiReact,
 } from "react-icons/si";
-import { FiCode, FiSettings, FiGitBranch, FiImage } from "react-icons/fi";
+import {
+  FiBox,
+  FiCheckCircle,
+  FiCode,
+  FiGitBranch,
+  FiLayers,
+  FiMonitor,
+  FiPenTool,
+  FiSmartphone,
+} from "react-icons/fi";
 import { useLanguage } from "../contexts/LanguageContext";
 
 const SkillsSection = styled.section`
-  padding: 8rem 2rem;
+  padding: 7rem 2rem;
   background: ${(props) => props.theme.colors.background};
 
   @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
@@ -31,258 +38,228 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 
-const SectionTitle = styled(motion.h2)`
-  font-size: clamp(2rem, 5vw, 3rem);
+const SectionIntro = styled(motion.div)`
   text-align: center;
-  margin-bottom: 4rem;
+  max-width: 720px;
+  margin: 0 auto 3rem;
+`;
+
+const SectionTitle = styled.h2`
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 0.8rem;
   background: ${(props) => props.theme.colors.gradient};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 `;
 
-const SkillsGrid = styled.div`
+const SectionSubtitle = styled.p`
+  color: ${(props) => props.theme.colors.textSecondary};
+  font-size: 1.08rem;
+`;
+
+const ClusterGrid = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
 
   @media (max-width: ${(props) => props.theme.breakpoints.tablet}) {
     grid-template-columns: 1fr;
-    gap: 3rem;
   }
 `;
 
-const SkillCategory = styled(motion.div)`
+const Cluster = styled(motion.div)`
+  background: linear-gradient(180deg, rgba(26, 26, 26, 0.92), rgba(14, 18, 22, 0.92));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 1.5rem;
+  min-height: 260px;
+
   h3 {
-    font-size: 1.5rem;
     color: ${(props) => props.theme.colors.text};
-    margin-bottom: 2rem;
-    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+  }
+
+  h3 svg {
+    color: ${(props) => props.theme.colors.primary};
+  }
+
+  p {
+    color: ${(props) => props.theme.colors.textSecondary};
+    font-size: 0.92rem;
+    line-height: 1.6;
+    margin-bottom: 1.1rem;
   }
 `;
 
-const SkillItem = styled(motion.div)`
-  margin-bottom: 2rem;
-`;
-
-const SkillHeader = styled.div`
+const PillList = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.55rem;
 `;
 
-const SkillName = styled.span`
+const Pill = styled.span`
   color: ${(props) => props.theme.colors.text};
-  font-weight: 500;
-`;
-
-const SkillPercentage = styled.span`
-  color: ${(props) => props.theme.colors.primary};
+  background: rgba(0, 212, 255, 0.09);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 999px;
+  padding: 0.42rem 0.72rem;
+  font-size: 0.82rem;
   font-weight: 600;
 `;
 
-const SkillBar = styled.div`
-  width: 100%;
-  height: 8px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-  overflow: hidden;
-`;
-
-const SkillProgress = styled(motion.div)`
-  height: 100%;
-  background: ${(props) => props.theme.colors.gradient};
-  border-radius: 4px;
-`;
-
-const TechStack = styled(motion.div)`
-  margin-top: 4rem;
-`;
-
-const TechTitle = styled.h3`
-  font-size: 1.8rem;
-  color: ${(props) => props.theme.colors.text};
-  text-align: center;
-  margin-bottom: 2rem;
-`;
-
-const TechGrid = styled.div`
+const ToolGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(112px, 1fr));
+  gap: 0.85rem;
 `;
 
-const TechCard = styled(motion.div)`
-  background: rgba(26, 26, 26, 0.8);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 212, 255, 0.2);
-  border-radius: 15px;
-  padding: 1.5rem;
+const Tool = styled(motion.div)`
+  height: 112px;
+  background: rgba(26, 26, 26, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
   text-align: center;
-  transition: all 0.3s ease;
+  padding: 0.8rem;
 
-  &:hover {
-    border-color: ${(props) => props.theme.colors.primary};
-    transform: translateY(-5px);
+  svg {
+    color: ${(props) => props.theme.colors.primary};
+    font-size: 1.8rem;
+    margin-bottom: 0.45rem;
   }
-`;
 
-const TechIcon = styled.div`
-  font-size: 2.5rem;
-  color: ${(props) => props.theme.colors.primary};
-  margin-bottom: 1rem;
-`;
-
-const TechName = styled.div`
-  color: ${(props) => props.theme.colors.text};
-  font-size: 0.9rem;
-  font-weight: 500;
+  span {
+    color: ${(props) => props.theme.colors.text};
+    font-size: 0.82rem;
+    font-weight: 700;
+  }
 `;
 
 const Skills = () => {
   const { t, language } = useLanguage();
 
-  const programmingSkills = [
-    { name: "Flutter/Dart", percentage: 90 },
-    { name: "React/JavaScript", percentage: 65 },
-    { name: "HTML/CSS", percentage: 75 },
-    { name: "TypeScript", percentage: 80 },
-  ];
+  const clusters =
+    language === "fr"
+      ? [
+          {
+            title: "Mobile & Web",
+            icon: <FiSmartphone />,
+            text: "Apps Flutter multi-plateformes, interfaces React, responsive design et UI fidèle aux maquettes.",
+            skills: ["Flutter", "Dart", "React", "Figma to UI", "Bloc/GetX", "Responsive UI"],
+          },
+          {
+            title: "Backend & Data",
+            icon: <FiLayers />,
+            text: "APIs REST avec Express.js, intégrations Firebase/MongoDB/MySQL, auth, notifications et workflows métier.",
+            skills: ["TypeScript", "Node.js", "Express.js", "REST APIs", "MongoDB", "Firebase"],
+          },
+          {
+            title: "Qualité & Livraison",
+            icon: <FiCheckCircle />,
+            text: "Code propre, Git, revues, debugging, tests et pratiques de livraison prêtes à monter en puissance.",
+            skills: ["Jest", "flutter_test", "Docker", "GitHub Actions", "Postman", "Code Reviews"],
+          },
+        ]
+      : [
+          {
+            title: "Mobile & Web",
+            icon: <FiSmartphone />,
+            text: "Cross-platform Flutter apps, React interfaces, responsive design, and Figma-matching screens.",
+            skills: ["Flutter", "Dart", "React", "Figma to UI", "Bloc/GetX", "Responsive UI"],
+          },
+          {
+            title: "Backend & Data",
+            icon: <FiLayers />,
+            text: "REST APIs with Express.js, Firebase/MongoDB/MySQL integrations, auth, notifications, and business flows.",
+            skills: ["TypeScript", "Node.js", "Express.js", "REST APIs", "MongoDB", "Firebase"],
+          },
+          {
+            title: "Quality & Delivery",
+            icon: <FiCheckCircle />,
+            text: "Clean code, Git, reviews, debugging, tests, and deployment practices ready to grow fast.",
+            skills: ["Jest", "flutter_test", "Docker", "GitHub Actions", "Postman", "Code Reviews"],
+          },
+        ];
 
-  const backendSkills = [
-    { name: "Express.js/Node.js", percentage: 90 },
-    { name: "Flask/Python", percentage: 80 },
-    { name: "MongoDB", percentage: 80 },
-    { name: "Firebase", percentage: 80 },
-  ];
-
-  const technologies = [
+  const tools = [
     { name: "Flutter", icon: <SiFlutter /> },
     { name: "Dart", icon: <SiDart /> },
+    { name: "TypeScript", icon: <FiCode /> },
     { name: "React", icon: <SiReact /> },
     { name: "JavaScript", icon: <SiJavascript /> },
     { name: "Express.js", icon: <SiExpress /> },
-    { name: "Node.js", icon: <FiCode /> },
-    { name: "Flask", icon: <SiPython /> },
-    { name: "Python", icon: <SiPython /> },
+    { name: "Docker", icon: <FiBox /> },
+    { name: "Jest", icon: <FiCheckCircle /> },
     { name: "MongoDB", icon: <SiMongodb /> },
     { name: "Firebase", icon: <SiFirebase /> },
     { name: "MySQL", icon: <SiMysql /> },
-    { name: "Android Studio", icon: <SiAndroidstudio /> },
-    { name: "VS Code", icon: <FiSettings /> },
-    { name: "Postman", icon: <SiPostman /> },
     { name: "Git", icon: <FiGitBranch /> },
-    { name: "Figma", icon: <FiImage /> },
+    { name: "Postman", icon: <SiPostman /> },
+    { name: "DevTools", icon: <FiMonitor /> },
+    { name: "Figma", icon: <FiPenTool /> },
   ];
 
   return (
     <SkillsSection id="skills">
       <Container>
-        <SectionTitle
-          initial={{ opacity: 0, y: 30 }}
+        <SectionIntro
+          initial={{ opacity: 0, y: 25 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          {t("skills.title")}
-        </SectionTitle>
+          <SectionTitle>{t("skills.title")}</SectionTitle>
+          <SectionSubtitle>{t("skills.subtitle")}</SectionSubtitle>
+        </SectionIntro>
 
-        <SkillsGrid>
-          <SkillCategory
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h3>
-              {language === "fr"
-                ? "Technologies Frontend"
-                : "Frontend Technologies"}
-            </h3>
-            {programmingSkills.map((skill, index) => (
-              <SkillItem
-                key={skill.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <SkillHeader>
-                  <SkillName>{skill.name}</SkillName>
-                  <SkillPercentage>{skill.percentage}%</SkillPercentage>
-                </SkillHeader>
-                <SkillBar>
-                  <SkillProgress
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.percentage}%` }}
-                    transition={{ duration: 1, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                  />
-                </SkillBar>
-              </SkillItem>
-            ))}
-          </SkillCategory>
+        <ClusterGrid>
+          {clusters.map((cluster, index) => (
+            <Cluster
+              key={cluster.title}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: index * 0.08 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -5 }}
+            >
+              <h3>
+                {cluster.icon}
+                {cluster.title}
+              </h3>
+              <p>{cluster.text}</p>
+              <PillList>
+                {cluster.skills.map((skill) => (
+                  <Pill key={skill}>{skill}</Pill>
+                ))}
+              </PillList>
+            </Cluster>
+          ))}
+        </ClusterGrid>
 
-          <SkillCategory
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h3>
-              {language === "fr"
-                ? "Technologies Backend"
-                : "Backend Technologies"}
-            </h3>
-            {backendSkills.map((skill, index) => (
-              <SkillItem
-                key={skill.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <SkillHeader>
-                  <SkillName>{skill.name}</SkillName>
-                  <SkillPercentage>{skill.percentage}%</SkillPercentage>
-                </SkillHeader>
-                <SkillBar>
-                  <SkillProgress
-                    initial={{ width: 0 }}
-                    whileInView={{ width: `${skill.percentage}%` }}
-                    transition={{ duration: 1, delay: index * 0.1 }}
-                    viewport={{ once: true }}
-                  />
-                </SkillBar>
-              </SkillItem>
-            ))}
-          </SkillCategory>
-        </SkillsGrid>
-
-        <TechStack
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          viewport={{ once: true }}
-        >
-          <TechTitle>Technologies & Tools</TechTitle>
-          <TechGrid>
-            {technologies.map((tech, index) => (
-              <TechCard
-                key={tech.name}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.1 }}
-              >
-                <TechIcon>{tech.icon}</TechIcon>
-                <TechName>{tech.name}</TechName>
-              </TechCard>
-            ))}
-          </TechGrid>
-        </TechStack>
+        <ToolGrid>
+          {tools.map((tool, index) => (
+            <Tool
+              key={tool.name}
+              initial={{ opacity: 0, scale: 0.92 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.35, delay: index * 0.025 }}
+              viewport={{ once: true }}
+              whileHover={{ y: -4 }}
+            >
+              <div>
+                {tool.icon}
+                <span>{tool.name}</span>
+              </div>
+            </Tool>
+          ))}
+        </ToolGrid>
       </Container>
     </SkillsSection>
   );

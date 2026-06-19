@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ReactTyped } from "react-typed";
 import { FiDownload, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
 import { useLanguage } from "../contexts/LanguageContext";
-import profileImage from "../assets/nidhal-pic.png";
+import profileImage from "../assets/nidhal-pic1.jpg";
 
 const HeroSection = styled.section`
   min-height: 100vh;
@@ -60,7 +60,7 @@ const ProfileImage = styled(motion.img)`
   height: 420px;
   border-radius: 50%;
   object-fit: cover;
-  object-position: center;
+  object-position: 34% center;
   transform: scale(1);
   border: 4px solid ${(props) => props.theme.colors.primary};
   box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
@@ -257,16 +257,16 @@ const Hero = () => {
   const typedStrings =
     language === "fr"
       ? [
-          "Développeur Full-Stack",
-          "Développeur Mobile",
-          "Expert Flutter",
-          "Ingénieur Backend",
+          "Développeur Full Stack",
+          "Flutter en production",
+          "Express.js & APIs REST",
+          "Figma vers UI mobile",
         ]
       : [
-          "Full-Stack Developer",
-          "Mobile Developer",
-          "Flutter Expert",
-          "Backend Engineer",
+          "Full Stack Developer",
+          "Production Flutter Apps",
+          "Express.js & REST APIs",
+          "Figma to Mobile UI",
         ];
 
   const scrollToContact = () => {
@@ -365,8 +365,8 @@ const Hero = () => {
             </Button>
             <Button
               className="secondary"
-              href="/cv-nidhal-boumaiza.pdf"
-              download="CV-Nidhal-Boumaiza.pdf"
+              href="/cv%20poste%20ang.pdf"
+              download="Nidhal-Boumaiza-Full-Stack-CV.pdf"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -453,8 +453,8 @@ const Hero = () => {
             <StatIcon>🎓</StatIcon>
             <StatText>
               {language === "fr"
-                ? "Étudiant en Génie Logiciel"
-                : "Software Engineering Student"}
+                ? "Flutter + Express.js + React"
+                : "Flutter + Express.js + React"}
             </StatText>
           </StatItem>
         </StatsCard>

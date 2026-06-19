@@ -12,55 +12,52 @@ export const useLanguage = () => {
 
 const translations = {
   en: {
-    // Navigation
     nav: {
       home: "Home",
       about: "About",
-      skills: "Skills",
+      skills: "Stack",
       experience: "Experience",
       projects: "Projects",
       education: "Education",
       contact: "Contact",
     },
-    // Hero Section
     hero: {
       greeting: "Hi, I'm",
-      title: "Full Stack Mobile & Web Developer",
+      title: "Full Stack Developer",
       subtitle:
-        "I create modern mobile applications with Flutter and responsive web applications with React. I build robust backend systems using Express.js and Flask.",
+        "I build production Flutter apps and robust Express.js APIs, with a focus on clean UI, reliability, testing, and fast product delivery.",
       downloadCV: "Download CV",
       viewProjects: "View Projects",
     },
-    // About Section
     about: {
       title: "About Me",
-      subtitle: "Software Engineering Student & Full Stack Developer",
+      subtitle: "Software Engineering Student & Product-minded Developer",
       description1:
-        "I'm currently pursuing my Software Engineering degree at Iteam University, building on my foundation in Information Systems Development. My journey in tech began with a passion for creating comprehensive digital solutions that span both mobile and web platforms.",
+        "I build mobile-first products with Flutter, React frontends, and Express.js backends. My strongest proof is Barberio, my first personal app published on both App Store and Google Play.",
       description2:
-        "As a freelance full stack developer, I've had the privilege of working on diverse projects ranging from social platforms to healthcare applications. My expertise spans across mobile development with Flutter, web frontend development with React, and backend development with Express.js and Flask, allowing me to deliver complete end-to-end solutions.",
+        "I care about clean architecture, reusable code, responsive UI, API reliability, and turning Figma designs into polished screens.",
       description3:
-        "What drives me is the opportunity to bridge the gap between mobile and web experiences through unified backend architectures. I believe in writing clean, efficient code and creating user experiences that are seamless across all platforms - whether it's a Flutter mobile app, a React web application, or a robust API backend.",
+        "Now I am sharpening the exact stack this role needs: TypeScript, Express, Docker, Jest, CI/CD, Flutter testing, and scalable product delivery.",
       passions: {
         innovation: {
-          title: "Innovation",
+          title: "Product Thinking",
           description:
-            "Always seeking creative solutions to complex problems and staying ahead of technology trends.",
+            "I move from idea to shipped product with clear priorities and useful details.",
         },
         problemSolving: {
-          title: "Problem Solving",
+          title: "Robust APIs",
           description:
-            "Passionate about breaking down complex challenges into manageable, elegant solutions.",
+            "REST APIs, validation, database design, error handling, and maintainable backend flows.",
         },
         mobileFirst: {
-          title: "Mobile First",
+          title: "Flutter First",
           description:
-            "Specialized in creating seamless mobile experiences with Flutter and cross-platform development.",
+            "Cross-platform mobile and web experiences with responsive, platform-aware UI.",
         },
         continuousLearning: {
-          title: "Continuous Learning",
+          title: "Quality Loop",
           description:
-            "Committed to staying updated with the latest technologies and best practices in software development.",
+            "Cleaner code, tests, reviews, CI/CD, and deployment practices improved sprint by sprint.",
         },
       },
       yearsExperience: "Years Experience",
@@ -68,12 +65,10 @@ const translations = {
       technologiesMastered: "Technologies Mastered",
       clientsSatisfied: "Clients Satisfied",
     },
-    // Skills Section
     skills: {
-      title: "My Skills",
-      subtitle: "Technologies I work with",
+      title: "Role Stack",
+      subtitle: "What I bring to this Full Stack role",
     },
-    // Experience Section
     experience: {
       title: "Experience",
       subtitle: "My professional journey",
@@ -85,13 +80,13 @@ const translations = {
           duration: "June 2023 - Present",
           location: "Remote",
           description:
-            "Working as a freelance full stack developer, creating innovative mobile applications with Flutter and web applications with React, supported by robust backend systems.",
+            "Building mobile apps, React interfaces, and backend APIs for real clients and personal products.",
           achievements: [
-            "Developed CAMPFIRE STORIES APP - Social platform with Flutter frontend and Django backend",
-            "Built B.LOC APP - Location-based service with Flutter mobile app and Django backend",
-            "Created DAYTE APP - Dating platform with Flutter frontend and Express.js backend",
-            "Developed GASPINO APP - Food waste reduction solution with Flutter and Express.js backend",
-            "Built Medical App - Healthcare management system with Flutter and Express.js backend",
+            "Published Barberio on App Store and Google Play as a personal production app",
+            "Built Flutter apps connected to Express.js, Django, Firebase, and MongoDB backends",
+            "Delivered responsive screens from product requirements and UI references",
+            "Worked with authentication, notifications, appointments, dashboards, and real-time data",
+            "Improving Docker, Jest, CI/CD, and Flutter testing as the next delivery layer",
           ],
         },
         endOfStudies: {
@@ -100,12 +95,12 @@ const translations = {
           duration: "February 2023 - May 2023",
           location: "Tunisia",
           description:
-            "Completed my end-of-studies internship developing a comprehensive HR management platform.",
+            "Developed a mobile and backend HR management platform for internal workflows.",
           achievements: [
-            "Designed and developed a complete HR management system",
-            "Implemented employee management and tracking features",
-            "Created responsive web interface with modern UI/UX",
-            "Integrated database management for employee records",
+            "Built HR modules for leave, equipment, documents, suggestions, and hierarchy",
+            "Connected Flutter screens to Express.js backend services",
+            "Improved internal workflow visibility with structured data flows",
+            "Collaborated on requirements, delivery, and technical decisions",
           ],
         },
         development: {
@@ -114,11 +109,11 @@ const translations = {
           duration: "January 2023 - February 2023",
           location: "Gafsa, Tunisia",
           description:
-            "Developed an intern management application to streamline the internship process and management.",
+            "Developed an intern management application with mobile and backend features.",
           achievements: [
-            "Built intern management and tracking system",
+            "Built intern management and tracking features",
             "Implemented application and evaluation workflows",
-            "Created dashboard for administrators and supervisors",
+            "Created dashboards for administrators and supervisors",
           ],
         },
         initiation: {
@@ -127,38 +122,40 @@ const translations = {
           duration: "January 2022 - February 2022",
           location: "Tunisia",
           description:
-            "First professional experience working on e-commerce database development and management.",
+            "First professional experience working with e-commerce data and CMS workflows.",
           achievements: [
-            "Worked on e-commerce database design and optimization",
+            "Maintained product data for an e-commerce platform",
+            "Learned CMS workflows with Prestashop",
           ],
         },
       },
     },
-    // Projects Section
     projects: {
-      title: "My Projects",
-      subtitle: "Here are some of my recent works",
+      title: "Selected Work",
+      subtitle: "Production and full-stack projects",
       screenshots: "Screenshots",
       sourceCode: "Source Code",
       viewDemo: "View Demo",
+      appStore: "App Store",
+      googlePlay: "Google Play",
+      website: "Website",
+      liveProduct: "Published Product",
       freelanceProject: "Freelance Project",
       academicProject: "Academic Project",
       internshipProject: "Internship Project",
     },
-    // Education Section
     education: {
       title: "Education",
       subtitle: "My academic background",
     },
-    // Contact Section
     contact: {
       title: "Get In Touch",
       subtitle: "Let's work together",
       description:
-        "I'm always open to discussing new opportunities, interesting projects, or just having a chat about technology and development.",
+        "Open to Full Stack opportunities where Flutter, TypeScript, Express.js, testing, and product ownership matter.",
       letsConnect: "Let's Connect",
       connectDescription:
-        "Whether you have a project in mind, want to collaborate, or just want to say hello, I'd love to hear from you. Feel free to reach out through any of the channels below.",
+        "I am especially interested in roles where I can ship reliable APIs, polished cross-platform apps, and strong user experiences with a serious engineering team.",
       name: "Name",
       email: "Email",
       subject: "Subject",
@@ -172,11 +169,10 @@ const translations = {
       placeholders: {
         name: "Your Name",
         email: "your.email@example.com",
-        subject: "Project Inquiry / Collaboration / etc.",
-        message: "Tell me about your project or what you'd like to discuss...",
+        subject: "Full Stack opportunity / Collaboration / Project",
+        message: "Tell me what you are building and where I can help...",
       },
     },
-    // Gallery
     gallery: {
       close: "Close",
       previous: "Previous",
@@ -185,55 +181,52 @@ const translations = {
     },
   },
   fr: {
-    // Navigation
     nav: {
       home: "Accueil",
       about: "À propos",
-      skills: "Compétences",
+      skills: "Stack",
       experience: "Expérience",
       projects: "Projets",
       education: "Formation",
       contact: "Contact",
     },
-    // Hero Section
     hero: {
       greeting: "Salut, je suis",
-      title: "Développeur Full Stack Mobile & Web",
+      title: "Développeur Full Stack",
       subtitle:
-        "Je crée des applications mobiles modernes avec Flutter et des applications web responsives avec React. Je développe des systèmes backend robustes avec Express.js et Flask.",
+        "Je développe des applications Flutter en production et des APIs Express.js robustes, avec une attention forte à l'UI, la fiabilité, les tests et la livraison produit.",
       downloadCV: "Télécharger CV",
       viewProjects: "Voir les Projets",
     },
-    // About Section
     about: {
-      title: "À Propos de Moi",
-      subtitle: "Étudiant en Génie Logiciel & Développeur Full Stack",
+      title: "À Propos",
+      subtitle: "Étudiant en Génie Logiciel & Développeur orienté produit",
       description1:
-        "Je poursuis actuellement mes études d'ingénieur en génie logiciel à l'Université Iteam, en m'appuyant sur ma formation en développement de systèmes d'information. Mon parcours dans la technologie a commencé par une passion pour la création de solutions numériques complètes qui couvrent les plateformes mobiles et web.",
+        "Je construis des produits mobile-first avec Flutter, des frontends React et des backends Express.js. Ma meilleure preuve est Barberio, ma première application personnelle publiée sur App Store et Google Play.",
       description2:
-        "En tant que développeur full stack freelance, j'ai eu le privilège de travailler sur des projets divers allant des plateformes sociales aux applications de santé. Mon expertise s'étend au développement mobile avec Flutter, au développement frontend web avec React, et au développement backend avec Express.js et Flask, me permettant de livrer des solutions complètes de bout en bout.",
+        "Je travaille avec une attention particulière à l'architecture, au code réutilisable, à l'UI responsive, à la fiabilité des APIs et à la conversion fidèle de maquettes Figma.",
       description3:
-        "Ce qui me motive, c'est l'opportunité de combler le fossé entre les expériences mobiles et web grâce à des architectures backend unifiées. Je crois en l'écriture de code propre et efficace et en la création d'expériences utilisateur fluides sur toutes les plateformes - qu'il s'agisse d'une application mobile Flutter, d'une application web React, ou d'un backend API robuste.",
+        "Je renforce maintenant le stack ciblé par ce poste: TypeScript, Express, Docker, Jest, CI/CD, tests Flutter et livraison scalable.",
       passions: {
         innovation: {
-          title: "Innovation",
+          title: "Vision produit",
           description:
-            "Toujours à la recherche de solutions créatives aux problèmes complexes et en avance sur les tendances technologiques.",
+            "Je transforme une idée en produit livré avec des priorités claires et des détails utiles.",
         },
         problemSolving: {
-          title: "Résolution de Problèmes",
+          title: "APIs robustes",
           description:
-            "Passionné par la décomposition de défis complexes en solutions gérables et élégantes.",
+            "REST APIs, validation, base de données, gestion d'erreurs et flows backend maintenables.",
         },
         mobileFirst: {
-          title: "Mobile First",
+          title: "Flutter first",
           description:
-            "Spécialisé dans la création d'expériences mobiles fluides avec Flutter et le développement multiplateforme.",
+            "Expériences mobile et web multiplateformes avec une UI responsive et adaptée.",
         },
         continuousLearning: {
-          title: "Apprentissage Continu",
+          title: "Qualité",
           description:
-            "Engagé à rester à jour avec les dernières technologies et les meilleures pratiques en développement logiciel.",
+            "Code propre, tests, revues, CI/CD et pratiques de déploiement améliorées à chaque sprint.",
         },
       },
       yearsExperience: "Années d'Expérience",
@@ -241,12 +234,10 @@ const translations = {
       technologiesMastered: "Technologies Maîtrisées",
       clientsSatisfied: "Clients Satisfaits",
     },
-    // Skills Section
     skills: {
-      title: "Mes Compétences",
-      subtitle: "Technologies avec lesquelles je travaille",
+      title: "Stack ciblé",
+      subtitle: "Ce que j'apporte à ce poste Full Stack",
     },
-    // Experience Section
     experience: {
       title: "Expérience",
       subtitle: "Mon parcours professionnel",
@@ -258,13 +249,13 @@ const translations = {
           duration: "Juin 2023 - Présent",
           location: "À distance",
           description:
-            "Travail en tant que développeur full stack freelance, créant des applications mobiles innovantes avec Flutter et des applications web avec React, soutenues par des systèmes backend robustes.",
+            "Développement d'applications mobiles, d'interfaces React et d'APIs backend pour des clients et produits personnels.",
           achievements: [
-            "Développé CAMPFIRE STORIES APP - Plateforme sociale avec frontend Flutter et backend Django",
-            "Construit B.LOC APP - Service basé sur la localisation avec app mobile Flutter et API Django",
-            "Créé DAYTE APP - Plateforme de rencontre avec frontend Flutter et backend Express.js",
-            "Développé GASPINO APP - Solution de réduction des déchets alimentaires avec Flutter et backend Express.js",
-            "Construit Medical App - Système de gestion de la santé avec Flutter et backend Express.js",
+            "Publication de Barberio sur App Store et Google Play comme application personnelle en production",
+            "Applications Flutter connectées à Express.js, Django, Firebase et MongoDB",
+            "Écrans responsive livrés à partir de besoins produit et références UI",
+            "Authentification, notifications, rendez-vous, dashboards et données temps réel",
+            "Montée en puissance sur Docker, Jest, CI/CD et tests Flutter",
           ],
         },
         endOfStudies: {
@@ -273,12 +264,12 @@ const translations = {
           duration: "Février 2023 - Mai 2023",
           location: "Tunisie",
           description:
-            "Terminé mon stage de fin d'études en développement d'un système de gestion de ressources humaines complet.",
+            "Développement d'une plateforme RH mobile et backend pour des workflows internes.",
           achievements: [
-            "Conçu et développé un système de gestion de ressources humaines complet",
-            "Implémenté des fonctionnalités de gestion des employés et de suivi",
-            "Créé une interface web réactive avec une interface utilisateur moderne",
-            "Intégré la gestion de base de données pour les enregistrements des employés",
+            "Modules RH pour congés, matériel, documents, suggestions et hiérarchie",
+            "Connexion d'écrans Flutter à des services backend Express.js",
+            "Amélioration de la visibilité des workflows internes",
+            "Collaboration sur les besoins, la livraison et les décisions techniques",
           ],
         },
         development: {
@@ -287,12 +278,11 @@ const translations = {
           duration: "Janvier 2023 - Février 2023",
           location: "Gafsa, Tunisie",
           description:
-            "Développé une application de gestion de stage pour faciliter le processus de stage et la gestion.",
+            "Développement d'une application de gestion des stagiaires avec mobile et backend.",
           achievements: [
-            "Construit un système de gestion et de suivi des stages",
-            "Implémenté des workflows de conception et d'évaluation de l'application",
-            "Créé un tableau de bord pour les administrateurs et les supérieurs",
-            "Intégré des fonctionnalités de signalement et d'analyse",
+            "Gestion et suivi des stagiaires",
+            "Workflows de candidature et d'évaluation",
+            "Tableaux de bord pour administrateurs et superviseurs",
           ],
         },
         initiation: {
@@ -301,60 +291,57 @@ const translations = {
           duration: "Janvier 2022 - Février 2022",
           location: "Tunisie",
           description:
-            "Première expérience professionnelle travaillant sur le développement et la gestion de la base de données de commerce électronique.",
+            "Première expérience professionnelle autour des données e-commerce et des workflows CMS.",
           achievements: [
-            "Travaillé sur le design et l'optimisation de la base de données de commerce électronique",
-            "Appris les meilleures pratiques de gestion de base de données",
-            "Aide à la migration et à la nettoyage des données",
-            "Gagné de l'expérience en SQL et en opérations de base de données",
+            "Maintenance des données produit d'une plateforme e-commerce",
+            "Découverte des workflows CMS avec Prestashop",
           ],
         },
       },
     },
-    // Projects Section
     projects: {
-      title: "Mes Projets",
-      subtitle: "Voici quelques-uns de mes travaux récents",
-      screenshots: "Captures d'écran",
+      title: "Projets sélectionnés",
+      subtitle: "Production et projets full-stack",
+      screenshots: "Captures",
       sourceCode: "Code Source",
       viewDemo: "Voir la Démo",
+      appStore: "App Store",
+      googlePlay: "Google Play",
+      website: "Site web",
+      liveProduct: "Produit publié",
       freelanceProject: "Projet Freelance",
       academicProject: "Projet Académique",
       internshipProject: "Projet de Stage",
     },
-    // Education Section
     education: {
       title: "Formation",
       subtitle: "Mon parcours académique",
     },
-    // Contact Section
     contact: {
       title: "Contactez-moi",
       subtitle: "Travaillons ensemble",
       description:
-        "Je suis toujours ouvert à discuter de nouvelles opportunités, de projets intéressants ou simplement à discuter de technologie et de développement.",
+        "Ouvert aux opportunités Full Stack où Flutter, TypeScript, Express.js, les tests et l'ownership produit comptent.",
       letsConnect: "Connectons-nous",
       connectDescription:
-        "Que vous ayez un projet à l'esprit, que vous vouliez collaborer ou que vous vouliez simplement me dire bonjour, je serai ravi de vous entendre. N'hésitez pas à me contacter via l'un des canaux ci-dessous.",
+        "Je cherche surtout une équipe où je peux livrer des APIs fiables, des apps multiplateformes propres et une expérience utilisateur solide.",
       name: "Nom",
       email: "Email",
       subject: "Sujet",
       message: "Message",
-      send: "Envoyer le Message",
-      sending: "En cours d'envoi...",
-      thankYou: "Merci pour votre message ! Je vous recontacterai bientôt.",
+      send: "Envoyer",
+      sending: "Envoi...",
+      thankYou: "Merci pour votre message ! Je vous répondrai bientôt.",
       phone: "Téléphone",
       location: "Localisation",
       emailLabel: "Email",
       placeholders: {
-        name: "Votre Nom",
+        name: "Votre nom",
         email: "votre.email@example.com",
-        subject: "Question sur le Projet / Collaboration / etc.",
-        message:
-          "Parlez-moi de votre projet ou de ce que vous aimeriez discuter...",
+        subject: "Opportunité Full Stack / Collaboration / Projet",
+        message: "Parlez-moi de votre produit et de ce que je peux apporter...",
       },
     },
-    // Gallery
     gallery: {
       close: "Fermer",
       previous: "Précédent",

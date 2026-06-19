@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import { motion } from "framer-motion";
 import { LanguageProvider } from "./contexts/LanguageContext";
@@ -9,6 +9,7 @@ import LanguageToggle from "./components/LanguageToggle";
 import ParticleBackground from "./components/ParticleBackground";
 import Header from "./components/Header";
 import Hero from "./components/Hero";
+import RoleFit from "./components/RoleFit";
 import About from "./components/About";
 import Skills from "./components/Skills";
 import Experience from "./components/Experience";
@@ -108,6 +109,7 @@ function App() {
                 element={
                   <>
                     <Hero />
+                    <RoleFit />
                     <About />
                     <Skills />
                     <Experience />

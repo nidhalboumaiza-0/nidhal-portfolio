@@ -2,19 +2,24 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import {
+  FiCamera,
+  FiExternalLink,
   FiGithub,
+  FiGlobe,
+  FiLock,
   FiPlay,
   FiSmartphone,
-  FiCamera,
-  FiLock,
   FiX,
 } from "react-icons/fi";
+import { FaApple, FaGooglePlay } from "react-icons/fa";
 import { useLanguage } from "../contexts/LanguageContext";
 import ProjectGallery from "./ProjectGallery";
 
 const ProjectsSection = styled.section`
   padding: 8rem 2rem;
-  background: ${(props) => props.theme.colors.background};
+  background:
+    radial-gradient(circle at 82% 8%, rgba(0, 212, 255, 0.1), transparent 28%),
+    ${(props) => props.theme.colors.background};
 
   @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
     padding: 4rem 1rem;
@@ -26,197 +31,257 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 
-const SectionTitle = styled(motion.h2)`
-  font-size: clamp(2rem, 5vw, 3rem);
+const SectionHeader = styled(motion.div)`
   text-align: center;
-  margin-bottom: 4rem;
+  max-width: 680px;
+  margin: 0 auto 3rem;
+`;
+
+const SectionTitle = styled.h2`
+  font-size: clamp(2rem, 5vw, 3rem);
+  margin-bottom: 0.8rem;
   background: ${(props) => props.theme.colors.gradient};
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 `;
 
+const SectionSubtitle = styled.p`
+  color: ${(props) => props.theme.colors.textSecondary};
+  font-size: 1.08rem;
+`;
+
 const ProjectsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
 
-  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+  @media (max-width: ${(props) => props.theme.breakpoints.tablet}) {
     grid-template-columns: 1fr;
   }
 `;
 
-const ProjectCard = styled(motion.div)`
-  background: rgba(26, 26, 26, 0.8);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 212, 255, 0.2);
+const ProjectCard = styled(motion.article)`
+  min-height: ${(props) => (props.featured ? "440px" : "auto")};
+  grid-column: ${(props) => (props.featured ? "1 / -1" : "auto")};
+  display: grid;
+  grid-template-columns: ${(props) => (props.featured ? "1fr 0.9fr" : "1fr")};
+  gap: ${(props) => (props.featured ? "2rem" : "0")};
+  background: linear-gradient(180deg, rgba(26, 26, 26, 0.94), rgba(13, 17, 22, 0.94));
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
   overflow: hidden;
-  transition: all 0.3s ease;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
 
-  &:hover {
-    border-color: ${(props) => props.theme.colors.primary};
-    transform: translateY(-5px);
+  @media (max-width: ${(props) => props.theme.breakpoints.tablet}) {
+    grid-template-columns: 1fr;
   }
 `;
 
-const ProjectImage = styled.div`
-  height: 200px;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 212, 255, 0.1) 0%,
-    rgba(0, 153, 204, 0.1) 100%
-  );
+const Visual = styled.div`
+  min-height: ${(props) => (props.featured ? "440px" : "190px")};
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
   overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(0, 212, 255, 0.18), rgba(255, 107, 107, 0.12)),
+    #11161c;
+`;
 
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+const ScreenshotBadge = styled.div`
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  color: white;
+  background: rgba(0, 212, 255, 0.88);
+  border-radius: 999px;
+  padding: 0.5rem 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 800;
+  font-size: 0.75rem;
+`;
+
+const PhoneFrame = styled.div`
+  width: ${(props) => (props.compact ? "132px" : "210px")};
+  aspect-ratio: 9 / 18.6;
+  border-radius: ${(props) => (props.compact ? "28px" : "38px")};
+  padding: ${(props) => (props.compact ? "8px" : "11px")};
+  background: linear-gradient(145deg, #f7f7f8, #181b20 18%, #050608);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.38);
+  transform: rotate(${(props) => props.rotate || "0deg"});
+`;
+
+const PhoneScreen = styled.div`
+  height: 100%;
+  border-radius: ${(props) => (props.compact ? "22px" : "30px")};
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(0, 212, 255, 0.18), rgba(0, 0, 0, 0) 36%),
+    #0b1015;
+  position: relative;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    width: 40%;
+    height: 5px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.18);
+    transform: translateX(-50%);
   }
+`;
+
+const PhoneUi = styled.div`
+  height: 100%;
+  padding: ${(props) => (props.compact ? "2.2rem 0.8rem 0.8rem" : "3rem 1rem 1rem")};
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+`;
+
+const AppLogo = styled.div`
+  width: ${(props) => (props.compact ? "42px" : "58px")};
+  height: ${(props) => (props.compact ? "42px" : "58px")};
+  border-radius: 16px;
+  background: ${(props) => props.color || "linear-gradient(135deg, #00d4ff, #ff6b6b)"};
+  display: grid;
+  place-items: center;
+  color: white;
+  font-weight: 900;
+  margin-bottom: 0.4rem;
+`;
+
+const UiLine = styled.div`
+  height: ${(props) => props.large ? "42px" : "12px"};
+  width: ${(props) => props.width || "100%"};
+  border-radius: 999px;
+  background: rgba(255, 255, 255, ${(props) => props.soft ? "0.09" : "0.18"});
+`;
+
+const UiCard = styled.div`
+  min-height: ${(props) => props.compact ? "48px" : "72px"};
+  border-radius: 16px;
+  padding: 0.7rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: grid;
+  gap: 0.45rem;
 `;
 
 const ProjectIcon = styled.div`
   font-size: 3rem;
   color: ${(props) => props.theme.colors.primary};
-  opacity: 0.7;
+  opacity: 0.76;
 `;
 
-const ProjectContent = styled.div`
-  padding: 2rem;
-`;
-
-const ProjectHeader = styled.div`
+const Content = styled.div`
+  padding: ${(props) => (props.featured ? "2.2rem" : "1.6rem")};
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 1rem;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+const Eyebrow = styled.p`
+  color: ${(props) => props.theme.colors.primary};
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
 `;
 
 const ProjectTitle = styled.h3`
   color: ${(props) => props.theme.colors.text};
-  font-size: 1.3rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-`;
-
-const ProjectType = styled.span`
-  color: ${(props) => props.theme.colors.primary};
-  font-size: 0.9rem;
-  font-weight: 500;
+  font-size: ${(props) => props.featured ? "clamp(2rem, 4vw, 3.3rem)" : "1.35rem"};
+  line-height: 1.05;
+  margin-bottom: 0.85rem;
 `;
 
 const ProjectDescription = styled.p`
   color: ${(props) => props.theme.colors.textSecondary};
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
+  line-height: 1.7;
+  font-size: ${(props) => props.featured ? "1.05rem" : "0.95rem"};
+  margin-bottom: 1.2rem;
+  max-width: 650px;
 `;
 
-const ProjectFeatures = styled.ul`
+const FeatureList = styled.ul`
   list-style: none;
-  margin-bottom: 1.5rem;
+  display: grid;
+  gap: 0.55rem;
+  margin-bottom: 1.2rem;
 `;
 
-const ProjectFeature = styled.li`
+const Feature = styled.li`
   color: ${(props) => props.theme.colors.textSecondary};
-  margin-bottom: 0.5rem;
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 0.9rem;
+  gap: 0.6rem;
+  font-size: 0.92rem;
 
   &::before {
     content: "";
-    width: 4px;
-    height: 4px;
-    background: ${(props) => props.theme.colors.primary};
+    width: 7px;
+    height: 7px;
     border-radius: 50%;
-    flex-shrink: 0;
+    background: ${(props) => props.theme.colors.primary};
+    flex: 0 0 auto;
   }
 `;
 
 const TechStack = styled.div`
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
+  gap: 0.45rem;
+  margin-bottom: 1.3rem;
 `;
 
 const TechTag = styled.span`
   background: rgba(0, 212, 255, 0.1);
   color: ${(props) => props.theme.colors.primary};
-  padding: 0.3rem 0.8rem;
-  border-radius: 15px;
-  font-size: 0.8rem;
-  font-weight: 500;
+  padding: 0.32rem 0.72rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 800;
 `;
 
-const ProjectLinks = styled.div`
+const Actions = styled.div`
   display: flex;
-  gap: 1rem;
   flex-wrap: wrap;
+  gap: 0.75rem;
 `;
 
-const ProjectLink = styled(motion.a)`
-  display: flex;
+const Action = styled(motion.a)`
+  display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.8rem 1.5rem;
-  border-radius: 25px;
+  min-height: 42px;
+  padding: 0.72rem 1rem;
+  border-radius: 999px;
   text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
+  border: 1px solid rgba(0, 212, 255, 0.35);
+  color: ${(props) => props.theme.colors.primary};
+  background: rgba(0, 212, 255, 0.08);
+  font-size: 0.86rem;
+  font-weight: 800;
   cursor: pointer;
 
   &.primary {
-    background: ${(props) => props.theme.colors.gradient};
     color: white;
-  }
-
-  &.secondary {
-    background: transparent;
-    color: ${(props) => props.theme.colors.primary};
-    border: 1px solid ${(props) => props.theme.colors.primary};
-  }
-
-  &.screenshots {
-    background: rgba(0, 212, 255, 0.1);
-    color: ${(props) => props.theme.colors.primary};
-    border: 1px solid rgba(0, 212, 255, 0.3);
-  }
-
-  &:hover {
-    transform: translateY(-2px);
+    border-color: transparent;
+    background: ${(props) => props.theme.colors.gradient};
   }
 `;
 
-const ScreenshotIcon = styled.div`
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: rgba(0, 212, 255, 0.9);
-  color: white;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.2rem;
-`;
-
-// Modal styles
 const ModalOverlay = styled(motion.div)`
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   background: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
@@ -227,7 +292,6 @@ const ModalOverlay = styled(motion.div)`
 
 const ModalContent = styled(motion.div)`
   background: rgba(26, 26, 26, 0.95);
-  backdrop-filter: blur(20px);
   border: 1px solid rgba(0, 212, 255, 0.3);
   border-radius: 20px;
   padding: 3rem;
@@ -246,11 +310,6 @@ const ModalCloseButton = styled.button`
   color: ${(props) => props.theme.colors.textSecondary};
   font-size: 1.5rem;
   cursor: pointer;
-  transition: color 0.3s ease;
-
-  &:hover {
-    color: ${(props) => props.theme.colors.text};
-  }
 `;
 
 const ModalIcon = styled.div`
@@ -262,8 +321,7 @@ const ModalIcon = styled.div`
 const ModalTitle = styled.h3`
   color: ${(props) => props.theme.colors.text};
   font-size: 1.5rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 `;
 
 const ModalText = styled.p`
@@ -277,120 +335,143 @@ const ModalButton = styled(motion.button)`
   color: white;
   border: none;
   padding: 0.8rem 2rem;
-  border-radius: 25px;
-  font-size: 1rem;
-  font-weight: 500;
+  border-radius: 999px;
+  font-weight: 800;
   cursor: pointer;
-  transition: all 0.3s ease;
 `;
+
+const ProjectVisual = ({ project }) => {
+  if (project.phone) {
+    return (
+      <Visual featured={project.featured}>
+        {project.hasScreenshots && (
+          <ScreenshotBadge>
+            <FiCamera />
+            {project.screenshotCount}
+          </ScreenshotBadge>
+        )}
+        <PhoneFrame compact={!project.featured} rotate={project.featured ? "-5deg" : "0deg"}>
+          <PhoneScreen compact={!project.featured}>
+            <PhoneUi compact={!project.featured}>
+              <AppLogo compact={!project.featured} color={project.color}>
+                {project.logo}
+              </AppLogo>
+              <UiLine width="68%" />
+              <UiLine width="88%" soft />
+              <UiCard compact={!project.featured}>
+                <UiLine width="55%" />
+                <UiLine width="82%" soft />
+                <UiLine width="44%" soft />
+              </UiCard>
+              <UiCard compact={!project.featured}>
+                <UiLine width="62%" />
+                <UiLine width="76%" soft />
+              </UiCard>
+              {project.featured && <UiLine large width="100%" />}
+            </PhoneUi>
+          </PhoneScreen>
+        </PhoneFrame>
+      </Visual>
+    );
+  }
+
+  return (
+    <Visual featured={project.featured}>
+      {project.hasScreenshots && (
+        <ScreenshotBadge>
+          <FiCamera />
+          {project.screenshotCount}
+        </ScreenshotBadge>
+      )}
+      <ProjectIcon>
+        {project.web ? <FiGlobe /> : project.mobile ? <FiSmartphone /> : <FiPlay />}
+      </ProjectIcon>
+    </Visual>
+  );
+};
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [showRestrictedModal, setShowRestrictedModal] = useState(false);
   const { t, language } = useLanguage();
 
-  const openGallery = (projectTitle) => {
-    setSelectedProject(projectTitle);
-  };
-
-  const closeGallery = () => {
-    setSelectedProject(null);
-  };
-
-  const openRestrictedModal = () => {
-    setShowRestrictedModal(true);
-  };
-
-  const closeRestrictedModal = () => {
-    setShowRestrictedModal(false);
-  };
-
   const projects = [
+    {
+      title: "Barberio",
+      type: t("projects.liveProduct"),
+      featured: true,
+      phone: true,
+      logo: "B",
+      color: "linear-gradient(135deg, #101820, #00d4ff)",
+      description:
+        language === "fr"
+          ? "Première application personnelle en production: réservation de coiffeurs en Tunisie pour clients, barbiers et gérants de salons."
+          : "My first personal production app: barber booking in Tunisia for clients, barbers, and salon owners.",
+      features:
+        language === "fr"
+          ? ["Publiée sur App Store et Google Play", "Réservation, rappels, avis et portfolios", "Planning, équipe, services et tableau de bord"]
+          : ["Published on App Store and Google Play", "Bookings, reminders, reviews, and portfolios", "Scheduling, team, services, and dashboard"],
+      tech: ["Flutter", "Dart", "Firebase", "Notifications", "Production"],
+      appStore: "https://apps.apple.com/us/app/barberio/id6761790714",
+      googlePlay: "https://play.google.com/store/apps/details?id=io.barberio.app",
+      website: "https://barber-khaki-five.vercel.app/",
+    },
     {
       title: "Medical App",
       type: t("projects.freelanceProject"),
-      description: "Projet freelance",
-      features: [
-        "Complete medical management system",
-        "Patient records and appointments",
-        "Prescription management",
-        "Medical history tracking",
-        "Multi-role user system",
-      ],
+      phone: true,
+      logo: "M",
+      color: "linear-gradient(135deg, #0fa3b1, #6fffe9)",
+      description:
+        language === "fr"
+          ? "Application médicale mobile avec rendez-vous, messagerie, localisation et données temps réel."
+          : "Medical mobile app with appointments, messaging, location features, and real-time data.",
+      features: ["Appointments", "Firebase auth", "Messaging"],
       tech: ["Flutter", "Firebase"],
       github: "https://github.com/nidhalboumaiza-0/PFE-2025-Medical-App",
       hasScreenshots: true,
       screenshotCount: 27,
     },
     {
-      title: "GASPINO",
-      type: t("projects.freelanceProject"),
-      description: "Projet freelance",
-      features: [
-        "Gas station management system",
-        "Inventory tracking",
-        "Sales management",
-        "Customer management",
-        "Reporting system",
-      ],
-      tech: ["Flutter", "MongoDB", "Express.js", "Node.js"],
-      github: "https://github.com/nidhalboumaiza-0/gaspino",
-      hasScreenshots: true,
-      screenshotCount: 11,
-    },
-    {
-      title: "B.LOC APP",
-      type: t("projects.freelanceProject"),
-      description: "Projet freelance",
-      features: [
-        "Location-based services",
-        "Real-time tracking",
-        "User management system",
-        "Interactive mapping",
-        "Notification system",
-      ],
-      tech: ["Flutter", "Django", "PostgreSQL"],
-      github: "https://github.com/nidhalboumaiza-0/Bloc_Project",
-      hasScreenshots: false,
-    },
-    {
       title: "TeamFlow",
       type: t("projects.academicProject"),
+      web: true,
       description:
         language === "fr"
-          ? "Développement d'une application web de gestion d'équipes appelée TeamFlow, avec un front-end en React et un back-end en Express.js. Elle permet de gérer les équipes, les membres, les tâches et les équipements de manière centralisée et efficace."
-          : "Development of a team management web application called TeamFlow, with a React front-end and Express.js back-end. It allows managing teams, members, tasks and equipment in a centralized and efficient way.",
-      features: [
-        language === "fr" ? "Gestion des équipes" : "Team management",
-        language === "fr" ? "Gestion des membres" : "Member management",
-        language === "fr" ? "Gestion des tâches" : "Task management",
-        language === "fr" ? "Gestion des équipements" : "Equipment management",
-        language === "fr" ? "Interface centralisée" : "Centralized interface",
-      ],
+          ? "Application web de gestion d'équipes, tâches, membres et équipements avec React et Express."
+          : "Team, task, member, and equipment management web app with React and Express.",
+      features: ["React UI", "Express API", "MongoDB"],
       tech: ["React", "Express.js", "MongoDB", "Node.js"],
       github: "https://github.com/nidhalboumaiza-0/PFA",
       hasScreenshots: true,
       screenshotCount: 15,
     },
     {
-      title: "Gestion de Librairie",
-      type: t("projects.academicProject"),
+      title: "GASPINO",
+      type: t("projects.freelanceProject"),
+      phone: true,
+      logo: "G",
+      color: "linear-gradient(135deg, #1f7a4d, #ffd166)",
       description:
         language === "fr"
-          ? "Développement d'une application web de gestion de librairie avec un front-end en React et un back-end en Flask. Elle permet d'ajouter des livres et des auteurs, avec une liaison automatique entre les deux. L'application gère également les emprunts de livres, leur retour, et permet de suivre l'état de chaque emprunt."
-          : "Development of a library management web application with a React front-end and Flask back-end. It allows adding books and authors, with automatic linking between them. The application also manages book loans, returns, and tracks the status of each loan.",
-      features: [
+          ? "Application Flutter + Node.js pour réduire le gaspillage de produits alimentaires."
+          : "Flutter + Node.js app for reducing food product waste.",
+      features: ["Flutter app", "Express backend", "MongoDB"],
+      tech: ["Flutter", "MongoDB", "Express.js", "Node.js"],
+      github: "https://github.com/nidhalboumaiza-0/gaspino",
+      hasScreenshots: true,
+      screenshotCount: 11,
+    },
+    {
+      title: "Gestion de Librairie",
+      type: t("projects.academicProject"),
+      web: true,
+      description:
         language === "fr"
-          ? "Gestion des livres et auteurs"
-          : "Book and author management",
-        language === "fr"
-          ? "Liaison automatique livre-auteur"
-          : "Automatic book-author linking",
-        language === "fr" ? "Gestion des emprunts" : "Loan management",
-        language === "fr" ? "Suivi des retours" : "Return tracking",
-        language === "fr" ? "État des emprunts" : "Loan status tracking",
-      ],
-      tech: ["React", "Flask", "MySQL", "Python", "Bootstrap"],
+          ? "Gestion de livres, auteurs, emprunts et retours avec React, Flask et MySQL."
+          : "Book, author, loan, and return management with React, Flask, and MySQL.",
+      features: ["React UI", "Flask API", "MySQL"],
+      tech: ["React", "Flask", "MySQL", "Python"],
       github: "https://github.com/nidhalboumaiza-0/Biblio_React",
       hasScreenshots: true,
       screenshotCount: 6,
@@ -398,137 +479,141 @@ const Projects = () => {
     {
       title: "HR Management System",
       type: t("projects.internshipProject"),
-      description: "Projet de stage",
-      features: [
-        "Employee management",
-        "Attendance tracking",
-        "Payroll system",
-        "Leave management",
-        "Performance evaluation",
-      ],
+      phone: true,
+      logo: "HR",
+      color: "linear-gradient(135deg, #3a86ff, #8338ec)",
+      description:
+        language === "fr"
+          ? "Plateforme RH mobile et backend pour workflows internes chez Neopolis."
+          : "Mobile and backend HR platform for internal Neopolis workflows.",
+      features: ["Flutter", "Express.js", "MongoDB"],
       tech: ["Flutter", "Express.js", "MongoDB"],
-      github: "restricted", // Mark as restricted
-      hasScreenshots: false,
-    },
-    {
-      title: "Campfire Stories",
-      type: t("projects.freelanceProject"),
-      description: "Projet freelance",
-      features: [
-        "Story sharing platform",
-        "User authentication",
-        "Story categorization",
-        "Rating system",
-        "Social features",
-      ],
-      tech: ["Flutter", "Django", "PostgreSQL"],
-      github: "https://github.com/nidhalboumaiza-0/Camp_Project",
-      demo: "https://campfire-stories-demo.netlify.app",
-      hasScreenshots: false,
+      github: "restricted",
     },
   ];
+
+  const openGallery = (projectTitle) => setSelectedProject(projectTitle);
+  const closeGallery = () => setSelectedProject(null);
+  const openRestrictedModal = () => setShowRestrictedModal(true);
+  const closeRestrictedModal = () => setShowRestrictedModal(false);
 
   return (
     <ProjectsSection id="projects">
       <Container>
-        <SectionTitle
-          initial={{ opacity: 0, y: 50 }}
+        <SectionHeader
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          {t("projects.title")}
-        </SectionTitle>
+          <SectionTitle>{t("projects.title")}</SectionTitle>
+          <SectionSubtitle>{t("projects.subtitle")}</SectionSubtitle>
+        </SectionHeader>
 
         <ProjectsGrid>
           {projects.map((project, index) => (
             <ProjectCard
-              key={index}
-              initial={{ opacity: 0, y: 50 }}
+              key={project.title}
+              featured={project.featured}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: index * 0.2 }}
+              transition={{ duration: 0.65, delay: index * 0.08 }}
               viewport={{ once: true }}
+              whileHover={{ y: -6 }}
             >
-              <ProjectImage>
-                {project.hasScreenshots && (
-                  <ScreenshotIcon>
-                    <FiCamera />
-                  </ScreenshotIcon>
-                )}
-                <ProjectIcon>
-                  {project.title.includes("Medical") ? (
-                    <FiSmartphone />
-                  ) : (
-                    <FiPlay />
-                  )}
-                </ProjectIcon>
-              </ProjectImage>
+              <ProjectVisual project={project} />
 
-              <ProjectContent>
-                <ProjectHeader>
-                  <div>
-                    <ProjectTitle>{project.title}</ProjectTitle>
-                    <ProjectType>{project.type}</ProjectType>
-                  </div>
-                </ProjectHeader>
+              <Content featured={project.featured}>
+                <Eyebrow>{project.type}</Eyebrow>
+                <ProjectTitle featured={project.featured}>
+                  {project.title}
+                </ProjectTitle>
+                <ProjectDescription featured={project.featured}>
+                  {project.description}
+                </ProjectDescription>
 
-                <ProjectDescription>{project.description}</ProjectDescription>
-
-                <ProjectFeatures>
-                  {project.features.map((feature, idx) => (
-                    <ProjectFeature key={idx}>{feature}</ProjectFeature>
+                <FeatureList>
+                  {project.features.map((feature) => (
+                    <Feature key={feature}>{feature}</Feature>
                   ))}
-                </ProjectFeatures>
+                </FeatureList>
 
                 <TechStack>
-                  {project.tech.map((tech, idx) => (
-                    <TechTag key={idx}>{tech}</TechTag>
+                  {project.tech.map((tech) => (
+                    <TechTag key={tech}>{tech}</TechTag>
                   ))}
                 </TechStack>
 
-                <ProjectLinks>
+                <Actions>
+                  {project.appStore && (
+                    <Action
+                      className="primary"
+                      href={project.appStore}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.04 }}
+                      whileTap={{ scale: 0.96 }}
+                    >
+                      <FaApple />
+                      {t("projects.appStore")}
+                    </Action>
+                  )}
+                  {project.googlePlay && (
+                    <Action
+                      href={project.googlePlay}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.04 }}
+                      whileTap={{ scale: 0.96 }}
+                    >
+                      <FaGooglePlay />
+                      {t("projects.googlePlay")}
+                    </Action>
+                  )}
+                  {project.website && (
+                    <Action
+                      href={project.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.04 }}
+                      whileTap={{ scale: 0.96 }}
+                    >
+                      <FiExternalLink />
+                      {t("projects.website")}
+                    </Action>
+                  )}
                   {project.hasScreenshots && (
-                    <ProjectLink
-                      className="screenshots"
+                    <Action
+                      as="button"
+                      type="button"
                       onClick={() => openGallery(project.title)}
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                      whileHover={{ scale: 1.04 }}
+                      whileTap={{ scale: 0.96 }}
                     >
                       <FiCamera />
                       {t("projects.screenshots")}
-                    </ProjectLink>
+                    </Action>
                   )}
-                  <ProjectLink
-                    className="secondary"
-                    href={
-                      project.github === "restricted" ? "#" : project.github
-                    }
-                    target={
-                      project.github === "restricted" ? "_self" : "_blank"
-                    }
-                    rel={
-                      project.github === "restricted"
-                        ? ""
-                        : "noopener noreferrer"
-                    }
-                    onClick={(e) => {
-                      if (project.github === "restricted") {
-                        e.preventDefault();
-                        openRestrictedModal();
-                      }
-                    }}
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    {project.github === "restricted" ? (
-                      <FiLock />
-                    ) : (
-                      <FiGithub />
-                    )}
-                    {t("projects.sourceCode")}
-                  </ProjectLink>
-                </ProjectLinks>
-              </ProjectContent>
+                  {project.github && (
+                    <Action
+                      href={project.github === "restricted" ? "#" : project.github}
+                      target={project.github === "restricted" ? "_self" : "_blank"}
+                      rel={project.github === "restricted" ? "" : "noopener noreferrer"}
+                      onClick={(e) => {
+                        if (project.github === "restricted") {
+                          e.preventDefault();
+                          openRestrictedModal();
+                        }
+                      }}
+                      whileHover={{ scale: 1.04 }}
+                      whileTap={{ scale: 0.96 }}
+                    >
+                      {project.github === "restricted" ? <FiLock /> : <FiGithub />}
+                      {t("projects.sourceCode")}
+                    </Action>
+                  )}
+                </Actions>
+              </Content>
             </ProjectCard>
           ))}
         </ProjectsGrid>
@@ -540,7 +625,6 @@ const Projects = () => {
         projectTitle={selectedProject}
       />
 
-      {/* Restricted Repository Modal */}
       {showRestrictedModal && (
         <ModalOverlay
           initial={{ opacity: 0 }}
@@ -549,29 +633,25 @@ const Projects = () => {
           onClick={closeRestrictedModal}
         >
           <ModalContent
-            initial={{ scale: 0.8, opacity: 0 }}
+            initial={{ scale: 0.85, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
+            exit={{ scale: 0.85, opacity: 0 }}
             onClick={(e) => e.stopPropagation()}
           >
             <ModalCloseButton onClick={closeRestrictedModal}>
               <FiX />
             </ModalCloseButton>
-
             <ModalIcon>
               <FiLock />
             </ModalIcon>
-
             <ModalTitle>
-              {language === "fr" ? "Code Non Disponible" : "Code Not Available"}
+              {language === "fr" ? "Code non disponible" : "Code not available"}
             </ModalTitle>
-
             <ModalText>
               {language === "fr"
-                ? "Désolé, le code source de ce projet ne peut pas être partagé en raison de restrictions du client ou de l'entreprise. Cependant, je serais heureux de discuter des détails techniques et de l'architecture du projet lors d'un entretien."
-                : "Sorry, the source code for this project cannot be shared due to client or company restrictions. However, I'd be happy to discuss the technical details and architecture of the project during an interview."}
+                ? "Le code source de ce projet ne peut pas être partagé à cause de restrictions client ou entreprise. Je peux toutefois expliquer l'architecture et les décisions techniques en entretien."
+                : "The source code cannot be shared due to client or company restrictions. I can still walk through the architecture and technical decisions in an interview."}
             </ModalText>
-
             <ModalButton
               onClick={closeRestrictedModal}
               whileHover={{ scale: 1.05 }}
