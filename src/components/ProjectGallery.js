@@ -76,7 +76,7 @@ const NavButton = styled.button`
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 212, 255, 0.8);
+  background: rgba(139, 92, 246, 0.8);
   border: none;
   color: white;
   font-size: 24px;
@@ -89,7 +89,7 @@ const NavButton = styled.button`
     props.direction === "left" ? "left: 20px;" : "right: 20px;"}
 
   &:hover {
-    background: rgba(0, 212, 255, 1);
+    background: rgba(139, 92, 246, 1);
     transform: translateY(-50%) scale(1.1);
   }
 
@@ -128,7 +128,7 @@ const ThumbnailGrid = styled.div`
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #00d4ff;
+    background: #8b5cf6;
     border-radius: 4px;
   }
 `;
@@ -143,7 +143,7 @@ const Thumbnail = styled(motion.img)`
   transition: all 0.3s ease;
 
   &:hover {
-    border-color: #00d4ff;
+    border-color: #8b5cf6;
     transform: scale(1.05);
   }
 `;

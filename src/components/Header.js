@@ -11,12 +11,6 @@ const HeaderContainer = styled(motion.header)`
   right: 0;
   z-index: 1000;
   padding: 1rem 2rem;
-  background: ${(props) =>
-    props.scrolled ? "rgba(10, 10, 10, 0.95)" : "transparent"};
-  backdrop-filter: blur(10px);
-  border-bottom: ${(props) =>
-    props.scrolled ? "1px solid rgba(0, 212, 255, 0.2)" : "none"};
-  transition: all 0.3s ease;
 
   @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
     padding: 1rem;
@@ -27,20 +21,39 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1100px;
+  margin: ${(props) => (props.$scrolled ? "0 auto" : "0 auto")};
+  padding: ${(props) =>
+    props.$scrolled ? "0.55rem 1.4rem" : "0.2rem 0"};
+  border-radius: 999px;
+  background: ${(props) =>
+    props.$scrolled ? "rgba(13, 16, 32, 0.78)" : "transparent"};
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid
+    ${(props) =>
+      props.$scrolled ? "rgba(139, 92, 246, 0.28)" : "transparent"};
+  box-shadow: ${(props) =>
+    props.$scrolled
+      ? "0 12px 40px rgba(3, 5, 14, 0.6), inset 0 1px 0 rgba(255,255,255,0.06)"
+      : "none"};
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 const Logo = styled(motion.div)`
-  font-size: 1.5rem;
+  font-family: ${(props) => props.theme.fonts.mono};
+  font-size: 1.4rem;
   font-weight: 700;
-  color: ${(props) => props.theme.colors.primary};
   cursor: pointer;
+  background: linear-gradient(120deg, #a78bfa, #22d3ee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 `;
 
 const NavLinks = styled.div`
   display: flex;
-  gap: 2rem;
+  gap: 0.25rem;
   align-items: center;
 
   @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
@@ -49,25 +62,27 @@ const NavLinks = styled.div`
 `;
 
 const NavLink = styled(motion.a)`
-  color: ${(props) => props.theme.colors.text};
+  color: ${(props) =>
+    props.$active ? "#ffffff" : props.theme.colors.textSecondary};
   text-decoration: none;
-  font-weight: 500;
+  font-weight: ${(props) => (props.$active ? 600 : 500)};
+  font-size: 0.92rem;
   cursor: pointer;
   position: relative;
+  padding: 0.45rem 0.9rem;
+  border-radius: 999px;
+  transition: color 0.25s ease, background 0.25s ease,
+    box-shadow 0.25s ease;
 
-  &::after {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: ${(props) => props.theme.colors.primary};
-    transition: width 0.3s ease;
-  }
+  ${(props) =>
+    props.$active &&
+    `
+      background: linear-gradient(120deg, rgba(139,92,246,0.28), rgba(34,211,238,0.18));
+      box-shadow: inset 0 0 0 1px rgba(139,92,246,0.35);
+    `}
 
-  &:hover::after {
-    width: 100%;
+  &:hover {
+    color: #ffffff;
   }
 `;
 
@@ -110,7 +125,7 @@ const MobileMenu = styled(motion.div)`
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(10, 10, 10, 0.98);
+  background: rgba(5, 6, 14, 0.97);
   backdrop-filter: blur(20px);
   display: flex;
   flex-direction: column;
@@ -136,15 +151,35 @@ const MobileSocialLinks = styled.div`
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("hero");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
+
+      // Scrollspy: highlight the nav link of the section in view
+      const sections = [
+        "hero",
+        "about",
+        "skills",
+        "experience",
+        "projects",
+        "education",
+        "contact",
+      ];
+      const scrollPos = window.scrollY + window.innerHeight * 0.35;
+      let current = "hero";
+      for (const id of sections) {
+        const el = document.getElementById(id);
+        if (el && el.offsetTop <= scrollPos) current = id;
+      }
+      setActiveSection(current);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -169,12 +204,11 @@ const Header = () => {
   return (
     <>
       <HeaderContainer
-        scrolled={scrolled}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <Nav>
+        <Nav $scrolled={scrolled}>
           <Logo
             whileHover={{ scale: 1.05 }}
             onClick={() => scrollToSection("hero")}
@@ -187,6 +221,7 @@ const Header = () => {
               <NavLink
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
+                $active={activeSection === item.id}
                 whileHover={{ y: -2 }}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}

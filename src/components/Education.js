@@ -84,9 +84,9 @@ const TimelineItem = styled(motion.div)`
 `;
 
 const TimelineContent = styled(motion.div)`
-  background: rgba(26, 26, 26, 0.8);
+  background: rgba(17, 21, 38, 0.8);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 212, 255, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.2);
   border-radius: 15px;
   padding: 2rem;
   width: calc(50% - 40px);
@@ -107,7 +107,7 @@ const TimelineContent = styled(motion.div)`
 
     &::before {
       right: -20px;
-      border-left-color: rgba(0, 212, 255, 0.2);
+      border-left-color: rgba(139, 92, 246, 0.2);
     }
   }
 
@@ -116,7 +116,7 @@ const TimelineContent = styled(motion.div)`
 
     &::before {
       left: -20px;
-      border-right-color: rgba(0, 212, 255, 0.2);
+      border-right-color: rgba(139, 92, 246, 0.2);
     }
   }
 
@@ -129,7 +129,7 @@ const TimelineContent = styled(motion.div)`
       left: -20px !important;
       right: auto !important;
       border-left-color: transparent !important;
-      border-right-color: rgba(0, 212, 255, 0.2) !important;
+      border-right-color: rgba(139, 92, 246, 0.2) !important;
     }
   }
 

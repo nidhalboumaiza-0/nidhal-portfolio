@@ -70,7 +70,7 @@ const ClusterGrid = styled.div`
 `;
 
 const Cluster = styled(motion.div)`
-  background: linear-gradient(180deg, rgba(26, 26, 26, 0.92), rgba(14, 18, 22, 0.92));
+  background: linear-gradient(180deg, rgba(17, 21, 38, 0.92), rgba(9, 12, 26, 0.92));
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 18px;
   padding: 1.5rem;
@@ -105,8 +105,8 @@ const PillList = styled.div`
 
 const Pill = styled.span`
   color: ${(props) => props.theme.colors.text};
-  background: rgba(0, 212, 255, 0.09);
-  border: 1px solid rgba(0, 212, 255, 0.2);
+  background: rgba(139, 92, 246, 0.09);
+  border: 1px solid rgba(139, 92, 246, 0.2);
   border-radius: 999px;
   padding: 0.42rem 0.72rem;
   font-size: 0.82rem;
@@ -121,7 +121,7 @@ const ToolGrid = styled.div`
 
 const Tool = styled(motion.div)`
   height: 112px;
-  background: rgba(26, 26, 26, 0.72);
+  background: rgba(17, 21, 38, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
   display: grid;

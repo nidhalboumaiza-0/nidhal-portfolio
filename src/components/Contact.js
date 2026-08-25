@@ -19,8 +19,8 @@ const ContactSection = styled.section`
   padding: 8rem 2rem;
   background: linear-gradient(
     135deg,
-    rgba(0, 212, 255, 0.05) 0%,
-    rgba(0, 153, 204, 0.05) 100%
+    rgba(139, 92, 246, 0.05) 0%,
+    rgba(34, 211, 238, 0.05) 100%
   );
 
   @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
@@ -88,9 +88,9 @@ const ContactItem = styled(motion.div)`
   gap: 1rem;
   margin-bottom: 1.5rem;
   padding: 1rem;
-  background: rgba(26, 26, 26, 0.5);
+  background: rgba(17, 21, 38, 0.5);
   border-radius: 10px;
-  border: 1px solid rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(139, 92, 246, 0.1);
   transition: all 0.3s ease;
 
   &:hover {
@@ -123,8 +123,8 @@ const SocialLink = styled(motion.a)`
   justify-content: center;
   width: 50px;
   height: 50px;
-  background: rgba(26, 26, 26, 0.8);
-  border: 1px solid rgba(0, 212, 255, 0.2);
+  background: rgba(17, 21, 38, 0.8);
+  border: 1px solid rgba(139, 92, 246, 0.2);
   border-radius: 50%;
   color: ${(props) => props.theme.colors.primary};
   font-size: 1.2rem;
@@ -139,9 +139,9 @@ const SocialLink = styled(motion.a)`
 `;
 
 const ContactForm = styled(motion.form)`
-  background: rgba(26, 26, 26, 0.8);
+  background: rgba(17, 21, 38, 0.8);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 212, 255, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.2);
   border-radius: 20px;
   padding: 2rem;
 `;
@@ -161,7 +161,7 @@ const FormInput = styled.input`
   width: 100%;
   padding: 1rem;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(0, 212, 255, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.2);
   border-radius: 10px;
   color: ${(props) => props.theme.colors.text};
   font-size: 1rem;
@@ -182,7 +182,7 @@ const FormTextarea = styled.textarea`
   width: 100%;
   padding: 1rem;
   background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(0, 212, 255, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.2);
   border-radius: 10px;
   color: ${(props) => props.theme.colors.text};
   font-size: 1rem;
@@ -220,7 +220,7 @@ const SubmitButton = styled(motion.button)`
 
   &:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+    box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
   }
 
   &:disabled {
@@ -230,7 +230,7 @@ const SubmitButton = styled(motion.button)`
 `;
 
 const ErrorMessage = styled.div`
-  color: #ff6b6b;
+  color: #f472b6;
   font-size: 0.875rem;
   margin-top: 0.25rem;
   display: flex;
@@ -413,8 +413,8 @@ const Contact = () => {
                 placeholder={t("contact.placeholders.name")}
                 style={{
                   borderColor: errors.name
-                    ? "#ff6b6b"
-                    : "rgba(0, 212, 255, 0.2)",
+                    ? "#f472b6"
+                    : "rgba(139, 92, 246, 0.2)",
                 }}
               />
               {errors.name && (
@@ -434,8 +434,8 @@ const Contact = () => {
                 placeholder={t("contact.placeholders.email")}
                 style={{
                   borderColor: errors.email
-                    ? "#ff6b6b"
-                    : "rgba(0, 212, 255, 0.2)",
+                    ? "#f472b6"
+                    : "rgba(139, 92, 246, 0.2)",
                 }}
               />
               {errors.email && (
@@ -455,8 +455,8 @@ const Contact = () => {
                 placeholder={t("contact.placeholders.subject")}
                 style={{
                   borderColor: errors.subject
-                    ? "#ff6b6b"
-                    : "rgba(0, 212, 255, 0.2)",
+                    ? "#f472b6"
+                    : "rgba(139, 92, 246, 0.2)",
                 }}
               />
               {errors.subject && (
@@ -475,8 +475,8 @@ const Contact = () => {
                 placeholder={t("contact.placeholders.message")}
                 style={{
                   borderColor: errors.message
-                    ? "#ff6b6b"
-                    : "rgba(0, 212, 255, 0.2)",
+                    ? "#f472b6"
+                    : "rgba(139, 92, 246, 0.2)",
                 }}
               />
               {errors.message && (

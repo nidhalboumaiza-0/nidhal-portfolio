@@ -14,8 +14,8 @@ import { useLanguage } from "../contexts/LanguageContext";
 const Section = styled.section`
   padding: 4rem 2rem 6rem;
   background:
-    radial-gradient(circle at 18% 20%, rgba(255, 107, 107, 0.12), transparent 28%),
-    linear-gradient(180deg, rgba(10, 10, 10, 0) 0%, rgba(0, 212, 255, 0.05) 100%);
+    radial-gradient(circle at 18% 20%, rgba(244, 114, 182, 0.12), transparent 28%),
+    linear-gradient(180deg, rgba(5, 6, 14, 0) 0%, rgba(139, 92, 246, 0.05) 100%);
 
   @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
     padding: 3rem 1rem 4rem;
@@ -80,7 +80,7 @@ const Card = styled(motion.div)`
   min-height: 160px;
   padding: 1.4rem;
   border-radius: 18px;
-  background: rgba(18, 22, 26, 0.86);
+  background: rgba(15, 19, 36, 0.86);
   border: 1px solid rgba(255, 255, 255, 0.08);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
 

@@ -13,8 +13,8 @@ const AboutSection = styled.section`
   padding: 8rem 2rem;
   background: linear-gradient(
     135deg,
-    rgba(0, 212, 255, 0.05) 0%,
-    rgba(0, 153, 204, 0.05) 100%
+    rgba(139, 92, 246, 0.05) 0%,
+    rgba(34, 211, 238, 0.05) 100%
   );
 
   @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
@@ -75,9 +75,9 @@ const PassionCards = styled(motion.div)`
 `;
 
 const PassionCard = styled(motion.div)`
-  background: rgba(26, 26, 26, 0.8);
+  background: rgba(17, 21, 38, 0.8);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 212, 255, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.2);
   border-radius: 15px;
   padding: 2rem;
   text-align: center;

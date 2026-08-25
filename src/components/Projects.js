@@ -18,7 +18,7 @@ import ProjectGallery from "./ProjectGallery";
 const ProjectsSection = styled.section`
   padding: 8rem 2rem;
   background:
-    radial-gradient(circle at 82% 8%, rgba(0, 212, 255, 0.1), transparent 28%),
+    radial-gradient(circle at 82% 8%, rgba(139, 92, 246, 0.1), transparent 28%),
     ${(props) => props.theme.colors.background};
 
   @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
@@ -67,7 +67,7 @@ const ProjectCard = styled(motion.article)`
   display: grid;
   grid-template-columns: ${(props) => (props.featured ? "1fr 0.9fr" : "1fr")};
   gap: ${(props) => (props.featured ? "2rem" : "0")};
-  background: linear-gradient(180deg, rgba(26, 26, 26, 0.94), rgba(13, 17, 22, 0.94));
+  background: linear-gradient(180deg, rgba(17, 21, 38, 0.94), rgba(8, 11, 24, 0.94));
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
   overflow: hidden;
@@ -86,8 +86,8 @@ const Visual = styled.div`
   justify-content: center;
   overflow: hidden;
   background:
-    linear-gradient(135deg, rgba(0, 212, 255, 0.18), rgba(255, 107, 107, 0.12)),
-    #11161c;
+    linear-gradient(135deg, rgba(139, 92, 246, 0.18), rgba(244, 114, 182, 0.12)),
+    #0B0F1E;
 `;
 
 const ScreenshotBadge = styled.div`
@@ -95,7 +95,7 @@ const ScreenshotBadge = styled.div`
   top: 1rem;
   right: 1rem;
   color: white;
-  background: rgba(0, 212, 255, 0.88);
+  background: rgba(139, 92, 246, 0.88);
   border-radius: 999px;
   padding: 0.5rem 0.75rem;
   display: inline-flex;
@@ -120,7 +120,7 @@ const PhoneScreen = styled.div`
   border-radius: ${(props) => (props.compact ? "22px" : "30px")};
   overflow: hidden;
   background:
-    linear-gradient(180deg, rgba(0, 212, 255, 0.18), rgba(0, 0, 0, 0) 36%),
+    linear-gradient(180deg, rgba(139, 92, 246, 0.18), rgba(0, 0, 0, 0) 36%),
     #0b1015;
   position: relative;
 
@@ -149,7 +149,7 @@ const AppLogo = styled.div`
   width: ${(props) => (props.compact ? "42px" : "58px")};
   height: ${(props) => (props.compact ? "42px" : "58px")};
   border-radius: 16px;
-  background: ${(props) => props.color || "linear-gradient(135deg, #00d4ff, #ff6b6b)"};
+  background: ${(props) => props.color || "linear-gradient(135deg, #8b5cf6, #f472b6)"};
   display: grid;
   place-items: center;
   color: white;
@@ -243,7 +243,7 @@ const TechStack = styled.div`
 `;
 
 const TechTag = styled.span`
-  background: rgba(0, 212, 255, 0.1);
+  background: rgba(139, 92, 246, 0.1);
   color: ${(props) => props.theme.colors.primary};
   padding: 0.32rem 0.72rem;
   border-radius: 999px;
@@ -265,9 +265,9 @@ const Action = styled(motion.a)`
   padding: 0.72rem 1rem;
   border-radius: 999px;
   text-decoration: none;
-  border: 1px solid rgba(0, 212, 255, 0.35);
+  border: 1px solid rgba(139, 92, 246, 0.35);
   color: ${(props) => props.theme.colors.primary};
-  background: rgba(0, 212, 255, 0.08);
+  background: rgba(139, 92, 246, 0.08);
   font-size: 0.86rem;
   font-weight: 800;
   cursor: pointer;
@@ -291,8 +291,8 @@ const ModalOverlay = styled(motion.div)`
 `;
 
 const ModalContent = styled(motion.div)`
-  background: rgba(26, 26, 26, 0.95);
-  border: 1px solid rgba(0, 212, 255, 0.3);
+  background: rgba(17, 21, 38, 0.95);
+  border: 1px solid rgba(139, 92, 246, 0.3);
   border-radius: 20px;
   padding: 3rem;
   max-width: 500px;
@@ -402,7 +402,7 @@ const Projects = () => {
       featured: true,
       phone: true,
       logo: "B",
-      color: "linear-gradient(135deg, #101820, #00d4ff)",
+      color: "linear-gradient(135deg, #101820, #8b5cf6)",
       description:
         language === "fr"
           ? "Première application personnelle en production: réservation de coiffeurs en Tunisie pour clients, barbiers et gérants de salons."

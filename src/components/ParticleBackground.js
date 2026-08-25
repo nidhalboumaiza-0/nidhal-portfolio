@@ -18,23 +18,37 @@ const ParticleBackground = () => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     let animationId;
+    const mouse = { x: null, y: null };
+
+    // Aurora palette
+    const palette = ["#8B5CF6", "#22D3EE", "#F472B6", "#A78BFA"];
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
+      initParticles();
     };
 
     const particles = [];
-    const particleCount = 100;
+    const particleCount = window.innerWidth < 768 ? 45 : 80;
 
     class Particle {
       constructor() {
+        this.reset();
+      }
+
+      reset() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * 0.5;
-        this.vy = (Math.random() - 0.5) * 0.5;
-        this.radius = Math.random() * 2 + 1;
-        this.opacity = Math.random() * 0.5 + 0.2;
+        this.vx = (Math.random() - 0.5) * 0.4;
+        this.vy = (Math.random() - 0.5) * 0.4;
+        this.radius =
+          Math.random() < 0.15
+            ? Math.random() * 2.4 + 1.6
+            : Math.random() * 1.6 + 0.4;
+        this.opacity = Math.random() * 0.5 + 0.25;
+        this.color = palette[Math.floor(Math.random() * palette.length)];
+        this.depth = Math.random() * 0.6 + 0.4; // parallax depth factor
       }
 
       update() {
@@ -43,6 +57,18 @@ const ParticleBackground = () => {
 
         if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
         if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+        // Gentle repulsion from the cursor
+        if (mouse.x !== null) {
+          const dx = this.x - mouse.x;
+          const dy = this.y - mouse.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120 && dist > 0) {
+            const force = ((120 - dist) / 120) * 0.6 * this.depth;
+            this.x += (dx / dist) * force;
+            this.y += (dy / dist) * force;
+          }
+        }
       }
 
       draw() {
@@ -50,13 +76,16 @@ const ParticleBackground = () => {
         ctx.globalAlpha = this.opacity;
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = "#00D4FF";
+        ctx.fillStyle = this.color;
+        ctx.shadowColor = this.color;
+        ctx.shadowBlur = this.radius > 2 ? 10 : 4;
         ctx.fill();
         ctx.restore();
       }
     }
 
     const initParticles = () => {
+      particles.length = 0;
       for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle());
       }
@@ -69,14 +98,14 @@ const ParticleBackground = () => {
           const dy = particles[i].y - particles[j].y;
           const distance = Math.sqrt(dx * dx + dy * dy);
 
-          if (distance < 100) {
+          if (distance < 110) {
             ctx.save();
-            ctx.globalAlpha = ((100 - distance) / 100) * 0.2;
+            ctx.globalAlpha = ((110 - distance) / 110) * 0.14;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.strokeStyle = "#00D4FF";
-            ctx.lineWidth = 0.5;
+            ctx.strokeStyle = "#8B5CF6";
+            ctx.lineWidth = 0.6;
             ctx.stroke();
             ctx.restore();
           }
@@ -96,14 +125,26 @@ const ParticleBackground = () => {
       animationId = requestAnimationFrame(animate);
     };
 
+    const onMouseMove = (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    };
+    const onMouseLeave = () => {
+      mouse.x = null;
+      mouse.y = null;
+    };
+
     resizeCanvas();
-    initParticles();
     animate();
 
     window.addEventListener("resize", resizeCanvas);
+    window.addEventListener("mousemove", onMouseMove, { passive: true });
+    window.addEventListener("mouseout", onMouseLeave);
 
     return () => {
       window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("mouseout", onMouseLeave);
       cancelAnimationFrame(animationId);
     };
   }, []);

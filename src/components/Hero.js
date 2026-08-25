@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { ReactTyped } from "react-typed";
 import { FiDownload, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
+import { SiFlutter, SiReact, SiExpress, SiFirebase } from "react-icons/si";
 import { useLanguage } from "../contexts/LanguageContext";
 import profileImage from "../assets/nidhal-pic1.jpg";
 
@@ -48,56 +49,122 @@ const ProfileImageContainer = styled(motion.div)`
 
   @media (max-width: ${(props) => props.theme.breakpoints.tablet}) {
     order: -1;
+    margin-top: 5rem;
   }
 
   @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
-    margin-top: 6rem; // Add space below the header on mobile
+    margin-top: 6rem;
+  }
+`;
+
+/* Glass frame with a slowly flowing gradient border */
+const PhotoFrame = styled(motion.div)`
+  position: relative;
+  padding: 3px;
+  border-radius: 32px;
+  background: linear-gradient(
+    120deg,
+    #8b5cf6,
+    #22d3ee,
+    #f472b6,
+    #8b5cf6
+  );
+  background-size: 300% 300%;
+  animation: heroBorderFlow 7s linear infinite;
+  box-shadow:
+    0 24px 60px rgba(139, 92, 246, 0.35),
+    0 8px 28px rgba(34, 211, 238, 0.18);
+
+  @keyframes heroBorderFlow {
+    0% {
+      background-position: 0% 50%;
+    }
+    100% {
+      background-position: 300% 50%;
+    }
   }
 `;
 
 const ProfileImage = styled(motion.img)`
-  width: 300px;
-  height: 420px;
-  border-radius: 50%;
+  display: block;
+  width: 290px;
+  height: 380px;
   object-fit: cover;
   object-position: 34% center;
-  transform: scale(1);
-  border: 4px solid ${(props) => props.theme.colors.primary};
-  box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+  border-radius: 29px;
   position: relative;
   z-index: 2;
 
   @media (max-width: ${(props) => props.theme.breakpoints.tablet}) {
-    width: 200px;
-    height: 200px;
-    transform: scale(1);
-  }
-
-  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
-    width: 150px;
-    height: 150px;
-    transform: scale(1);
-  }
-`;
-
-const ProfileGlow = styled(motion.div)`
-  position: absolute;
-  width: 300px;
-  height: 300px;
-  border-radius: 50%;
-  background: ${(props) => props.theme.colors.gradient};
-  opacity: 0.2;
-  filter: blur(20px);
-  z-index: 1;
-
-  @media (max-width: ${(props) => props.theme.breakpoints.tablet}) {
     width: 220px;
-    height: 220px;
+    height: 290px;
   }
 
   @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
     width: 170px;
-    height: 170px;
+    height: 224px;
+  }
+`;
+
+/* Soft aurora halo behind the photo */
+const ProfileGlow = styled(motion.div)`
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 180deg,
+    rgba(139, 92, 246, 0.45),
+    rgba(34, 211, 238, 0.4),
+    rgba(244, 114, 182, 0.35),
+    rgba(139, 92, 246, 0.45)
+  );
+  opacity: 0.35;
+  filter: blur(60px);
+  z-index: 1;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.tablet}) {
+    width: 250px;
+    height: 250px;
+  }
+
+  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+    width: 200px;
+    height: 200px;
+  }
+`;
+
+/* Floating tech chips orbiting the portrait */
+const FloatingChip = styled(motion.div)`
+  position: absolute;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(13, 16, 32, 0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: ${(props) => props.theme.fonts.mono};
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: ${(props) => props.theme.colors.text};
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  white-space: nowrap;
+
+  svg {
+    font-size: 1rem;
+    color: ${(props) => props.chipColor || props.theme.colors.secondary};
+  }
+
+  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+    font-size: 0.62rem;
+    padding: 0.4rem 0.65rem;
+
+    svg {
+      font-size: 0.8rem;
+    }
   }
 `;
 
@@ -171,7 +238,7 @@ const Button = styled(motion.a)`
 
     &:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.3);
+      box-shadow: 0 10px 30px rgba(139, 92, 246, 0.3);
     }
   }
 
@@ -189,9 +256,9 @@ const Button = styled(motion.a)`
 `;
 
 const StatsCard = styled(motion.div)`
-  background: rgba(26, 26, 26, 0.8);
+  background: rgba(17, 21, 38, 0.8);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(0, 212, 255, 0.2);
+  border: 1px solid rgba(139, 92, 246, 0.2);
   border-radius: 20px;
   padding: 2rem;
   min-width: 300px;
@@ -376,30 +443,59 @@ const Hero = () => {
         </Content>
 
         <ProfileImageContainer
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
           <ProfileGlow
             animate={{
-              scale: [1, 1.1, 1],
-              opacity: [0.2, 0.3, 0.2],
+              rotate: 360,
+              opacity: [0.28, 0.4, 0.28],
             }}
             transition={{
-              duration: 4,
-              repeat: Infinity,
-              ease: "easeInOut",
+              rotate: { duration: 30, repeat: Infinity, ease: "linear" },
+              opacity: { duration: 5, repeat: Infinity, ease: "easeInOut" },
             }}
           />
-          <ProfileImage
-            src={profileImage}
-            alt="Nidhal BOUMAIZA"
-            whileHover={{
-              scale: 1.05,
-              rotate: 5,
-            }}
-            transition={{ duration: 0.3 }}
-          />
+          <PhotoFrame whileHover={{ y: -6 }} transition={{ duration: 0.35 }}>
+            <ProfileImage src={profileImage} alt="Nidhal BOUMAIZA" />
+          </PhotoFrame>
+
+          <FloatingChip
+            style={{ top: "7%", left: "-12%" }}
+            chipColor="#54C5F8"
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <SiFlutter /> Flutter
+          </FloatingChip>
+
+          <FloatingChip
+            style={{ top: "40%", right: "-14%" }}
+            chipColor="#61DAFB"
+            animate={{ y: [0, 12, 0] }}
+            transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <SiReact /> React
+          </FloatingChip>
+
+          <FloatingChip
+            style={{ bottom: "10%", left: "-16%" }}
+            chipColor="#F472B6"
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <SiExpress /> Express
+          </FloatingChip>
+
+          <FloatingChip
+            style={{ bottom: "34%", right: "-10%" }}
+            chipColor="#FFCA28"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <SiFirebase /> Firebase
+          </FloatingChip>
         </ProfileImageContainer>
 
         <StatsCard

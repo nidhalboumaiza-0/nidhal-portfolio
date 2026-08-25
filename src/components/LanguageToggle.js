@@ -11,20 +11,20 @@ const ToggleContainer = styled(motion.button)`
   display: flex;
   align-items: center;
   gap: 2px;
-  background: linear-gradient(135deg, #00d4ff 0%, #0099cc 100%);
+  background: linear-gradient(135deg, #8b5cf6 0%, #22d3ee 100%);
   border: none;
   border-radius: 25px;
   padding: 4px;
   cursor: pointer;
   box-shadow: 
-    0 4px 15px rgba(0, 212, 255, 0.3),
+    0 4px 15px rgba(139, 92, 246, 0.3),
     0 2px 8px rgba(0, 0, 0, 0.2);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
     transform: translateY(-2px);
     box-shadow: 
-      0 6px 20px rgba(0, 212, 255, 0.4),
+      0 6px 20px rgba(139, 92, 246, 0.4),
       0 3px 10px rgba(0, 0, 0, 0.3);
   }
 
@@ -52,7 +52,7 @@ const LanguageOption = styled(motion.div)`
   text-transform: uppercase;
   transition: all 0.3s ease;
   background: ${(props) => (props.active ? "#ffffff" : "transparent")};
-  color: ${(props) => (props.active ? "#0099cc" : "rgba(255, 255, 255, 0.9)")};
+  color: ${(props) => (props.active ? "#22d3ee" : "rgba(255, 255, 255, 0.9)")};
   box-shadow: ${(props) =>
     props.active ? "0 2px 8px rgba(0, 0, 0, 0.15)" : "none"};
   padding: 0 12px;
