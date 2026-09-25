@@ -4,6 +4,10 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
+import { registerWebMCPTools } from "./webmcp";
+
+// Register WebMCP tools for AI agent interaction
+registerWebMCPTools();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

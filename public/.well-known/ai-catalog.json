@@ -1,0 +1,53 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Nidhal BOUMAIZA Developer Portfolio",
+    "identifier": "did:web:nidhal-portfolio.vercel.app"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:nidhal-portfolio.vercel.app:profile:candidate",
+      "displayName": "Nidhal BOUMAIZA Candidate Profile",
+      "type": "application/json",
+      "url": "https://nidhal-portfolio.vercel.app/api/profile",
+      "representativeQueries": [
+        "Who is Nidhal BOUMAIZA?",
+        "Flutter mobile engineer with production App Store experience",
+        "Hire Flutter React Next.js software developer",
+        "Full stack software engineer Tunisia remote"
+      ]
+    },
+    {
+      "identifier": "urn:air:nidhal-portfolio.vercel.app:server:mcp",
+      "displayName": "Nidhal BOUMAIZA Portfolio MCP Server Card",
+      "type": "application/mcp-server-card+json",
+      "url": "https://nidhal-portfolio.vercel.app/.well-known/mcp/server-card.json",
+      "representativeQueries": [
+        "MCP tool for retrieving Nidhal BOUMAIZA portfolio data",
+        "Query developer projects and production apps via MCP",
+        "Inspect engineering internships and tech stack with agent tools"
+      ]
+    },
+    {
+      "identifier": "urn:air:nidhal-portfolio.vercel.app:skill:portfolio-assistant",
+      "displayName": "Portfolio Assistant Agent Skill",
+      "type": "text/markdown",
+      "url": "https://nidhal-portfolio.vercel.app/.well-known/agent-skills/portfolio-assistant/SKILL.md",
+      "representativeQueries": [
+        "How to query Nidhal BOUMAIZA projects and skills",
+        "Download Nidhal BOUMAIZA CV in PDF",
+        "Explain CIRO Pizza PFE platform architecture"
+      ]
+    },
+    {
+      "identifier": "urn:air:nidhal-portfolio.vercel.app:api:catalog",
+      "displayName": "Portfolio API Catalog",
+      "type": "application/linkset+json",
+      "url": "https://nidhal-portfolio.vercel.app/.well-known/api-catalog",
+      "representativeQueries": [
+        "API catalog for automated agent discovery",
+        "OpenAPI specification for developer portfolio"
+      ]
+    }
+  ]
+}

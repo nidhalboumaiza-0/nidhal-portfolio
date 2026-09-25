@@ -1,0 +1,29 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://nidhal-portfolio.vercel.app/api",
+      "service-desc": [
+        {
+          "href": "https://nidhal-portfolio.vercel.app/api/openapi.json",
+          "type": "application/vnd.oai.openapi+json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://nidhal-portfolio.vercel.app/docs/api",
+          "type": "text/html"
+        },
+        {
+          "href": "https://nidhal-portfolio.vercel.app/auth.md",
+          "type": "text/markdown"
+        }
+      ],
+      "status": [
+        {
+          "href": "https://nidhal-portfolio.vercel.app/api/health",
+          "type": "application/json"
+        }
+      ]
+    }
+  ]
+}

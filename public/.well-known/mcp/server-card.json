@@ -1,0 +1,43 @@
+{
+  "$schema": "https://modelcontextprotocol.io/schemas/server-card-v1.json",
+  "serverInfo": {
+    "name": "nidhal-boumaiza-portfolio-mcp",
+    "title": "Nidhal BOUMAIZA Portfolio MCP Server",
+    "version": "1.0.0",
+    "description": "MCP Server exposing tools and resources for querying Nidhal BOUMAIZA's developer portfolio, production apps (Maqra'at Al-Rajhi, Barberio), engineering internships (eSteps Health, CIRO Pizza), and technical skills."
+  },
+  "transport": {
+    "type": "sse",
+    "endpoint": "https://nidhal-portfolio.vercel.app/api/mcp"
+  },
+  "capabilities": {
+    "tools": {
+      "listChanged": false
+    },
+    "resources": {
+      "subscribe": false,
+      "listChanged": false
+    },
+    "prompts": {
+      "listChanged": false
+    }
+  },
+  "tools": [
+    {
+      "name": "get_candidate_profile",
+      "description": "Returns candidate background, summary, contact info, and education for Nidhal BOUMAIZA."
+    },
+    {
+      "name": "list_production_apps",
+      "description": "Lists verified production mobile apps published on Apple App Store & Google Play Store (Maqra'at Al-Rajhi, Barberio)."
+    },
+    {
+      "name": "get_internships_and_pfe",
+      "description": "Lists all 4 realized engineering & bachelor internships (eSteps Health CIRO Pizza PFE, Neopolis Development, CPG Gafsa, Evolve'Com)."
+    },
+    {
+      "name": "get_cv_downloads",
+      "description": "Returns direct PDF download URLs for English/French modern and classic CVs."
+    }
+  ]
+}

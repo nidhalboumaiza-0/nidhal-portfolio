@@ -10,23 +10,172 @@
     <meta name="theme-color" content="#8B5CF6" />
     <meta
       name="description"
-      content="Nidhal BOUMAIZA - Full-Stack Mobile Developer specializing in Flutter and modern web technologies. Software Engineering student passionate about creating innovative mobile and web applications."
+      content="Nidhal BOUMAIZA - Full-Stack Mobile Developer specializing in Flutter and modern web technologies. Software Engineering graduate passionate about creating innovative mobile and web applications."
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
+    <!-- AI Agent & Discovery Link Relations (RFC 8288, RFC 9727, ARD, MCP, Agent Skills) -->
+    <link rel="api-catalog" href="%PUBLIC_URL%/.well-known/api-catalog" type="application/linkset+json" />
+    <link rel="ai-catalog" href="%PUBLIC_URL%/.well-known/ai-catalog.json" type="application/json" />
+    <link rel="agent-skills" href="%PUBLIC_URL%/.well-known/agent-skills/index.json" type="application/json" />
+    <link rel="mcp-server-card" href="%PUBLIC_URL%/.well-known/mcp/server-card.json" type="application/json" />
+    <link rel="service-doc" href="%PUBLIC_URL%/auth.md" type="text/markdown" />
+    <link rel="sitemap" href="%PUBLIC_URL%/sitemap.xml" type="application/xml" title="Sitemap" />
+    <link rel="alternate" href="%PUBLIC_URL%/index.md" type="text/markdown" title="Markdown Content" />
+
+    <!-- WebMCP (Web Model Context Protocol) Initialization -->
+    <script>
+      (function initWebMCP() {
+        const candidateProfile = {
+          name: "Nidhal BOUMAIZA",
+          title: "Full Stack Software Engineer & Mobile Developer",
+          email: "nidhal.boumaiza@outlook.com",
+          whatsapp: "+216 28 316 089",
+          location: "Tunis, Tunisia (International Mobility)",
+          portfolio: "https://nidhal-portfolio.vercel.app/",
+          github: "https://github.com/nidhalboumaiza-0",
+          linkedin: "https://linkedin.com/in/nidhal-boumaiza",
+          summary: "Software Engineer specializing in Flutter, React 19, Next.js 16, Laravel 12, Node.js, and Cloud Architectures with production store apps on Apple App Store & Google Play."
+        };
+
+        const productionApps = [
+          {
+            name: "Maqra'at Al-Rajhi",
+            company: "AL Manarah Advanced Company",
+            stores: ["Apple App Store", "Google Play Store"],
+            appStoreUrl: "https://apps.apple.com/sa/app/%D9%85%D9%82%D8%B1%D8%A3%D8%A9-%D8%A7%D9%84%D8%B1%D8%A7%D8%AC%D8%AD%D9%8A/id6753659959",
+            googlePlayUrl: "https://play.google.com/store/apps/details?id=com.manara.maqari&hl=en",
+            tech: ["Flutter", "BLoC", "Audio Streaming", "RTL Arabic", "REST APIs"]
+          },
+          {
+            name: "Barberio",
+            company: "Personal Production App",
+            stores: ["Apple App Store", "Google Play Store"],
+            appStoreUrl: "https://apps.apple.com/us/app/barberio/id6761790714",
+            googlePlayUrl: "https://play.google.com/store/apps/details?id=io.barberio.app",
+            tech: ["Flutter", "Express.js", "Firebase", "Push Notifications"]
+          }
+        ];
+
+        const internships = [
+          {
+            company: "eSteps Health",
+            role: "Software Engineering Intern (PFE Ingénieur)",
+            duration: "02/2026 - 09/2026",
+            project: "CIRO Pizza Platform (3 Flutter apps, Next.js 16 Admin, Laravel 12 Reverb WebSockets, SCADA robotics)"
+          },
+          {
+            company: "Neopolis Development",
+            role: "Bachelor Graduation Intern (PFE Licence DSI)",
+            duration: "02/2023 - 05/2023",
+            project: "Mobile HR App & Express.js/MongoDB"
+          },
+          {
+            company: "CPG Gafsa",
+            role: "Advanced Training Intern (Stage de Perfectionnement)",
+            duration: "01/2023 - 02/2023",
+            project: "Intern tracking mobile application"
+          },
+          {
+            company: "Evolve'Com",
+            role: "Introductory Intern (Stage d'Initiation)",
+            duration: "01/2022 - 02/2022",
+            project: "Prestashop e-commerce optimization"
+          }
+        ];
+
+        const cvFiles = {
+          englishModern: "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_EN.pdf",
+          frenchModern: "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_FR.pdf",
+          englishClassic: "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_EN.pdf",
+          frenchClassic: "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_FR.pdf"
+        };
+
+        const tools = [
+          {
+            name: "get_candidate_profile",
+            description: "Returns Nidhal BOUMAIZA's developer background, technical skills, titles, and contact information.",
+            inputSchema: { type: "object", properties: {} },
+            execute: async () => ({ content: [{ type: "text", text: JSON.stringify(candidateProfile, null, 2) }] })
+          },
+          {
+            name: "list_production_apps",
+            description: "Lists verified production mobile apps published on the Apple App Store and Google Play Store (Maqra'at Al-Rajhi, Barberio).",
+            inputSchema: { type: "object", properties: {} },
+            execute: async () => ({ content: [{ type: "text", text: JSON.stringify(productionApps, null, 2) }] })
+          },
+          {
+            name: "get_internships_and_pfe",
+            description: "Returns detailed overview of all 4 internships, including the final year engineering PFE with eSteps Health (CIRO Pizza Platform).",
+            inputSchema: { type: "object", properties: {} },
+            execute: async () => ({ content: [{ type: "text", text: JSON.stringify(internships, null, 2) }] })
+          },
+          {
+            name: "get_cv_downloads",
+            description: "Returns direct download URLs for modern and classic PDF CVs in English and French.",
+            inputSchema: {
+              type: "object",
+              properties: {
+                language: { type: "string", enum: ["en", "fr"] },
+                format: { type: "string", enum: ["modern", "classic"] }
+              }
+            },
+            execute: async () => ({ content: [{ type: "text", text: JSON.stringify(cvFiles, null, 2) }] })
+          },
+          {
+            name: "contact_nidhal",
+            description: "Returns direct contact information (Email, WhatsApp, Phone, Location) for hiring inquiries.",
+            inputSchema: { type: "object", properties: {} },
+            execute: async () => ({
+              content: [{
+                type: "text",
+                text: JSON.stringify({
+                  email: "nidhal.boumaiza@outlook.com",
+                  whatsapp: "+216 28 316 089",
+                  whatsappLink: "https://wa.me/21628316089",
+                  location: "Tunis, Tunisia"
+                }, null, 2)
+              }]
+            })
+          }
+        ];
+
+        // Register tools with WebMCP navigator.modelContext API
+        try {
+          if (!navigator.modelContext) {
+            navigator.modelContext = {
+              tools: [],
+              registerTool(tool) {
+                this.tools.push(tool);
+                return { unregister: () => {} };
+              },
+              provideContext(context) {
+                if (context && context.tools) {
+                  this.tools.push(...context.tools);
+                }
+              }
+            };
+          }
+
+          tools.forEach(tool => {
+            if (typeof navigator.modelContext.registerTool === "function") {
+              navigator.modelContext.registerTool(tool);
+            }
+          });
+
+          if (typeof navigator.modelContext.provideContext === "function") {
+            navigator.modelContext.provideContext({ tools: tools });
+          }
+
+          window.modelContext = navigator.modelContext;
+          window.__WEBMCP_TOOLS__ = tools;
+        } catch (e) {
+          console.warn("WebMCP registration note:", e);
+        }
+      })();
+    </script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link
       rel="preconnect"
@@ -40,19 +189,7 @@
     <title>Nidhal BOUMAIZA - Full-Stack Mobile Developer</title>
   </head>
   <body>
-    <noscript
-      >You need to enable JavaScript to run this app.</noscript
-    >
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>

@@ -1,0 +1,15 @@
+{
+  "resource": "https://nidhal-portfolio.vercel.app/api",
+  "authorization_servers": [
+    "https://nidhal-portfolio.vercel.app"
+  ],
+  "scopes_supported": [
+    "read:profile",
+    "read:projects",
+    "contact:send"
+  ],
+  "bearer_methods_supported": [
+    "header"
+  ],
+  "resource_documentation": "https://nidhal-portfolio.vercel.app/auth.md"
+}

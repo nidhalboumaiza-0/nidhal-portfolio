@@ -1,0 +1,28 @@
+# Nidhal BOUMAIZA — Full Stack Software Engineer & Mobile Developer
+> Software Engineer specialized in Flutter, Next.js 16, React 19, Laravel 12, Node.js, and Cloud Architectures.
+
+- Website: https://nidhal-portfolio.vercel.app/
+- Email: nidhal.boumaiza@outlook.com
+- WhatsApp: +216 28 316 089 (https://wa.me/21628316089)
+- GitHub: https://github.com/nidhalboumaiza-0
+- LinkedIn: https://linkedin.com/in/nidhal-boumaiza
+- Location: Tunis, Tunisia (International Mobility)
+
+## Primary Documents
+- [Curriculum Vitae (English Modern PDF)](https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_EN.pdf): ATS & AI optimized CV.
+- [Curriculum Vitae (French Modern PDF)](https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_FR.pdf): Version française moderne.
+- [Curriculum Vitae (English Classic PDF)](https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_EN.pdf): 2-column format with photo.
+- [Curriculum Vitae (French Classic PDF)](https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_FR.pdf): Format classique français 2 colonnes avec photo.
+- [Candidate Profile API](https://nidhal-portfolio.vercel.app/api/profile): Machine-readable JSON summary.
+- [MCP Server Card](https://nidhal-portfolio.vercel.app/.well-known/mcp/server-card.json): Model Context Protocol server capabilities.
+- [Agent Skills](https://nidhal-portfolio.vercel.app/.well-known/agent-skills/index.json): Discovery index for AI agent skills.
+
+## Production Mobile Applications (Store Published)
+- **Maqra'at Al-Rajhi** (AL Manarah Advanced Company): Production Quranic recitation platform with real-time interactive audio streaming, dynamic slots, and offline cache. Published on Apple App Store (ID 6753659959) and Google Play Store (`com.manara.maqari`).
+- **Barberio**: Premier barbershop booking and salon management mobile app in Tunisia with real-time calendar appointments, push notifications, and verified customer reviews. Published on Apple App Store (ID 6761790714) and Google Play (`io.barberio.app`).
+
+## Realized Internships (PFE)
+1. **eSteps Health** (02/2026 – 09/2026): Final Year Engineering Internship (PFE Ingénieur) — CIRO Pizza smart omni-channel automated restaurant ecosystem (3 Flutter apps, Next.js 16 Web Admin, Laravel 12 Reverb WebSockets, SCADA robotics).
+2. **Neopolis Development** (02/2023 – 05/2023): Bachelor Graduation Internship (PFE Licence DSI) — Mobile HR app & Express.js/MongoDB.
+3. **CPG Gafsa** (01/2023 – 02/2023): Advanced Training Internship (Stage de Perfectionnement) — Intern management system.
+4. **Evolve'Com** (01/2022 – 02/2022): Introductory Internship (Stage d'Initiation) — Prestashop e-commerce optimization.

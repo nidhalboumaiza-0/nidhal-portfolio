@@ -1,0 +1,12 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "portfolio-assistant",
+      "type": "skill-md",
+      "description": "Query projects, verify production mobile apps, review engineering internships, and download CVs for Nidhal BOUMAIZA",
+      "url": "https://nidhal-portfolio.vercel.app/.well-known/agent-skills/portfolio-assistant/SKILL.md",
+      "digest": "sha256:219dc28584dd1a3d955c249be7c8b332a4ef1f77327e0454805f753e65a5c6df"
+    }
+  ]
+}

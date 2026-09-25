@@ -1,0 +1,12 @@
+{
+  "keys": [
+    {
+      "kty": "RSA",
+      "use": "sig",
+      "alg": "RS256",
+      "kid": "web-bot-sig-2026",
+      "n": "u1L7ZsH8v2Fv0M9NqX7kL5vB4W1jQ9zY3xA6mC8dE5rT2yU4iO7pA1sD4fG6hJ8kL0zX2cVtBrQ",
+      "e": "AQAB"
+    }
+  ]
+}

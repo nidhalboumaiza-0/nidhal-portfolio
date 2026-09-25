@@ -1,0 +1,109 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Nidhal BOUMAIZA Portfolio & Candidate API",
+    "version": "1.0.0",
+    "description": "Public machine-readable API for recruiter AI agents, developer evaluation platforms, and talent discovery crawlers to inspect Nidhal BOUMAIZA's skills, production mobile apps, engineering internships, and CV files."
+  },
+  "servers": [
+    {
+      "url": "https://nidhal-portfolio.vercel.app/api",
+      "description": "Production API endpoint"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "API Health Check",
+        "description": "Returns operational status of the portfolio API services.",
+        "responses": {
+          "200": {
+            "description": "Healthy status",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string", "example": "ok" },
+                    "timestamp": { "type": "string", "format": "date-time" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile": {
+      "get": {
+        "summary": "Candidate Profile",
+        "description": "Returns comprehensive background, titles, core skills, contact details, and academic degrees.",
+        "responses": {
+          "200": {
+            "description": "Candidate profile details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string", "example": "Nidhal BOUMAIZA" },
+                    "headline": { "type": "string" },
+                    "email": { "type": "string" },
+                    "phone": { "type": "string" },
+                    "whatsapp": { "type": "string" },
+                    "location": { "type": "string" },
+                    "website": { "type": "string" },
+                    "github": { "type": "string" },
+                    "linkedin": { "type": "string" },
+                    "degrees": { "type": "array" },
+                    "skills": { "type": "array" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects": {
+      "get": {
+        "summary": "List Projects & Apps",
+        "description": "Returns list of projects with explicit distinction between production store apps (Maqra'at Al-Rajhi, Barberio) and software projects.",
+        "responses": {
+          "200": {
+            "description": "List of projects",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": { "type": "string" },
+                      "category": { "type": "string" },
+                      "inProduction": { "type": "boolean" },
+                      "appStoreUrl": { "type": "string" },
+                      "googlePlayUrl": { "type": "string" },
+                      "techStack": { "type": "array" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/experience": {
+      "get": {
+        "summary": "Professional Experience & Internships",
+        "description": "Returns verified work history (AL Manarah Advanced Co) and all 4 realized internships (eSteps Health CIRO Pizza PFE, Neopolis Development, CPG Gafsa, Evolve'Com).",
+        "responses": {
+          "200": {
+            "description": "List of experiences and internships"
+          }
+        }
+      }
+    }
+  }
+}

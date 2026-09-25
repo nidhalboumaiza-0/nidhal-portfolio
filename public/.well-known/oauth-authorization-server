@@ -1,0 +1,32 @@
+{
+  "issuer": "https://nidhal-portfolio.vercel.app",
+  "authorization_endpoint": "https://nidhal-portfolio.vercel.app/oauth/authorize",
+  "token_endpoint": "https://nidhal-portfolio.vercel.app/api/oauth/token",
+  "jwks_uri": "https://nidhal-portfolio.vercel.app/.well-known/jwks.json",
+  "response_types_supported": [
+    "code",
+    "token"
+  ],
+  "grant_types_supported": [
+    "client_credentials",
+    "authorization_code"
+  ],
+  "scopes_supported": [
+    "read:profile",
+    "read:projects",
+    "contact:send"
+  ],
+  "agent_auth": {
+    "skill": "https://nidhal-portfolio.vercel.app/.well-known/agent-skills/portfolio-assistant/SKILL.md",
+    "register_uri": "https://nidhal-portfolio.vercel.app/api/agents/register",
+    "supported_identity_types": [
+      "identity_assertion",
+      "anonymous"
+    ],
+    "supported_credential_types": [
+      "api_key",
+      "bearer_token"
+    ],
+    "claim_uri": "https://nidhal-portfolio.vercel.app/api/agents/claim"
+  }
+}

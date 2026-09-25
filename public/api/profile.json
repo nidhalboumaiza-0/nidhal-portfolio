@@ -1,0 +1,32 @@
+{
+  "name": "Nidhal BOUMAIZA",
+  "title": "Full Stack Software Engineer & Mobile Developer",
+  "email": "nidhal.boumaiza@outlook.com",
+  "phone": "+21628316089",
+  "whatsapp": "+21628316089",
+  "location": "Tunis, Tunisia (International Mobility)",
+  "portfolioUrl": "https://nidhal-portfolio.vercel.app/",
+  "githubUrl": "https://github.com/nidhalboumaiza-0",
+  "linkedinUrl": "https://linkedin.com/in/nidhal-boumaiza",
+  "summary": "Software Engineer and Full-Stack Mobile Developer with proven expertise in Flutter, React, Next.js 16, Laravel 12, Node.js, and Cloud architectures. Proven track record publishing production mobile apps on Apple App Store & Google Play Store (AL Manarah Advanced Co / Maqra'at Al-Rajhi, Barberio) and delivering enterprise engineering platforms (CIRO Pizza Platform at eSteps Health).",
+  "education": [
+    {
+      "degree": "National Engineering Degree in Software Engineering",
+      "school": "iTeam University — Tunis",
+      "period": "09/2023 – 09/2026",
+      "focus": "Distributed architectures, cloud systems, mobile engineering"
+    },
+    {
+      "degree": "Bachelor Degree in Information Systems Development (DSI)",
+      "school": "Higher Institute of Technological Studies of Nabeul (ISET Nabeul)",
+      "period": "09/2020 – 06/2023",
+      "focus": "Algorithms, OOP, web & mobile engineering, databases"
+    }
+  ],
+  "cvDownloads": {
+    "englishModern": "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_EN.pdf",
+    "frenchModern": "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_FR.pdf",
+    "englishClassic": "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_EN.pdf",
+    "frenchClassic": "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_FR.pdf"
+  }
+}
