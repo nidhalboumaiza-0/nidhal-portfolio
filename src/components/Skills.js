@@ -5,8 +5,10 @@ import {
   SiDart,
   SiExpress,
   SiFirebase,
+  SiFlask,
   SiFlutter,
   SiJavascript,
+  SiLaravel,
   SiMongodb,
   SiMysql,
   SiPostman,
@@ -157,8 +159,8 @@ const Skills = () => {
           {
             title: "Backend & Data",
             icon: <FiLayers />,
-            text: "APIs REST avec Express.js, intégrations Firebase/MongoDB/MySQL, auth, notifications et workflows métier.",
-            skills: ["TypeScript", "Node.js", "Express.js", "REST APIs", "MongoDB", "Firebase"],
+            text: "APIs REST avec Express.js, Laravel & Flask, intégrations Firebase/MongoDB/MySQL, auth, notifications et workflows métier.",
+            skills: ["TypeScript", "Node.js", "Express.js", "Laravel", "Flask", "REST APIs", "MongoDB", "Firebase"],
           },
           {
             title: "Qualité & Livraison",
@@ -177,8 +179,8 @@ const Skills = () => {
           {
             title: "Backend & Data",
             icon: <FiLayers />,
-            text: "REST APIs with Express.js, Firebase/MongoDB/MySQL integrations, auth, notifications, and business flows.",
-            skills: ["TypeScript", "Node.js", "Express.js", "REST APIs", "MongoDB", "Firebase"],
+            text: "REST APIs with Express.js, Laravel & Flask, Firebase/MongoDB/MySQL integrations, auth, notifications, and business flows.",
+            skills: ["TypeScript", "Node.js", "Express.js", "Laravel", "Flask", "REST APIs", "MongoDB", "Firebase"],
           },
           {
             title: "Quality & Delivery",
@@ -195,6 +197,8 @@ const Skills = () => {
     { name: "React", icon: <SiReact /> },
     { name: "JavaScript", icon: <SiJavascript /> },
     { name: "Express.js", icon: <SiExpress /> },
+    { name: "Laravel", icon: <SiLaravel /> },
+    { name: "Flask", icon: <SiFlask /> },
     { name: "Docker", icon: <FiBox /> },
     { name: "Jest", icon: <FiCheckCircle /> },
     { name: "MongoDB", icon: <SiMongodb /> },
