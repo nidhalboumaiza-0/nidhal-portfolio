@@ -3,7 +3,15 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { ReactTyped } from "react-typed";
 import { FiDownload, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
-import { SiFlutter, SiReact, SiExpress, SiFirebase, SiFlask } from "react-icons/si";
+import { FaWhatsapp } from "react-icons/fa";
+import {
+  SiFlutter,
+  SiReact,
+  SiExpress,
+  SiFirebase,
+  SiFlask,
+  SiNextdotjs,
+} from "react-icons/si";
 import { useLanguage } from "../contexts/LanguageContext";
 import profileImage from "../assets/nidhal-pic1.jpg";
 
@@ -253,6 +261,20 @@ const Button = styled(motion.a)`
       transform: translateY(-2px);
     }
   }
+
+  &.whatsapp {
+    background: rgba(37, 211, 102, 0.12);
+    color: #25d366;
+    border-color: rgba(37, 211, 102, 0.35);
+
+    &:hover {
+      background: #25d366;
+      color: #051a0c;
+      border-color: #25d366;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(37, 211, 102, 0.35);
+    }
+  }
 `;
 
 const StatsCard = styled(motion.div)`
@@ -324,18 +346,18 @@ const Hero = () => {
   const typedStrings =
     language === "fr"
       ? [
-          "Développeur Full Stack",
-          "Flutter en production",
-          "Express.js & Flask APIs",
-          "React & UI responsive",
-          "Figma vers mobile & web",
+          "Ingénieur Logiciel & Full Stack",
+          "Applications Flutter en Production",
+          "Next.js 16 & React 19 Web Apps",
+          "Backend Laravel 12 Reverb & Express",
+          "Architecture BLoC & Clean Code",
         ]
       : [
-          "Full Stack Developer",
-          "Production Flutter Apps",
-          "Express.js & Flask APIs",
-          "React & Responsive UI",
-          "Figma to Mobile & Web",
+          "Software Engineer & Full Stack",
+          "Production Flutter Apps (Stores)",
+          "Next.js 16 & React 19 Web Apps",
+          "Laravel 12 Reverb & Express APIs",
+          "Clean Architecture & BLoC",
         ];
 
   const scrollToContact = () => {
@@ -441,6 +463,16 @@ const Hero = () => {
             >
               <FiDownload /> {t("hero.downloadCV")}
             </Button>
+            <Button
+              className="whatsapp"
+              href="https://wa.me/21628316089"
+              target="_blank"
+              rel="noopener noreferrer"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <FaWhatsapp /> WhatsApp
+            </Button>
           </ButtonGroup>
         </Content>
 
@@ -507,6 +539,15 @@ const Hero = () => {
           >
             <SiFirebase /> Firebase
           </FloatingChip>
+
+          <FloatingChip
+            style={{ bottom: "16%", left: "-16%" }}
+            chipColor="#FFFFFF"
+            animate={{ y: [0, -9, 0] }}
+            transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <SiNextdotjs /> Next.js 16
+          </FloatingChip>
         </ProfileImageContainer>
 
         <StatsCard
@@ -531,9 +572,27 @@ const Hero = () => {
           </StatItem>
 
           <StatItem
+            as="a"
+            href="https://wa.me/21628316089"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: "none", cursor: "pointer" }}
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.4 }}
+            transition={{ delay: 1.35 }}
+          >
+            <StatIcon style={{ color: "#25D366" }}>
+              <FaWhatsapp />
+            </StatIcon>
+            <StatText style={{ color: "#25D366", fontWeight: 700 }}>
+              WhatsApp (+216 28 316 089)
+            </StatText>
+          </StatItem>
+
+          <StatItem
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ delay: 1.5 }}
           >
             <StatIcon>
               <FiPhone />
@@ -544,7 +603,7 @@ const Hero = () => {
           <StatItem
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 1.6 }}
+            transition={{ delay: 1.65 }}
           >
             <StatIcon>
               <FiMail />

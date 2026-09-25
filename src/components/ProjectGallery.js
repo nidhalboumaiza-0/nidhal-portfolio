@@ -714,7 +714,60 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
           .replace("{total}", images.length)
       : "";
 
-  const currentDomain = domainMap[projectTitle] || "portfolio.nidhal.dev";
+  let imageTag;
+  if (projectTitle === "CIRO Pizza Platform") {
+    if ([7, 8].includes(currentImageIndex)) {
+      imageTag = {
+        icon: <FiMonitor />,
+        text: "Next.js 16 Web Admin",
+      };
+    } else if (currentImageIndex === 10) {
+      imageTag = {
+        icon: <FiMonitor />,
+        text: language === "fr" ? "Supervision SCADA" : "SCADA Supervision",
+      };
+    } else if ([5, 6].includes(currentImageIndex)) {
+      imageTag = {
+        icon: <FiMonitor />,
+        text: language === "fr" ? "Borne Totem Kiosk" : "Totem Kiosk UI",
+      };
+    } else if (currentImageIndex === 9) {
+      imageTag = {
+        icon: <FiSmartphone />,
+        text: language === "fr" ? "App Livreur Rider" : "Rider Delivery App",
+      };
+    } else {
+      imageTag = {
+        icon: <FiSmartphone />,
+        text: language === "fr" ? "App Client Mobile" : "Customer Mobile App",
+      };
+    }
+  } else if (projectTitle === "Maqra'at Al-Rajhi") {
+    imageTag = {
+      icon: <FiSmartphone />,
+      text: language === "fr" ? "App en Production" : "Live Production App",
+    };
+  } else if (projectTitle === "Barberio") {
+    imageTag = {
+      icon: <FiSmartphone />,
+      text: "App Store & Play Store",
+    };
+  } else {
+    imageTag = isCurrentMobile
+      ? { icon: <FiSmartphone />, text: "Mobile UI" }
+      : { icon: <FiMonitor />, text: "Web UI" };
+  }
+
+  let currentDomain;
+  if (projectTitle === "CIRO Pizza Platform") {
+    if (currentImageIndex === 7) currentDomain = "admin.ciro-pizza.app/intelligence";
+    else if (currentImageIndex === 8) currentDomain = "admin.ciro-pizza.app/deliveries";
+    else if (currentImageIndex === 10) currentDomain = "scada.ciro-robotics.local/monitor";
+    else if ([5, 6].includes(currentImageIndex)) currentDomain = "kiosk.ciro-pizza.app";
+    else currentDomain = "ciro-pizza.app";
+  } else {
+    currentDomain = domainMap[projectTitle] || "portfolio.nidhal.dev";
+  }
 
   return (
     <AnimatePresence>
@@ -740,15 +793,7 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
                 <Title id="project-gallery-title">{projectTitle}</Title>
               </TitleBlock>
               <Badge>
-                {isCurrentMobile ? (
-                  <>
-                    <FiSmartphone /> Mobile UI
-                  </>
-                ) : (
-                  <>
-                    <FiMonitor /> Web / Kiosk UI
-                  </>
-                )}
+                {imageTag.icon} {imageTag.text}
               </Badge>
             </HeaderLeft>
 

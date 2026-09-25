@@ -577,23 +577,36 @@ const Projects = () => {
       color: "linear-gradient(135deg, #e63946, #f77f00)",
       description:
         language === "fr"
-          ? "Projet de Fin d'Études (PFE) d'ingénieur chez eSteps Health: écosystème omnicanal intelligent de restauration rapide avec 3 apps Flutter (Client avec assistant IA, Borne Kiosk, Livreur Rider), backend Laravel 12 Reverb temps réel, admin Next.js 16 et supervision robotique SCADA."
-          : "Engineering End-of-Studies (PFE) platform at eSteps Health: smart omni-channel automated restaurant ecosystem with 3 Flutter apps (Customer with AI assistant, Totem Kiosk, Rider), Laravel 12 Reverb realtime backend, Next.js 16 admin, and SCADA robotic pizza assembly supervision.",
+          ? "Écosystème omnicanal intelligent de restauration rapide pour eSteps Health (PFE): Back-office administrateur complet en Next.js 16 (React 19, TypeScript, suivi des livreurs sur carte OpenStreetMap, Restaurant Intelligence & Analytique IA), 3 applications Flutter (Client avec assistant IA vocal, Borne Totem Kiosk, Livreur Rider avec géolocalisation), backend Laravel 12 avec WebSockets Reverb temps réel et supervision robotique SCADA."
+          : "Smart automated restaurant platform for eSteps Health (PFE): full Next.js 16 Admin Web App (React 19, TypeScript, OpenStreetMap live rider tracking, Restaurant Intelligence & AI demand analytics), 3 Flutter apps (Customer with AI voice assistant, Totem Kiosk, Rider), Laravel 12 realtime backend with Reverb WebSockets, and SCADA robotic pizza assembly.",
       features:
         language === "fr"
           ? [
-              "3 Apps Flutter (Client IA, Borne Kiosk, Livreur)",
+              "Back-office Administrateur Next.js 16 (React 19, TypeScript)",
+              "Restaurant Intelligence: Analytique IA & suivi de stock",
+              "Dispatch & suivi des livreurs sur carte OpenStreetMap",
+              "3 Apps Flutter (Client IA, Borne Kiosk, Livreur Rider)",
               "Backend Laravel 12 & WebSockets Reverb temps réel",
-              "Back-office Next.js 16, TypeScript & Analytique",
-              "Supervision robotique SCADA de préparation",
+              "Supervision industrielle SCADA de préparation robotisée",
             ]
           : [
-              "3 Flutter Apps (AI Customer, Kiosk, Rider)",
+              "Next.js 16 Admin Back-office (React 19, TypeScript)",
+              "Restaurant Intelligence: AI demand analytics & inventory rules",
+              "Live dispatch & OpenStreetMap real-time rider tracking",
+              "3 Flutter Apps (AI Customer, Kiosk Totem, Delivery Rider)",
               "Laravel 12 Backend & Reverb Real-time WebSockets",
-              "Next.js 16, TypeScript Back-office & Analytics",
-              "SCADA Robotic Assembly & Oven Supervision",
+              "SCADA Industrial Robotic Pizza Assembly Supervision",
             ],
-      tech: ["Flutter", "Laravel 12", "Next.js 16", "TypeScript", "SCADA", "Docker"],
+      tech: [
+        "Next.js 16",
+        "React 19",
+        "TypeScript",
+        "Flutter",
+        "Laravel 12",
+        "WebSockets",
+        "SCADA",
+        "Docker",
+      ],
       github: "https://github.com/nidhalboumaiza-0/ciro-pizza-pfe",
       hasScreenshots: true,
       screenshotCount: 11,

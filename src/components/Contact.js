@@ -9,7 +9,9 @@ import {
   FiLinkedin,
   FiSend,
   FiAlertCircle,
+  FiArrowUp,
 } from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -82,34 +84,144 @@ const ContactItems = styled.div`
   margin-bottom: 2rem;
 `;
 
-const ContactItem = styled(motion.div)`
+const ContactItem = styled(motion.a)`
   display: flex;
   align-items: center;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-  background: rgba(17, 21, 38, 0.5);
-  border-radius: 10px;
-  border: 1px solid rgba(139, 92, 246, 0.1);
-  transition: all 0.3s ease;
+  gap: 1.1rem;
+  margin-bottom: 1.1rem;
+  padding: 1.1rem 1.3rem;
+  background: rgba(17, 21, 38, 0.65);
+  backdrop-filter: blur(16px);
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  text-decoration: none;
+  cursor: ${(props) => (props.href ? "pointer" : "default")};
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    border-color: ${(props) => props.theme.colors.primary};
-    transform: translateX(5px);
+    border-color: ${(props) => props.$hoverColor || props.theme.colors.primary};
+    background: rgba(22, 27, 48, 0.88);
+    transform: translateX(6px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
   }
 `;
 
 const ContactIcon = styled.div`
-  color: ${(props) => props.theme.colors.primary};
-  font-size: 1.2rem;
-  width: 24px;
+  color: ${(props) => props.$color || props.theme.colors.primary};
+  font-size: 1.3rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: ${(props) => props.$bgColor || "rgba(139, 92, 246, 0.12)"};
   display: flex;
+  align-items: center;
   justify-content: center;
+  flex-shrink: 0;
+`;
+
+const ContactInfoBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+`;
+
+const ContactLabel = styled.span`
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: ${(props) => props.theme.colors.textSecondary};
+  font-weight: 700;
 `;
 
 const ContactText = styled.div`
   color: ${(props) => props.theme.colors.text};
-  font-weight: 500;
+  font-weight: 600;
+  font-size: 0.98rem;
+  word-break: break-word;
+`;
+
+const WhatsAppBadge = styled.span`
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-left: auto;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  background: rgba(37, 211, 102, 0.15);
+  border: 1px solid rgba(37, 211, 102, 0.3);
+  color: #25d366;
+  font-size: 0.72rem;
+  font-weight: 700;
+  white-space: nowrap;
+
+  &::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #25d366;
+    box-shadow: 0 0 8px #25d366;
+    animation: waPulse 2s infinite ease-in-out;
+  }
+
+  @keyframes waPulse {
+    0%,
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.4;
+      transform: scale(0.85);
+    }
+  }
+
+  @media (max-width: 500px) {
+    display: none;
+  }
+`;
+
+const FooterBar = styled.footer`
+  margin-top: 5rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    text-align: center;
+  }
+`;
+
+const FooterText = styled.p`
+  color: ${(props) => props.theme.colors.textSecondary};
+  font-size: 0.9rem;
+`;
+
+const BackToTopButton = styled(motion.button)`
+  background: rgba(139, 92, 246, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: #c4b5fd;
+  border-radius: 999px;
+  padding: 0.5rem 1.1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(139, 92, 246, 0.3);
+    color: #ffffff;
+    border-color: #a78bfa;
+  }
 `;
 
 const SocialLinks = styled.div`
@@ -263,7 +375,7 @@ const contactSchema = z.object({
 });
 
 const Contact = () => {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const {
@@ -309,16 +421,40 @@ const Contact = () => {
 
   const contactItems = [
     {
+      icon: <FaWhatsapp />,
+      label: "WhatsApp",
+      text: "+216 28 316 089",
+      href: "https://wa.me/21628316089",
+      color: "#25D366",
+      bgColor: "rgba(37, 211, 102, 0.15)",
+      hoverColor: "#25D366",
+      badge: language === "fr" ? "Disponible" : "Online now",
+    },
+    {
       icon: <FiMail />,
+      label: "Email",
       text: "nidhal.boumaiza@outlook.com",
+      href: "mailto:nidhal.boumaiza@outlook.com",
+      color: "#8B5CF6",
+      bgColor: "rgba(139, 92, 246, 0.15)",
+      hoverColor: "#8B5CF6",
     },
     {
       icon: <FiPhone />,
+      label: language === "fr" ? "Téléphone" : "Phone",
       text: "+216 28 316 089",
+      href: "tel:+21628316089",
+      color: "#22D3EE",
+      bgColor: "rgba(34, 211, 238, 0.15)",
+      hoverColor: "#22D3EE",
     },
     {
       icon: <FiMapPin />,
-      text: "Tunis, Tunisia",
+      label: language === "fr" ? "Localisation" : "Location",
+      text: language === "fr" ? "Tunis, Tunisie" : "Tunis, Tunisia",
+      color: "#F472B6",
+      bgColor: "rgba(244, 114, 182, 0.15)",
+      hoverColor: "#F472B6",
     },
   ];
 
@@ -357,18 +493,40 @@ const Contact = () => {
               {contactItems.map((item, index) => (
                 <ContactItem
                   key={index}
+                  as={item.href ? "a" : "div"}
+                  href={item.href}
+                  target={item.href && item.href.startsWith("http") ? "_blank" : undefined}
+                  rel={item.href && item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  $hoverColor={item.hoverColor}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   viewport={{ once: true }}
                 >
-                  <ContactIcon>{item.icon}</ContactIcon>
-                  <ContactText>{item.text}</ContactText>
+                  <ContactIcon $color={item.color} $bgColor={item.bgColor}>
+                    {item.icon}
+                  </ContactIcon>
+                  <ContactInfoBlock>
+                    <ContactLabel>{item.label}</ContactLabel>
+                    <ContactText>{item.text}</ContactText>
+                  </ContactInfoBlock>
+                  {item.badge && <WhatsAppBadge>{item.badge}</WhatsAppBadge>}
                 </ContactItem>
               ))}
             </ContactItems>
 
             <SocialLinks>
+              <SocialLink
+                href="https://wa.me/21628316089"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="WhatsApp (+216 28 316 089)"
+                style={{ color: "#25D366" }}
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <FaWhatsapp />
+              </SocialLink>
               <SocialLink
                 href="https://github.com/nidhalboumaiza-0"
                 target="_blank"
@@ -498,6 +656,22 @@ const Contact = () => {
             </SubmitButton>
           </ContactForm>
         </ContactContent>
+
+        <FooterBar>
+          <FooterText>
+            © {new Date().getFullYear()} Nidhal BOUMAIZA •{" "}
+            {language === "fr"
+              ? "Ingénieur Logiciel & Développeur Full-Stack"
+              : "Software Engineer & Full-Stack Developer"}
+          </FooterText>
+          <BackToTopButton
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <FiArrowUp /> {language === "fr" ? "Haut de page" : "Back to top"}
+          </BackToTopButton>
+        </FooterBar>
       </Container>
     </ContactSection>
   );
