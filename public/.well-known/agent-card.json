@@ -5,7 +5,7 @@
   "description": "A2A Protocol agent interface for evaluating Nidhal BOUMAIZA's developer portfolio, verified production mobile apps, and technical capabilities.",
   "supportedInterfaces": [
     {
-      "serviceUrl": "https://nidhal-portfolio.vercel.app/api/a2a",
+      "url": "https://nidhal-portfolio.vercel.app/api/a2a",
       "protocol": "HTTP+JSON"
     }
   ],
