@@ -33,7 +33,7 @@ const translations = {
       title: "About Me",
       subtitle: "Software Engineering Student & Product-minded Developer",
       description1:
-        "I build mobile-first products with Flutter, React frontends, and Express.js backends. My strongest proof is Barberio, my first personal app published on both App Store and Google Play.",
+        "I build mobile-first products with Flutter, modern React & Next.js 16 frontends, and robust Laravel 12 & Node.js backends. My track record includes production apps published on App Store & Google Play with AL Manarah Advanced Co (Maqra'at Al-Rajhi), my engineering graduation project at eSteps Health (CIRO Pizza Platform), and Barberio.",
       description2:
         "I care about clean architecture, reusable code, responsive UI, API reliability, and turning Figma designs into polished screens.",
       description3:
@@ -92,7 +92,7 @@ const translations = {
         eStepsHealth: {
           title: "Software Engineer Intern (PFE)",
           company: "eSteps Health",
-          duration: "February 2026 - September 2026",
+          duration: "February 2026 - September 1, 2026",
           location: "Tunisia",
           description:
             "Final Year Engineering Internship (PFE): designed and built the CIRO Pizza Totaro smart omni-channel automated restaurant ecosystem.",
@@ -233,7 +233,7 @@ const translations = {
       title: "À Propos",
       subtitle: "Étudiant en Génie Logiciel & Développeur orienté produit",
       description1:
-        "Je construis des produits mobile-first avec Flutter, des frontends React et des backends Express.js. Ma meilleure preuve est Barberio, ma première application personnelle publiée sur App Store et Google Play.",
+        "Je conçois des solutions logicielles et mobiles avec Flutter, des frontends modernes React & Next.js 16 et des backends Laravel 12 & Node.js. Mon parcours comprend des applications en production sur l'App Store & Google Play chez AL Manarah Advanced Co (Maqra'at Al-Rajhi), mon PFE d'ingénieur chez eSteps Health (CIRO Pizza Platform) et Barberio.",
       description2:
         "Je travaille avec une attention particulière à l'architecture, au code réutilisable, à l'UI responsive, à la fiabilité des APIs et à la conversion fidèle de maquettes Figma.",
       description3:

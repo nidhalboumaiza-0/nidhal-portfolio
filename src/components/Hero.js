@@ -1,8 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ReactTyped } from "react-typed";
-import { FiDownload, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
+import {
+  FiDownload,
+  FiMail,
+  FiMapPin,
+  FiPhone,
+  FiX,
+  FiExternalLink,
+  FiFileText,
+} from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 import {
   SiFlutter,
@@ -13,7 +21,7 @@ import {
   SiNextdotjs,
 } from "react-icons/si";
 import { useLanguage } from "../contexts/LanguageContext";
-import profileImage from "../assets/nidhal-pic1.jpg";
+import profileImage from "../assets/nidhal-pic.png";
 
 const HeroSection = styled.section`
   min-height: 100vh;
@@ -98,7 +106,7 @@ const ProfileImage = styled(motion.img)`
   width: 290px;
   height: 380px;
   object-fit: cover;
-  object-position: 34% center;
+  object-position: center 20%;
   border-radius: 29px;
   position: relative;
   z-index: 2;
@@ -340,8 +348,206 @@ const FloatingShape = styled(motion.div)`
   opacity: 0.1;
 `;
 
+const ModalOverlay = styled(motion.div)`
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.2rem;
+  background: rgba(4, 7, 20, 0.88);
+  backdrop-filter: blur(14px);
+`;
+
+const ModalCard = styled(motion.div)`
+  width: min(650px, calc(100vw - 2rem));
+  max-height: calc(100vh - 3rem);
+  overflow-y: auto;
+  background: rgba(15, 23, 42, 0.96);
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  border-radius: 24px;
+  padding: 2rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(139, 92, 246, 0.2);
+  color: #f8fafc;
+  position: relative;
+
+  @media (max-width: 640px) {
+    padding: 1.4rem;
+  }
+`;
+
+const ModalHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 1rem;
+`;
+
+const ModalTitleBlock = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+`;
+
+const ModalTitle = styled.h3`
+  font-size: 1.35rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #a78bfa, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+const ModalSubtitle = styled.p`
+  font-size: 0.85rem;
+  color: #94a3b8;
+  line-height: 1.4;
+`;
+
+const CloseButton = styled.button`
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    border-color: rgba(239, 68, 68, 0.4);
+    transform: rotate(90deg);
+  }
+`;
+
+const CvOptionsList = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+
+const CvOptionCard = styled(motion.div)`
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: 16px;
+  padding: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  transition: all 0.25s ease;
+
+  &:hover {
+    border-color: rgba(56, 189, 248, 0.5);
+    background: rgba(30, 41, 59, 0.95);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  }
+`;
+
+const CvOptionHeader = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+`;
+
+const CvOptionTitle = styled.h4`
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+`;
+
+const CvBadges = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+`;
+
+const CvBadge = styled.span`
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  background: ${(props) => props.$bg || "rgba(139, 92, 246, 0.15)"};
+  color: ${(props) => props.$color || "#c4b5fd"};
+  border: 1px solid ${(props) => props.$border || "rgba(139, 92, 246, 0.3)"};
+`;
+
+const CvOptionDescription = styled.p`
+  font-size: 0.83rem;
+  color: #94a3b8;
+  line-height: 1.45;
+`;
+
+const CvActionRow = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.2rem;
+  flex-wrap: wrap;
+`;
+
+const CvDownloadBtn = styled(motion.a)`
+  background: linear-gradient(135deg, #6366f1, #3b82f6);
+  color: #ffffff;
+  padding: 0.55rem 1.2rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+  transition: all 0.2s ease;
+
+  &:hover {
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+    transform: translateY(-1px);
+  }
+`;
+
+const CvPreviewBtn = styled(motion.a)`
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+  padding: 0.55rem 1rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.3);
+  }
+`;
+
 const Hero = () => {
   const { t, language } = useLanguage();
+  const [isCvModalOpen, setIsCvModalOpen] = useState(false);
 
   const typedStrings =
     language === "fr"
@@ -455,9 +661,9 @@ const Hero = () => {
               <FiMail /> {t("contact.title")}
             </Button>
             <Button
+              as="button"
               className="secondary"
-              href="/NIDHAL_BOUMAIZA_CV_FULL_STACK__.pdf"
-              download="NIDHAL_BOUMAIZA_CV_FULL_STACK__.pdf"
+              onClick={() => setIsCvModalOpen(true)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -623,6 +829,171 @@ const Hero = () => {
           </StatItem>
         </StatsCard>
       </Container>
+
+      <AnimatePresence>
+        {isCvModalOpen && (
+          <ModalOverlay
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsCvModalOpen(false)}
+          >
+            <ModalCard
+              initial={{ scale: 0.92, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.92, opacity: 0, y: 20 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <ModalHeader>
+                <ModalTitleBlock>
+                  <ModalTitle>
+                    <FiDownload /> {language === "fr" ? "Télécharger le CV" : "Download CV"}
+                  </ModalTitle>
+                  <ModalSubtitle>
+                    {language === "fr"
+                      ? "Sélectionnez le format adapté à votre besoin ou au processus de recrutement :"
+                      : "Choose the CV format tailored to your target position or recruitment pipeline:"}
+                  </ModalSubtitle>
+                </ModalTitleBlock>
+                <CloseButton onClick={() => setIsCvModalOpen(false)} aria-label="Close modal">
+                  <FiX />
+                </CloseButton>
+              </ModalHeader>
+
+              <CvOptionsList>
+                {/* 1. English ATS / AI Recruiter CV */}
+                <CvOptionCard whileHover={{ y: -2 }}>
+                  <CvOptionHeader>
+                    <CvOptionTitle>
+                      <FiFileText style={{ color: "#38bdf8" }} />
+                      {language === "fr" ? "CV Anglais (Optimisé ATS & Recrutement IA)" : "English CV (ATS & AI Recruiter Optimized)"}
+                    </CvOptionTitle>
+                    <CvBadges>
+                      <CvBadge $bg="rgba(56, 189, 248, 0.15)" $color="#38bdf8" $border="rgba(56, 189, 248, 0.35)">
+                        ★ {language === "fr" ? "Recommandé International" : "Recommended International"}
+                      </CvBadge>
+                      <CvBadge $bg="rgba(16, 185, 129, 0.15)" $color="#10b981" $border="rgba(16, 185, 129, 0.3)">
+                        AI-Scraper Ready
+                      </CvBadge>
+                    </CvBadges>
+                  </CvOptionHeader>
+                  <CvOptionDescription>
+                    {language === "fr"
+                      ? "Format linéaire standard avec métadonnées sémantiques Schema.org (JSON-LD). Conçu pour un score maximal sur les parseurs ATS (Workday, Greenhouse, Lever, Ashby) et agents IA."
+                      : "Standard linear layout with embedded Schema.org JSON-LD microdata. Maximizes score on ATS parsers (Workday, Greenhouse, Lever, Ashby) and AI recruitment agents."}
+                  </CvOptionDescription>
+                  <CvActionRow>
+                    <CvDownloadBtn
+                      href="/NIDHAL_BOUMAIZA_CV_EN.pdf"
+                      download="NIDHAL_BOUMAIZA_CV_EN.pdf"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                    >
+                      <FiDownload /> {language === "fr" ? "Télécharger (PDF)" : "Download (PDF)"}
+                    </CvDownloadBtn>
+                    <CvPreviewBtn
+                      href="/NIDHAL_BOUMAIZA_CV_EN.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                    >
+                      <FiExternalLink /> {language === "fr" ? "Aperçu" : "Preview"}
+                    </CvPreviewBtn>
+                  </CvActionRow>
+                </CvOptionCard>
+
+                {/* 2. French Modern CV */}
+                <CvOptionCard whileHover={{ y: -2 }}>
+                  <CvOptionHeader>
+                    <CvOptionTitle>
+                      <FiFileText style={{ color: "#a78bfa" }} />
+                      {language === "fr" ? "CV Français (Ingénieur Logiciel & Full Stack)" : "French CV (Software Engineer & Full Stack)"}
+                    </CvOptionTitle>
+                    <CvBadges>
+                      <CvBadge $bg="rgba(139, 92, 246, 0.15)" $color="#c4b5fd" $border="rgba(139, 92, 246, 0.35)">
+                        Format Standard FR
+                      </CvBadge>
+                      <CvBadge $bg="rgba(56, 189, 248, 0.15)" $color="#38bdf8" $border="rgba(56, 189, 248, 0.3)">
+                        PFE eSteps & AL Manarah
+                      </CvBadge>
+                    </CvBadges>
+                  </CvOptionHeader>
+                  <CvOptionDescription>
+                    {language === "fr"
+                      ? "Version française complète mettant en valeur le PFE chez eSteps Health (CIRO Pizza), le contrat freelance chez AL Manarah Co et les applications publiées."
+                      : "Full French version highlighting the eSteps Health engineering internship (CIRO), AL Manarah Co contract, and published store applications."}
+                  </CvOptionDescription>
+                  <CvActionRow>
+                    <CvDownloadBtn
+                      href="/NIDHAL_BOUMAIZA_CV_FR.pdf"
+                      download="NIDHAL_BOUMAIZA_CV_FR.pdf"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      style={{ background: "linear-gradient(135deg, #8b5cf6, #6366f1)" }}
+                    >
+                      <FiDownload /> {language === "fr" ? "Télécharger (PDF)" : "Download (PDF)"}
+                    </CvDownloadBtn>
+                    <CvPreviewBtn
+                      href="/NIDHAL_BOUMAIZA_CV_FR.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                    >
+                      <FiExternalLink /> {language === "fr" ? "Aperçu" : "Preview"}
+                    </CvPreviewBtn>
+                  </CvActionRow>
+                </CvOptionCard>
+
+                {/* 3. Classic Format (English 2-Column with Photo) */}
+                <CvOptionCard whileHover={{ y: -2 }}>
+                  <CvOptionHeader>
+                    <CvOptionTitle>
+                      <FiFileText style={{ color: "#f472b6" }} />
+                      {language === "fr" ? "CV Format Classique (Anglais avec Photo & 2 Colonnes)" : "Classic CV Format (English 2-Column with Photo)"}
+                    </CvOptionTitle>
+                    <CvBadges>
+                      <CvBadge $bg="rgba(244, 114, 182, 0.15)" $color="#f472b6" $border="rgba(244, 114, 182, 0.35)">
+                        Photo Portfolio
+                      </CvBadge>
+                      <CvBadge $bg="rgba(251, 191, 36, 0.15)" $color="#fbbf24" $border="rgba(251, 191, 36, 0.3)">
+                        Layout 2 Colonnes
+                      </CvBadge>
+                    </CvBadges>
+                  </CvOptionHeader>
+                  <CvOptionDescription>
+                    {language === "fr"
+                      ? "La mise en page originale à 2 colonnes (cv poste ang.docx), actualisée avec votre photo de costume du portfolio, le stage eSteps Health et l'historique complet."
+                      : "The original 2-column layout (cv poste ang.docx), updated with your portfolio suit portrait, eSteps Health internship, and complete project history."}
+                  </CvOptionDescription>
+                  <CvActionRow>
+                    <CvDownloadBtn
+                      href="/NIDHAL_BOUMAIZA_CV_CLASSIC_EN.pdf"
+                      download="NIDHAL_BOUMAIZA_CV_CLASSIC_EN.pdf"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      style={{ background: "linear-gradient(135deg, #ec4899, #8b5cf6)" }}
+                    >
+                      <FiDownload /> {language === "fr" ? "Télécharger (PDF)" : "Download (PDF)"}
+                    </CvDownloadBtn>
+                    <CvPreviewBtn
+                      href="/NIDHAL_BOUMAIZA_CV_CLASSIC_EN.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                    >
+                      <FiExternalLink /> {language === "fr" ? "Aperçu" : "Preview"}
+                    </CvPreviewBtn>
+                  </CvActionRow>
+                </CvOptionCard>
+              </CvOptionsList>
+            </ModalCard>
+          </ModalOverlay>
+        )}
+      </AnimatePresence>
     </HeroSection>
   );
 };
