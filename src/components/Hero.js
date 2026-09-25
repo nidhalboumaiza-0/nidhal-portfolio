@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { ReactTyped } from "react-typed";
 import { FiDownload, FiMail, FiMapPin, FiPhone } from "react-icons/fi";
-import { SiFlutter, SiReact, SiExpress, SiFirebase } from "react-icons/si";
+import { SiFlutter, SiReact, SiExpress, SiFirebase, SiFlask } from "react-icons/si";
 import { useLanguage } from "../contexts/LanguageContext";
 import profileImage from "../assets/nidhal-pic1.jpg";
 
@@ -326,14 +326,16 @@ const Hero = () => {
       ? [
           "Développeur Full Stack",
           "Flutter en production",
-          "Express.js & APIs REST",
-          "Figma vers UI mobile",
+          "Express.js & Flask APIs",
+          "React & UI responsive",
+          "Figma vers mobile & web",
         ]
       : [
           "Full Stack Developer",
           "Production Flutter Apps",
-          "Express.js & REST APIs",
-          "Figma to Mobile UI",
+          "Express.js & Flask APIs",
+          "React & Responsive UI",
+          "Figma to Mobile & Web",
         ];
 
   const scrollToContact = () => {
@@ -462,7 +464,7 @@ const Hero = () => {
           </PhotoFrame>
 
           <FloatingChip
-            style={{ top: "7%", left: "-12%" }}
+            style={{ top: "6%", left: "-12%" }}
             chipColor="#54C5F8"
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
@@ -471,7 +473,7 @@ const Hero = () => {
           </FloatingChip>
 
           <FloatingChip
-            style={{ top: "40%", right: "-14%" }}
+            style={{ top: "20%", right: "-14%" }}
             chipColor="#61DAFB"
             animate={{ y: [0, 12, 0] }}
             transition={{ duration: 5.2, repeat: Infinity, ease: "easeInOut" }}
@@ -480,7 +482,16 @@ const Hero = () => {
           </FloatingChip>
 
           <FloatingChip
-            style={{ bottom: "10%", left: "-16%" }}
+            style={{ top: "52%", right: "-16%" }}
+            chipColor="#38BDF8"
+            animate={{ y: [0, -8, 0] }}
+            transition={{ duration: 4.8, repeat: Infinity, ease: "easeInOut" }}
+          >
+            <SiFlask /> Flask
+          </FloatingChip>
+
+          <FloatingChip
+            style={{ bottom: "10%", left: "-14%" }}
             chipColor="#F472B6"
             animate={{ y: [0, -8, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
@@ -489,7 +500,7 @@ const Hero = () => {
           </FloatingChip>
 
           <FloatingChip
-            style={{ bottom: "34%", right: "-10%" }}
+            style={{ bottom: "6%", right: "-10%" }}
             chipColor="#FFCA28"
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 5.8, repeat: Infinity, ease: "easeInOut" }}
@@ -548,9 +559,7 @@ const Hero = () => {
           >
             <StatIcon>🎓</StatIcon>
             <StatText>
-              {language === "fr"
-                ? "Flutter + Express.js + React"
-                : "Flutter + Express.js + React"}
+              Flutter + Express + React + Flask
             </StatText>
           </StatItem>
         </StatsCard>

@@ -15,8 +15,14 @@ import { FaApple, FaGooglePlay } from "react-icons/fa";
 import { useLanguage } from "../contexts/LanguageContext";
 import ProjectGallery from "./ProjectGallery";
 import aasdCover from "../assets/projects/aasd/doctor-dashboard.png";
+import barberioCover from "../assets/projects/barberio/feature-graphic.png";
+import gaspinoCoverOne from "../assets/projects/gaspino/pino.jpg";
+import gaspinoCoverTwo from "../assets/projects/gaspino/gas.jpg";
 import hajMotoCover from "../assets/projects/hajmoto/dashboard.png";
 import biblioCover from "../assets/projects/library/library7.png";
+import medicalCoverOne from "../assets/projects/medilink/medical-01.jpg";
+import medicalCoverTwo from "../assets/projects/medilink/medical-02.jpg";
+import teamFlowCover from "../assets/projects/teamflow/zieakbf.png";
 
 const ProjectsSection = styled.section`
   padding: 8rem 2rem;
@@ -187,8 +193,54 @@ const CoverImage = styled.img`
   width: 100%;
   height: 100%;
   min-height: inherit;
+  display: block;
+  object-fit: ${(props) => props.$fit || "cover"};
+  object-position: ${(props) => props.$position || "top left"};
+  background: #0b0f1e;
+`;
+
+const MobileCoverStrip = styled.div`
+  width: 100%;
+  min-height: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  padding: 1.2rem;
+  background: radial-gradient(
+      circle at 50% 50%,
+      rgba(139, 92, 246, 0.16),
+      rgba(10, 14, 28, 0.95)
+    ),
+    #0b0f1e;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+`;
+
+const MobileCoverFrame = styled.div`
+  height: 168px;
+  aspect-ratio: 9 / 19.5;
+  overflow: hidden;
+  background: #000000;
+  border: 4px solid #1f273e;
+  border-radius: 20px;
+  box-shadow:
+    0 16px 32px rgba(0, 0, 0, 0.5),
+    0 0 16px rgba(139, 92, 246, 0.16);
+  transform: rotate(${(props) => props.$rotation});
+  transition: transform 0.3s ease, border-color 0.3s ease;
+
+  &:hover {
+    transform: rotate(0deg) scale(1.05);
+    border-color: #8b5cf6;
+  }
+`;
+
+const MobileCoverImage = styled.img`
+  width: 100%;
+  height: 100%;
+  display: block;
   object-fit: cover;
-  object-position: top left;
+  object-position: top;
 `;
 
 const Content = styled.div`
@@ -352,6 +404,32 @@ const ModalButton = styled(motion.button)`
 `;
 
 const ProjectVisual = ({ project }) => {
+  if (project.coverImages) {
+    return (
+      <Visual featured={project.featured}>
+        {project.hasScreenshots && (
+          <ScreenshotBadge>
+            <FiCamera />
+            {project.screenshotCount}
+          </ScreenshotBadge>
+        )}
+        <MobileCoverStrip>
+          {project.coverImages.map((image, index) => (
+            <MobileCoverFrame
+              key={image}
+              $rotation={index % 2 === 0 ? "-3deg" : "3deg"}
+            >
+              <MobileCoverImage
+                src={image}
+                alt={`${project.title} interface ${index + 1}`}
+              />
+            </MobileCoverFrame>
+          ))}
+        </MobileCoverStrip>
+      </Visual>
+    );
+  }
+
   if (project.cover) {
     return (
       <Visual featured={project.featured}>
@@ -361,7 +439,12 @@ const ProjectVisual = ({ project }) => {
             {project.screenshotCount}
           </ScreenshotBadge>
         )}
-        <CoverImage src={project.cover} alt={`${project.title} interface`} />
+        <CoverImage
+          src={project.cover}
+          alt={`${project.title} interface`}
+          $fit={project.coverFit}
+          $position={project.coverPosition}
+        />
       </Visual>
     );
   }
@@ -425,7 +508,9 @@ const Projects = () => {
       title: "Barberio",
       type: t("projects.liveProduct"),
       featured: true,
-      phone: true,
+      cover: barberioCover,
+      coverFit: "cover",
+      coverPosition: "center",
       logo: "B",
       color: "linear-gradient(135deg, #101820, #8b5cf6)",
       description:
@@ -440,11 +525,13 @@ const Projects = () => {
       appStore: "https://apps.apple.com/us/app/barberio/id6761790714",
       googlePlay: "https://play.google.com/store/apps/details?id=io.barberio.app",
       website: "https://barber-khaki-five.vercel.app/",
+      hasScreenshots: true,
+      screenshotCount: 3,
     },
     {
       title: "Medical App",
       type: t("projects.freelanceProject"),
-      phone: true,
+      coverImages: [medicalCoverOne, medicalCoverTwo],
       logo: "M",
       color: "linear-gradient(135deg, #0fa3b1, #6fffe9)",
       description:
@@ -455,7 +542,7 @@ const Projects = () => {
       tech: ["Flutter", "Firebase"],
       github: "restricted",
       hasScreenshots: true,
-      screenshotCount: 27,
+      screenshotCount: 24,
     },
     {
       title: "AASD Medical Platform",
@@ -481,7 +568,10 @@ const Projects = () => {
         language === "fr"
           ? "Application Flutter de gestion de stock, ventes et factures pour une boutique de pièces moto."
           : "Flutter inventory, sales, and invoice management app for a motorcycle parts shop.",
-      features: ["Inventory and categories", "Sales and PDF invoices", "Offline portfolio demo"],
+      features:
+        language === "fr"
+          ? ["Gestion d'inventaire & pièces", "Ventes et factures PDF", "Architecture BLoC + Supabase"]
+          : ["Inventory & parts tracking", "Sales & PDF invoicing", "BLoC architecture + Supabase"],
       tech: ["Flutter", "BLoC", "Supabase", "Docker"],
       github: "https://github.com/nidhalboumaiza-0/HajMoto",
       hasScreenshots: true,
@@ -491,6 +581,7 @@ const Projects = () => {
       title: "TeamFlow",
       type: t("projects.academicProject"),
       web: true,
+      cover: teamFlowCover,
       description:
         language === "fr"
           ? "Application web de gestion d'équipes, tâches, membres et équipements avec React et Express."
@@ -504,7 +595,7 @@ const Projects = () => {
     {
       title: "GASPINO",
       type: t("projects.freelanceProject"),
-      phone: true,
+      coverImages: [gaspinoCoverOne, gaspinoCoverTwo],
       logo: "G",
       color: "linear-gradient(135deg, #1f7a4d, #ffd166)",
       description:
