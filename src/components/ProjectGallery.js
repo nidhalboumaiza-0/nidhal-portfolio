@@ -185,6 +185,8 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
         "WhatsApp Image 2025-06-21 à 19.49.27_d2cf8dea.jpg",
         "WhatsApp Image 2025-06-21 à 19.49.27_fb73c248.jpg",
       ],
+      "AASD Medical Platform": ["login.png", "doctor-dashboard.png"],
+      HajMoto: ["login.png", "dashboard.png"],
       GASPINO: [
         "inoo.jpg",
         "pino.jpg",
@@ -216,7 +218,7 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
         "1.png",
       ],
       "Gestion de Librairie": Array.from(
-        { length: 6 },
+        { length: 7 },
         (_, i) => `library${i + 1}.png`
       ),
     }),
@@ -229,6 +231,8 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
         const projectImages = [];
         const folderMap = {
           "Medical App": "medilink",
+          "AASD Medical Platform": "aasd",
+          HajMoto: "hajmoto",
           GASPINO: "gaspino",
           TeamFlow: "teamflow",
           "Gestion de Librairie": "library",

@@ -14,6 +14,9 @@ import {
 import { FaApple, FaGooglePlay } from "react-icons/fa";
 import { useLanguage } from "../contexts/LanguageContext";
 import ProjectGallery from "./ProjectGallery";
+import aasdCover from "../assets/projects/aasd/doctor-dashboard.png";
+import hajMotoCover from "../assets/projects/hajmoto/dashboard.png";
+import biblioCover from "../assets/projects/library/library7.png";
 
 const ProjectsSection = styled.section`
   padding: 8rem 2rem;
@@ -180,6 +183,14 @@ const ProjectIcon = styled.div`
   opacity: 0.76;
 `;
 
+const CoverImage = styled.img`
+  width: 100%;
+  height: 100%;
+  min-height: inherit;
+  object-fit: cover;
+  object-position: top left;
+`;
+
 const Content = styled.div`
   padding: ${(props) => (props.featured ? "2.2rem" : "1.6rem")};
   display: flex;
@@ -341,6 +352,20 @@ const ModalButton = styled(motion.button)`
 `;
 
 const ProjectVisual = ({ project }) => {
+  if (project.cover) {
+    return (
+      <Visual featured={project.featured}>
+        {project.hasScreenshots && (
+          <ScreenshotBadge>
+            <FiCamera />
+            {project.screenshotCount}
+          </ScreenshotBadge>
+        )}
+        <CoverImage src={project.cover} alt={`${project.title} interface`} />
+      </Visual>
+    );
+  }
+
   if (project.phone) {
     return (
       <Visual featured={project.featured}>
@@ -428,9 +453,39 @@ const Projects = () => {
           : "Medical mobile app with appointments, messaging, location features, and real-time data.",
       features: ["Appointments", "Firebase auth", "Messaging"],
       tech: ["Flutter", "Firebase"],
-      github: "https://github.com/nidhalboumaiza-0/PFE-2025-Medical-App",
+      github: "restricted",
       hasScreenshots: true,
       screenshotCount: 27,
+    },
+    {
+      title: "AASD Medical Platform",
+      type: t("projects.academicProject"),
+      web: true,
+      cover: aasdCover,
+      description:
+        language === "fr"
+          ? "Plateforme médicale web pour les rendez-vous, consultations, profils et discussions en temps réel."
+          : "Medical web platform for appointments, consultations, profiles, and real-time discussions.",
+      features: ["Patient and doctor accounts", "Real-time messaging", "Docker demo environment"],
+      tech: ["React", "Express.js", "MongoDB", "Socket.IO", "Docker"],
+      github: "https://github.com/nidhalboumaiza-0/aasd-medical-platform",
+      hasScreenshots: true,
+      screenshotCount: 2,
+    },
+    {
+      title: "HajMoto",
+      type: t("projects.freelanceProject"),
+      web: true,
+      cover: hajMotoCover,
+      description:
+        language === "fr"
+          ? "Application Flutter de gestion de stock, ventes et factures pour une boutique de pièces moto."
+          : "Flutter inventory, sales, and invoice management app for a motorcycle parts shop.",
+      features: ["Inventory and categories", "Sales and PDF invoices", "Offline portfolio demo"],
+      tech: ["Flutter", "BLoC", "Supabase", "Docker"],
+      github: "https://github.com/nidhalboumaiza-0/HajMoto",
+      hasScreenshots: true,
+      screenshotCount: 2,
     },
     {
       title: "TeamFlow",
@@ -466,15 +521,16 @@ const Projects = () => {
       title: "Gestion de Librairie",
       type: t("projects.academicProject"),
       web: true,
+      cover: biblioCover,
       description:
         language === "fr"
-          ? "Gestion de livres, auteurs, emprunts et retours avec React, Flask et MySQL."
-          : "Book, author, loan, and return management with React, Flask, and MySQL.",
-      features: ["React UI", "Flask API", "MySQL"],
-      tech: ["React", "Flask", "MySQL", "Python"],
-      github: "https://github.com/nidhalboumaiza-0/Biblio_React",
+          ? "Gestion de livres, auteurs, emprunts et retours avec React, Flask et MariaDB."
+          : "Book, author, loan, and return management with React, Flask, and MariaDB.",
+      features: ["React UI", "Flask API", "MariaDB"],
+      tech: ["React", "Flask", "MariaDB", "Python", "Docker"],
+      github: "https://github.com/nidhalboumaiza-0/biblio-library-platform",
       hasScreenshots: true,
-      screenshotCount: 6,
+      screenshotCount: 7,
     },
     {
       title: "HR Management System",
