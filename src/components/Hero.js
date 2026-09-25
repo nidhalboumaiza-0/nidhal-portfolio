@@ -965,8 +965,8 @@ const Hero = () => {
                   </CvOptionHeader>
                   <CvOptionDescription>
                     {language === "fr"
-                      ? "La mise en page originale à 2 colonnes (cv poste ang.docx), actualisée avec votre photo de costume du portfolio, le stage eSteps Health et l'historique complet."
-                      : "The original 2-column layout (cv poste ang.docx), updated with your portfolio suit portrait, eSteps Health internship, and complete project history."}
+                      ? "La mise en page à 2 colonnes avec photo, stage eSteps Health (CIRO Pizza), contrat AL Manarah et historique complet de projets."
+                      : "The original 2-column layout with photo, eSteps Health engineering internship (CIRO), AL Manarah contract, and complete project history."}
                   </CvOptionDescription>
                   <CvActionRow>
                     <CvDownloadBtn
@@ -980,6 +980,49 @@ const Hero = () => {
                     </CvDownloadBtn>
                     <CvPreviewBtn
                       href="/NIDHAL_BOUMAIZA_CV_CLASSIC_EN.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                    >
+                      <FiExternalLink /> {language === "fr" ? "Aperçu" : "Preview"}
+                    </CvPreviewBtn>
+                  </CvActionRow>
+                </CvOptionCard>
+
+                {/* 4. Classic Format (French 2-Column with Photo) */}
+                <CvOptionCard whileHover={{ y: -2 }}>
+                  <CvOptionHeader>
+                    <CvOptionTitle>
+                      <FiFileText style={{ color: "#10b981" }} />
+                      {language === "fr" ? "CV Format Classique (Français avec Photo & 2 Colonnes)" : "Classic CV Format (French 2-Column with Photo)"}
+                    </CvOptionTitle>
+                    <CvBadges>
+                      <CvBadge $bg="rgba(16, 185, 129, 0.15)" $color="#10b981" $border="rgba(16, 185, 129, 0.35)">
+                        Photo Portfolio
+                      </CvBadge>
+                      <CvBadge $bg="rgba(56, 189, 248, 0.15)" $color="#38bdf8" $border="rgba(56, 189, 248, 0.3)">
+                        Version FR 2 Colonnes
+                      </CvBadge>
+                    </CvBadges>
+                  </CvOptionHeader>
+                  <CvOptionDescription>
+                    {language === "fr"
+                      ? "Version française du format classique à 2 colonnes avec photo, détail du PFE chez eSteps Health (CIRO Pizza), applications en production et vie associative."
+                      : "French version of the classic 2-column layout with photo, detailed eSteps Health PFE (CIRO Pizza), production apps, and community leadership."}
+                  </CvOptionDescription>
+                  <CvActionRow>
+                    <CvDownloadBtn
+                      href="/NIDHAL_BOUMAIZA_CV_CLASSIC_FR.pdf"
+                      download="NIDHAL_BOUMAIZA_CV_CLASSIC_FR.pdf"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      style={{ background: "linear-gradient(135deg, #10b981, #06b6d4)" }}
+                    >
+                      <FiDownload /> {language === "fr" ? "Télécharger (PDF)" : "Download (PDF)"}
+                    </CvDownloadBtn>
+                    <CvPreviewBtn
+                      href="/NIDHAL_BOUMAIZA_CV_CLASSIC_FR.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.03 }}
