@@ -74,6 +74,36 @@ const translations = {
       subtitle: "My professional journey",
       professionalExperience: "Professional Experience",
       experiences: {
+        alManarah: {
+          title: "Mobile Application Developer (Flutter)",
+          company: "AL Manarah Advanced Company (goLance Contract)",
+          duration: "September 2025 - Present",
+          location: "Remote / Saudi Arabia",
+          description:
+            "Lead mobile developer delivering production Flutter applications deployed on the App Store and Google Play.",
+          achievements: [
+            "Engineered and published Maqra'at Al-Rajhi on the App Store and Google Play Store",
+            "Implemented low-latency audio streaming for live Quran recitation sessions",
+            "Developed teacher-student appointment scheduling, real-time tracking, and progress reporting",
+            "Architected clean BLoC state management and high-performance offline caching",
+            "Integrated push notifications, Arabic RTL localization, and robust REST APIs",
+          ],
+        },
+        eStepsHealth: {
+          title: "Software Engineer Intern (PFE)",
+          company: "eSteps Health",
+          duration: "February 2026 - September 2026",
+          location: "Tunisia",
+          description:
+            "Final Year Engineering Internship (PFE): designed and built the CIRO Pizza Totaro smart omni-channel automated restaurant ecosystem.",
+          achievements: [
+            "Developed 3 Flutter apps: Customer app with AI assistant, interactive Totem Kiosk, and Rider delivery app with live tracking",
+            "Architected scalable backend with Laravel 12 and real-time WebSockets powered by Laravel Reverb",
+            "Designed modern back-office dashboard using Next.js 16, React, and TypeScript",
+            "Integrated SCADA industrial robotics interface to monitor automated pizza preparation and conveyor baking",
+            "Containerized the entire platform with Docker and deployed to production VPS",
+          ],
+        },
         freelance: {
           title: "Freelance Full Stack Developer",
           company: "Self-Employed",
@@ -143,6 +173,7 @@ const translations = {
       freelanceProject: "Freelance Project",
       academicProject: "Academic Project",
       internshipProject: "Internship Project",
+      pfeProject: "Graduation Project (PFE)",
     },
     education: {
       title: "Education",
@@ -243,6 +274,36 @@ const translations = {
       subtitle: "Mon parcours professionnel",
       professionalExperience: "Expérience Professionnelle",
       experiences: {
+        alManarah: {
+          title: "Développeur Mobile Flutter",
+          company: "AL Manarah Advanced Company (Contrat goLance)",
+          duration: "Septembre 2025 - Présent",
+          location: "À distance / Arabie Saoudite",
+          description:
+            "Développeur mobile principal sur des applications Flutter en production publiées sur l'App Store et Google Play.",
+          achievements: [
+            "Développement et publication de l'application Maqra'at Al-Rajhi sur l'App Store et Google Play",
+            "Intégration de streaming audio temps réel à faible latence pour séances de récitation en direct",
+            "Gestion des séances directes élèves-enseignants, planning interactif et suivi de progression",
+            "Architecture BLoC propre, gestion du cache local hors-ligne et optimisation des performances",
+            "Intégration des notifications push, support complet de la langue arabe (RTL) et APIs REST",
+          ],
+        },
+        eStepsHealth: {
+          title: "Stagiaire Ingénieur Logiciel (PFE)",
+          company: "eSteps Health",
+          duration: "Février 2026 - 1 Septembre 2026",
+          location: "Tunisie",
+          description:
+            "Projet de Fin d'Études (PFE) d'ingénieur: conception et réalisation de la plateforme omnicanale CIRO Pizza Totaro avec automatisation robotique.",
+          achievements: [
+            "Développement de 3 applications Flutter: Client avec assistant IA, Borne Totem Kiosk et Livreur Rider",
+            "Architecture backend sous Laravel 12 avec WebSockets temps réel via Laravel Reverb",
+            "Création du tableau de bord administrateur sous Next.js 16, React et TypeScript",
+            "Supervision robotique SCADA pour le suivi de la préparation automatisée des pizzas",
+            "Conteneurisation complète avec Docker et déploiement sur VPS de production",
+          ],
+        },
         freelance: {
           title: "Développeur Full Stack Freelance",
           company: "Indépendant",
@@ -312,6 +373,7 @@ const translations = {
       freelanceProject: "Projet Freelance",
       academicProject: "Projet Académique",
       internshipProject: "Projet de Stage",
+      pfeProject: "Projet de Fin d'Études (PFE)",
     },
     education: {
       title: "Formation",

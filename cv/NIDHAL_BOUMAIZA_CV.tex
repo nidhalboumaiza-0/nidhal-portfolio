@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[french]{babel}
+\frenchsetup{StandardItemLabels=true}
 \usepackage[left=1.35cm,right=1.35cm,top=1.2cm,bottom=1.2cm]{geometry}
 \usepackage{xcolor}
 \usepackage{hyperref}
@@ -10,8 +11,10 @@
 \usepackage{tabularx}
 \usepackage{titlesec}
 
-\definecolor{accent}{HTML}{00A6D6}
-\definecolor{textgray}{HTML}{555555}
+\definecolor{accent}{HTML}{0284C7}
+\definecolor{primarydark}{HTML}{0F172A}
+\definecolor{textgray}{HTML}{475569}
+\definecolor{subgray}{HTML}{64748B}
 
 \hypersetup{
   colorlinks=true,
@@ -22,102 +25,130 @@
 \pagestyle{empty}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{3pt}
-\setlist[itemize]{leftmargin=*, topsep=2pt, itemsep=2pt}
+\setlist[itemize]{leftmargin=1.4em, topsep=2pt, itemsep=2.5pt, parsep=0pt}
 
 \titleformat{\section}
   {\large\bfseries\color{accent}}
   {}
   {0pt}
   {}
-  [\titlerule]
+  [\vspace{1.5pt}\titlerule]
+
+\titlespacing*{\section}{0pt}{10pt}{6pt}
 
 \newcommand{\cvitem}[2]{
-  \textbf{#1} \hfill {\color{textgray}#2}
+  \textbf{#1} \hfill {\color{textgray}\textbf{#2}}
 }
 
 \newcommand{\role}[4]{
-  \textbf{#1} -- #2 \hfill {\color{textgray}#3}\\
-  {\color{textgray}#4}
+  \vspace{3pt}
+  \textbf{\color{primarydark}#1} -- \textbf{#2} \hfill {\color{textgray}\textbf{#3}}\\
+  {\color{subgray}\textit{#4}}\vspace{1pt}
 }
 
 \begin{document}
 
-{\Huge \textbf{Nidhal BOUMAIZA}}\\
-{\Large Développeur full-stack mobile}\\[4pt]
-Étudiant en troisième année cycle ingénieur spécialité Génie Logiciel et Freelancer. Je suis à la recherche d'un stage de fin d'études (PFE) pour mettre en pratique mes compétences, relever des défis techniques et contribuer à des projets innovants. Je vise à devenir un ingénieur logiciel expert capable de concevoir des solutions performantes et évolutives.
+{\Huge \textbf{\color{primarydark}Nidhal BOUMAIZA}}\\[4pt]
+{\Large \textbf{\color{accent}Ingénieur Logiciel \& Développeur Full-Stack Mobile}}\\[6pt]
+{\small\color{textgray}
+Ingénieur diplômé en Génie Logiciel et Développeur Full-Stack Mobile passionné par Flutter, React, Laravel et Node.js. Fort d'une expérience concrète en tant que développeur mobile chez \textbf{AL Manarah Advanced Co} (applications publiées sur l'\textbf{App Store} et \textbf{Google Play}) et de mon PFE d'ingénieur chez \textbf{eSteps Health} (écosystème omnicanal intelligent \textbf{CIRO} avec Flutter, Laravel 12, Next.js 16 et robotique SCADA), je conçois des solutions logicielles performantes, évolutives et centrées sur l'excellence utilisateur.
+}
 
 \vspace{6pt}
-\begin{tabularx}{\textwidth}{@{}X X@{}}
-\href{mailto:nidhal.boumaiza@outlook.com}{nidhal.boumaiza@outlook.com} & +216 28 316 089 \\
-Rue Madrid, Tunis, Tunisie & \href{https://github.com/NidhalBoumaiza}{Github.com/NidhalBoumaiza} \\
-\href{https://www.nidhalboumaiza.tech/}{www.nidhalboumaiza.tech} &
+\begin{tabularx}{\textwidth}{@{}X X X@{}}
+\href{mailto:nidhal.boumaiza@outlook.com}{nidhal.boumaiza@outlook.com} & +216 28 316 089 & Rue Madrid, Tunis, Tunisie \\
+\href{https://www.nidhalboumaiza.tech/}{www.nidhalboumaiza.tech} & \href{https://github.com/nidhalboumaiza-0}{github.com/nidhalboumaiza-0} & \href{https://linkedin.com/in/nidhalboumaiza}{linkedin.com/in/nidhalboumaiza}
 \end{tabularx}
 
-\section{Compétences}
-\begin{tabularx}{\textwidth}{@{}XXXX@{}}
-ExpressJs & Flutter & Dart & JavaScript \\
-MongoDB & SQL & GitHub & NoSQL \\
-HTML & CSS & ReactJs & Python \\
-Java & Flask & Oracle & MySQL \\
-Firebase & Android Studio & Visual Studio Code & Postman \\
-MongoDB Compass & IntelliJ & & 
-\end{tabularx}
-
-\section{Expérience Professionnelle}
-
-\role{Freelance}{Flutter}{06/2023 -- Présent}{Projets réalisés}
+\vspace{3pt}
+\section{Compétences Techniques}
 \begin{itemize}
-  \item \textbf{CAMPFIRE STORIES APP FRONTEND} : développement de l'interface de l'application et liaison avec le backend Django développé par mon collègue.
-  \item \textbf{B.LOC APP FRONTEND} : développement de l'interface de l'application et liaison avec le backend Django développé par mon collègue.
-  \item \textbf{DAYTE APP FRONTEND} : développement de l'interface de l'application et liaison avec le backend ExpressJs développé par mon collègue.
-  \item \textbf{GASPINO APP} : application de réduction du gaspillage de produits alimentaires développée avec Flutter et NodeJs.
-  \item \textbf{Medical App} : application mobile médicale avec Flutter, Firebase Authentication, base de données en temps réel et notifications. Elle permet aux patients de prendre des rendez-vous avec des médecins, de localiser les hôpitaux et pharmacies à proximité, et de communiquer avec leur médecin via une messagerie intégrée.
+  \item \textbf{Mobile \& Frontend} : Flutter, Dart, React.js, Next.js 16, TypeScript, JavaScript, HTML5/CSS3, BLoC State Management.
+  \item \textbf{Backend \& Temps Réel} : Laravel 12, Node.js, Express.js, Python, Flask, WebSockets (Laravel Reverb, Socket.IO), RESTful APIs.
+  \item \textbf{Bases de Données} : MongoDB, MySQL, PostgreSQL, MariaDB, Firebase Authentication \& Realtime Database, Supabase.
+  \item \textbf{DevOps, Systèmes \& Outils} : Docker, Git, GitHub Actions, Linux/VPS, SCADA / Supervision industrielle IoT, Postman, Android Studio, VS Code.
+  \item \textbf{Architecture \& Méthodologies} : Clean Architecture, MVC, Déploiement App Store \& Google Play, Tests unitaires/intégration, Agile/Scrum.
 \end{itemize}
 
-\role{Freelance}{ReactJs}{}{Projets réalisés}
+\vspace{3pt}
+\section{Expérience Professionnelle Récente}
+
+\role{AL Manarah Advanced Company (goLance)}{Développeur Mobile Flutter}{09/2025 -- Présent}{Contrat Freelance international -- Riyad / À distance}
 \begin{itemize}
-  \item \textbf{TeamFlow} : application web de gestion d'équipes avec un front-end React et un back-end Express.js. Elle permet de gérer les équipes, les membres, les projets, les tâches et les équipements de manière centralisée et efficace.
-  \item \textbf{Gestion de librairie} : application web de gestion de librairie avec React et Flask. Elle permet d'ajouter des livres et auteurs, de gérer les emprunts et retours, et de suivre l'état de chaque emprunt.
+  \item Développement, optimisation et publication sur l'\textbf{App Store} et \textbf{Google Play} de l'application mobile \textbf{Maqra'at Al-Rajhi} (plateforme éducative et de récitation coranique).
+  \item Implémentation du streaming audio interactif en direct à faible latence pour séances de récitation et d'écoute coranique.
+  \item Gestion des créneaux de séances en direct enseignants-élèves, planification dynamique, notifications push et suivi de progression.
+  \item Conception d'une architecture Flutter modulaire et maintenable (BLoC), mise en cache hors-ligne et consommation d'APIs REST sécurisées.
+  \item Prise en charge complète de l'internationalisation et du support de la langue arabe (RTL).
 \end{itemize}
 
-\role{Stage de fin d'études}{Neopolis Development}{02/2023 -- 05/2023}{Flutter / ExpressJs -- Nabeul}
+\role{eSteps Health}{Stagiaire Ingénieur Logiciel (PFE)}{02/2026 -- 09/2026}{Stage de Fin d'Études Ingénieur -- Tunis}
 \begin{itemize}
-  \item Développement d'une version mobile et du back-end de la plateforme de gestion des ressources humaines pour Neopolis.
-  \item Automatisation et rationalisation de processus RH : gestion des congés, matériel informatique, subordonnés, documents partagés et suggestions.
+  \item Conception et développement de \textbf{CIRO Pizza Totaro} : plateforme omnicanale intelligente de restauration rapide avec automatisation robotique.
+  \item Développement de 3 applications Flutter : \textbf{Application Client} (assistant vocal/IA, personnalisation et suivi en temps réel), \textbf{Borne Totem Kiosk interactive}, et \textbf{Application Livreur Rider} avec géolocalisation en direct.
+  \item Conception de l'architecture backend sous \textbf{Laravel 12} avec WebSockets temps réel via \textbf{Laravel Reverb} pour la synchronisation immédiate des commandes.
+  \item Réalisation du back-office administrateur complet sous \textbf{Next.js 16}, React et TypeScript (gestion des menus, commandes et analytique).
+  \item Intégration de la supervision industrielle \textbf{SCADA} pour le contrôle et la surveillance des stations d'assemblage et de cuisson robotisée.
+  \item Conteneurisation de la suite complète avec Docker et déploiement en production sur serveur VPS.
 \end{itemize}
 
-\role{Stage de perfectionnement}{CPG Gafsa}{01/2023 -- 02/2023}{Flutter / ExpressJs -- Gafsa}
+\newpage
+
+\section{Applications en Production \& Projets Personnels}
+
+\role{Freelance \& Projets Personnels}{Développeur Full-Stack \& Mobile}{06/2023 -- Présent}{Applications publiées \& plateformes web}
 \begin{itemize}
-  \item Développement d'une application mobile basée sur Node.js et Flutter pour faciliter la gestion des stagiaires au sein de l'entreprise.
+  \item \textbf{Barberio} : Application mobile en production publiée sur l'\textbf{App Store} et \textbf{Google Play} pour la réservation de coiffeurs en Tunisie. Intégration Firebase, notifications push, portfolios professionnels, prise de rendez-vous en ligne et gestion des plannings de salons.
+  \item \textbf{Medical App} : Application mobile médicale (Flutter, Firebase) avec prise de rendez-vous, géolocalisation de pharmacies/hôpitaux et messagerie temps réel.
+  \item \textbf{HajMoto} : Application Flutter de gestion d'inventaire, de ventes et de facturation PDF pour boutique de pièces moto (architecture BLoC, Supabase, Docker).
+  \item \textbf{GASPINO} : Application mobile anti-gaspillage de produits alimentaires développée avec Flutter, Express.js et MongoDB.
+  \item \textbf{TeamFlow} : Plateforme web de gestion d'équipes, de projets, de tâches et d'équipements développée avec React, Express.js et MongoDB.
+  \item \textbf{Gestion de Librairie} : Application web de gestion de livres, auteurs, emprunts et retours avec React, Flask et MariaDB sous Docker.
 \end{itemize}
 
-\role{Stage d'initiation}{Evolve'Com}{01/2022 -- 02/2022}{CMS Prestashop -- Tunis}
+\vspace{3pt}
+\section{Expériences Précédentes}
+
+\role{Neopolis Development}{Stagiaire PFE Licence}{02/2023 -- 05/2023}{Flutter / Express.js -- Nabeul}
 \begin{itemize}
-  \item Remplissage de la base de données d'un site e-commerce : \href{https://kmandi.net}{kmandi.net}.
-  \item Familiarisation avec le CMS Prestashop.
+  \item Développement de la version mobile (Flutter) et du back-end (Express.js, MongoDB) de la plateforme de gestion des ressources humaines.
+  \item Automatisation des processus RH : gestion des congés, matériel informatique, hiérarchie, documents partagés et suggestions.
 \end{itemize}
 
-\section{Éducation}
-\cvitem{Cycle Ingénieur en Génie Logiciel -- 3ème année}{09/2023 -- 09/2026}\\
-Iteam University
+\role{CPG Gafsa}{Stagiaire de Perfectionnement}{01/2023 -- 02/2023}{Flutter / Node.js -- Gafsa}
+\begin{itemize}
+  \item Développement d'une application mobile basée sur Flutter et Node.js pour la gestion, l'évaluation et le suivi des stagiaires.
+\end{itemize}
 
-\cvitem{Licence en Développement des Systèmes d'Informations}{09/2022 -- 06/2023}\\
-Institut Supérieur des Études Technologiques de Nabeul
+\role{Evolve'Com}{Stagiaire d'Initiation}{01/2022 -- 02/2022}{CMS Prestashop -- Tunis}
+\begin{itemize}
+  \item Maintenance et gestion des données d'un site e-commerce (\href{https://kmandi.net}{kmandi.net}) et intégration CMS Prestashop.
+\end{itemize}
 
-\cvitem{Baccalauréat en sciences de l'informatique}{09/2019 -- 06/2020}\\
-Lycée Abd Laaziz El Akremi Gafsa
+\vspace{3pt}
+\section{Formation \& Diplômes}
+\cvitem{Diplôme National d'Ingénieur en Génie Logiciel}{09/2023 -- 09/2026}\\
+{\color{textgray}Iteam University -- Tunis}
 
+\vspace{2pt}
+\cvitem{Licence en Développement des Systèmes d'Informations (DSI)}{09/2020 -- 06/2023}\\
+{\color{textgray}Institut Supérieur des Études Technologiques de Nabeul (ISET Nabeul)}
+
+\vspace{2pt}
+\cvitem{Baccalauréat en Sciences de l'Informatique}{09/2019 -- 06/2020}\\
+{\color{textgray}Lycée Abd Laaziz El Akremi -- Gafsa}
+
+\vspace{3pt}
 \section{Langues}
-Français \quad Anglais \quad Arabe
+\textbf{Français} : Courant \quad\textbar\quad \textbf{Anglais} : Professionnel \quad\textbar\quad \textbf{Arabe} : Langue maternelle
 
+\vspace{3pt}
 \section{Vie Associative}
-\cvitem{IEEE ISET NABEUL}{09/2022 -- 01/2023}\\
-Responsable des ressources humaines chargé du recrutement des nouveaux membres, de la communication interne et de la cohésion du groupe.
+\cvitem{IEEE ISET Nabeul}{09/2022 -- 01/2023}\\
+{\color{textgray}Responsable Ressources Humaines : recrutement, communication interne et cohésion d'équipe.}
 
-\cvitem{Orange Tech Club ISET NABEUL}{10/2021 -- 01/2023}\\
-Trésorier.
-
-\section{Intérêts}
-Football \quad Anime \quad Tennis
+\vspace{2pt}
+\cvitem{Orange Tech Club ISET Nabeul}{10/2021 -- 01/2023}\\
+{\color{textgray}Trésorier : gestion budgétaire et organisation d'événements technologiques.}
 
 \end{document}

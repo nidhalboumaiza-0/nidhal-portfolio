@@ -23,6 +23,10 @@ import biblioCover from "../assets/projects/library/library7.png";
 import medicalCoverOne from "../assets/projects/medilink/medical-01.jpg";
 import medicalCoverTwo from "../assets/projects/medilink/medical-02.jpg";
 import teamFlowCover from "../assets/projects/teamflow/zieakbf.png";
+import maqariCoverOne from "../assets/projects/maqari/maqari-02.png";
+import maqariCoverTwo from "../assets/projects/maqari/maqari-03.png";
+import ciroCoverOne from "../assets/projects/ciro/ciro-01.png";
+import ciroCoverTwo from "../assets/projects/ciro/ciro-02.png";
 
 const ProjectsSection = styled.section`
   padding: 8rem 2rem;
@@ -217,7 +221,7 @@ const MobileCoverStrip = styled.div`
 `;
 
 const MobileCoverFrame = styled.div`
-  height: 168px;
+  height: ${(props) => (props.$featured ? "260px" : "168px")};
   aspect-ratio: 9 / 19.5;
   overflow: hidden;
   background: #000000;
@@ -228,6 +232,10 @@ const MobileCoverFrame = styled.div`
     0 0 16px rgba(139, 92, 246, 0.16);
   transform: rotate(${(props) => props.$rotation});
   transition: transform 0.3s ease, border-color 0.3s ease;
+
+  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+    height: 175px;
+  }
 
   &:hover {
     transform: rotate(0deg) scale(1.05);
@@ -417,6 +425,7 @@ const ProjectVisual = ({ project }) => {
           {project.coverImages.map((image, index) => (
             <MobileCoverFrame
               key={image}
+              $featured={project.featured}
               $rotation={index % 2 === 0 ? "-3deg" : "3deg"}
             >
               <MobileCoverImage
@@ -527,6 +536,67 @@ const Projects = () => {
       website: "https://barber-khaki-five.vercel.app/",
       hasScreenshots: true,
       screenshotCount: 3,
+    },
+    {
+      title: "Maqra'at Al-Rajhi",
+      type: t("projects.liveProduct"),
+      featured: true,
+      coverImages: [maqariCoverOne, maqariCoverTwo],
+      logo: "م",
+      color: "linear-gradient(135deg, #065f46, #10b981)",
+      description:
+        language === "fr"
+          ? "Plateforme éducative et de récitation coranique développée pour AL Manarah Advanced Co (Arabie Saoudite), publiée sur l'App Store et Google Play. Séances audio en direct, suivi élèves-enseignants et notifications push."
+          : "Quranic educational and recitation platform built for AL Manarah Advanced Co (Saudi Arabia), published on App Store & Google Play. Live interactive audio sessions, student-teacher tracking, and push notifications.",
+      features:
+        language === "fr"
+          ? [
+              "Publiée sur App Store et Google Play",
+              "Audio interactif & streaming haute qualité",
+              "Gestion des séances directes élèves-enseignants",
+              "Architecture BLoC & cache hors-ligne",
+            ]
+          : [
+              "Published on App Store and Google Play",
+              "Live interactive audio & high-quality streaming",
+              "Teacher-student live session management",
+              "Clean BLoC architecture & offline caching",
+            ],
+      tech: ["Flutter", "Dart", "BLoC", "Audio Streaming", "REST APIs", "Production"],
+      appStore: "https://apps.apple.com/sa/app/%D9%85%D9%82%D8%B1%D8%A3%D8%A9-%D8%A7%D9%84%D8%B1%D8%A7%D8%AC%D8%AD%D9%8A/id6753659959",
+      googlePlay: "https://play.google.com/store/apps/details?id=com.manara.maqari&hl=en",
+      hasScreenshots: true,
+      screenshotCount: 9,
+    },
+    {
+      title: "CIRO Pizza Platform",
+      type: t("projects.pfeProject") || t("projects.academicProject"),
+      featured: true,
+      coverImages: [ciroCoverOne, ciroCoverTwo],
+      logo: "C",
+      color: "linear-gradient(135deg, #e63946, #f77f00)",
+      description:
+        language === "fr"
+          ? "Projet de Fin d'Études (PFE) d'ingénieur chez eSteps Health: écosystème omnicanal intelligent de restauration rapide avec 3 apps Flutter (Client avec assistant IA, Borne Kiosk, Livreur Rider), backend Laravel 12 Reverb temps réel, admin Next.js 16 et supervision robotique SCADA."
+          : "Engineering End-of-Studies (PFE) platform at eSteps Health: smart omni-channel automated restaurant ecosystem with 3 Flutter apps (Customer with AI assistant, Totem Kiosk, Rider), Laravel 12 Reverb realtime backend, Next.js 16 admin, and SCADA robotic pizza assembly supervision.",
+      features:
+        language === "fr"
+          ? [
+              "3 Apps Flutter (Client IA, Borne Kiosk, Livreur)",
+              "Backend Laravel 12 & WebSockets Reverb temps réel",
+              "Back-office Next.js 16, TypeScript & Analytique",
+              "Supervision robotique SCADA de préparation",
+            ]
+          : [
+              "3 Flutter Apps (AI Customer, Kiosk, Rider)",
+              "Laravel 12 Backend & Reverb Real-time WebSockets",
+              "Next.js 16, TypeScript Back-office & Analytics",
+              "SCADA Robotic Assembly & Oven Supervision",
+            ],
+      tech: ["Flutter", "Laravel 12", "Next.js 16", "TypeScript", "SCADA", "Docker"],
+      github: "https://github.com/nidhalboumaiza-0/ciro-pizza-pfe",
+      hasScreenshots: true,
+      screenshotCount: 11,
     },
     {
       title: "Medical App",

@@ -534,8 +534,22 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
       "GASPINO",
       "Barberio",
       "HR Management System",
+      "Maqra'at Al-Rajhi",
     ].includes(projectTitle);
   }, [projectTitle]);
+
+  const isImageMobileAt = useCallback(
+    (index) => {
+      if (projectTitle === "Maqra'at Al-Rajhi") return true;
+      if (projectTitle === "CIRO Pizza Platform") {
+        return [0, 1, 2, 3, 4, 9].includes(index);
+      }
+      return isMobileProject;
+    },
+    [projectTitle, isMobileProject]
+  );
+
+  const isCurrentMobile = isImageMobileAt(currentImageIndex);
 
   const domainMap = useMemo(
     () => ({
@@ -546,6 +560,8 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
       TeamFlow: "teamflow-pfa.io",
       "Gestion de Librairie": "biblio-library.local",
       Barberio: "barberio.app",
+      "Maqra'at Al-Rajhi": "maqari.almanarah.sa",
+      "CIRO Pizza Platform": "ciro-pizza.app",
     }),
     []
   );
@@ -593,6 +609,14 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
         (_, index) => `library${index + 1}.png`
       ),
       Barberio: ["feature-graphic.png", "team.png", "app-icon.png"],
+      "Maqra'at Al-Rajhi": Array.from(
+        { length: 9 },
+        (_, i) => `maqari-${String(i + 1).padStart(2, "0")}.png`
+      ),
+      "CIRO Pizza Platform": Array.from(
+        { length: 11 },
+        (_, i) => `ciro-${String(i + 1).padStart(2, "0")}.png`
+      ),
     }),
     []
   );
@@ -611,6 +635,8 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
       TeamFlow: "teamflow",
       "Gestion de Librairie": "library",
       Barberio: "barberio",
+      "Maqra'at Al-Rajhi": "maqari",
+      "CIRO Pizza Platform": "ciro",
     };
 
     const folder = folderMap[projectTitle];
@@ -711,13 +737,13 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
                 <Title id="project-gallery-title">{projectTitle}</Title>
               </TitleBlock>
               <Badge>
-                {isMobileProject ? (
+                {isCurrentMobile ? (
                   <>
                     <FiSmartphone /> Mobile UI
                   </>
                 ) : (
                   <>
-                    <FiMonitor /> Web UI
+                    <FiMonitor /> Web / Kiosk UI
                   </>
                 )}
               </Badge>
@@ -747,7 +773,7 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
                   </>
                 ) : (
                   <>
-                    {isMobileProject ? <FiSmartphone /> : <FiMonitor />}
+                    {isCurrentMobile ? <FiSmartphone /> : <FiMonitor />}
                     <span>{language === "fr" ? "Cadre appareil" : "Device frame"}</span>
                   </>
                 )}
@@ -767,7 +793,7 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
           <Stage>
             {images.length > 0 ? (
               useDeviceFrame ? (
-                isMobileProject ? (
+                isCurrentMobile ? (
                   /* Mobile Smartphone Mockup */
                   <PhoneWrapper>
                     <PhoneFrame
@@ -866,7 +892,7 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
                   key={image + index}
                   ref={(el) => (thumbnailRefs.current[index] = el)}
                   type="button"
-                  $isMobile={isMobileProject}
+                  $isMobile={isImageMobileAt(index)}
                   $active={index === currentImageIndex}
                   onClick={() => setCurrentImageIndex(index)}
                   aria-label={`${projectTitle} screenshot ${index + 1}`}
@@ -875,7 +901,7 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
                   <ThumbnailImage
                     src={image}
                     alt=""
-                    $isMobile={isMobileProject}
+                    $isMobile={isImageMobileAt(index)}
                     loading="lazy"
                   />
                 </ThumbnailButton>

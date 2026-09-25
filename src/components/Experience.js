@@ -208,6 +208,40 @@ const Experience = () => {
 
   const experiences = [
     {
+      title: t("experience.experiences.alManarah.title"),
+      company: t("experience.experiences.alManarah.company"),
+      duration: t("experience.experiences.alManarah.duration"),
+      location: t("experience.experiences.alManarah.location"),
+      description: t("experience.experiences.alManarah.description"),
+      achievements: t("experience.experiences.alManarah.achievements"),
+      technologies: [
+        "Flutter",
+        "Dart",
+        "BLoC",
+        "Audio Streaming",
+        "REST APIs",
+        "App Store",
+        "Google Play",
+      ],
+    },
+    {
+      title: t("experience.experiences.eStepsHealth.title"),
+      company: t("experience.experiences.eStepsHealth.company"),
+      duration: t("experience.experiences.eStepsHealth.duration"),
+      location: t("experience.experiences.eStepsHealth.location"),
+      description: t("experience.experiences.eStepsHealth.description"),
+      achievements: t("experience.experiences.eStepsHealth.achievements"),
+      technologies: [
+        "Flutter",
+        "Laravel 12",
+        "Next.js 16",
+        "TypeScript",
+        "SCADA",
+        "WebSockets",
+        "Docker",
+      ],
+    },
+    {
       title: t("experience.experiences.freelance.title"),
       company: t("experience.experiences.freelance.company"),
       duration: t("experience.experiences.freelance.duration"),
