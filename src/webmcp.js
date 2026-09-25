@@ -80,7 +80,7 @@ export function registerWebMCPTools() {
           type: "text",
           text: JSON.stringify({
             englishModern: "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_EN.pdf",
-            frenchModern: "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_FR.pdf",
+            frenchModern: "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV.pdf",
             englishClassic: "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_EN.pdf",
             frenchClassic: "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_FR.pdf"
           }, null, 2)

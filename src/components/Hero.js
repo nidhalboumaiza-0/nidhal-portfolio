@@ -927,8 +927,8 @@ const Hero = () => {
                   </CvOptionDescription>
                   <CvActionRow>
                     <CvDownloadBtn
-                      href="/NIDHAL_BOUMAIZA_CV_FR.pdf"
-                      download="NIDHAL_BOUMAIZA_CV_FR.pdf"
+                      href="/NIDHAL_BOUMAIZA_CV.pdf"
+                      download="NIDHAL_BOUMAIZA_CV.pdf"
                       whileHover={{ scale: 1.03 }}
                       whileTap={{ scale: 0.97 }}
                       style={{ background: "linear-gradient(135deg, #8b5cf6, #6366f1)" }}
@@ -936,7 +936,7 @@ const Hero = () => {
                       <FiDownload /> {language === "fr" ? "Télécharger (PDF)" : "Download (PDF)"}
                     </CvDownloadBtn>
                     <CvPreviewBtn
-                      href="/NIDHAL_BOUMAIZA_CV_FR.pdf"
+                      href="/NIDHAL_BOUMAIZA_CV.pdf"
                       target="_blank"
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.03 }}
