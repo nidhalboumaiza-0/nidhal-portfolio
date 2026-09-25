@@ -152,7 +152,7 @@ const Skills = () => {
             title: "Mobile & Web",
             icon: <FiSmartphone />,
             text: "Apps Flutter multi-plateformes, interfaces React, responsive design et UI fidèle aux maquettes.",
-            skills: ["Flutter", "Dart", "React", "Figma to UI", "Bloc/GetX", "Responsive UI"],
+            skills: ["Flutter", "Dart", "React", "Figma to UI", "State Management", "Responsive UI"],
           },
           {
             title: "Backend & Data",
@@ -172,7 +172,7 @@ const Skills = () => {
             title: "Mobile & Web",
             icon: <FiSmartphone />,
             text: "Cross-platform Flutter apps, React interfaces, responsive design, and Figma-matching screens.",
-            skills: ["Flutter", "Dart", "React", "Figma to UI", "Bloc/GetX", "Responsive UI"],
+            skills: ["Flutter", "Dart", "React", "Figma to UI", "State Management", "Responsive UI"],
           },
           {
             title: "Backend & Data",

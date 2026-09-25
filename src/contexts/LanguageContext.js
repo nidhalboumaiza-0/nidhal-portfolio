@@ -33,9 +33,9 @@ const translations = {
       title: "About Me",
       subtitle: "Software Engineering Student & Product-minded Developer",
       description1:
-        "I build mobile-first products with Flutter, modern React & Next.js 16 frontends, and robust Laravel 12 & Node.js backends. My track record includes production apps published on App Store & Google Play with AL Manarah Advanced Co (Maqra'at Al-Rajhi), my engineering graduation project at eSteps Health (CIRO Pizza Platform), and Barberio.",
+        "I build mobile-first products with Flutter, modern React & Next.js 16 frontends, and robust Node.js & Express backends. My track record includes production apps published on App Store & Google Play with AL Manarah Advanced Co (Maqra'at Al-Rajhi), my engineering graduation project at eSteps Health (CIRO Pizza Platform), and Barberio.",
       description2:
-        "I care about clean architecture, reusable code, responsive UI, API reliability, and turning Figma designs into polished screens.",
+        "I care about software performance, reusable code, responsive UI, API reliability, and turning Figma designs into polished screens.",
       description3:
         "Now I am sharpening the exact stack this role needs: TypeScript, Express, Docker, Jest, CI/CD, Flutter testing, and scalable product delivery.",
       passions: {
@@ -107,7 +107,7 @@ const translations = {
         freelance: {
           title: "Freelance Full Stack Developer",
           company: "Self-Employed",
-          duration: "June 2023 - Present",
+          duration: "January 2026 - May 2026",
           location: "Remote",
           description:
             "Building mobile apps, React interfaces, and backend APIs for real clients and personal products.",
@@ -233,7 +233,7 @@ const translations = {
       title: "À Propos",
       subtitle: "Étudiant en Génie Logiciel & Développeur orienté produit",
       description1:
-        "Je conçois des solutions logicielles et mobiles avec Flutter, des frontends modernes React & Next.js 16 et des backends Laravel 12 & Node.js. Mon parcours comprend des applications en production sur l'App Store & Google Play chez AL Manarah Advanced Co (Maqra'at Al-Rajhi), mon PFE d'ingénieur chez eSteps Health (CIRO Pizza Platform) et Barberio.",
+        "Je conçois des solutions logicielles et mobiles avec Flutter, des frontends modernes React & Next.js 16 et des backends performants Node.js & Express. Mon parcours comprend des applications en production sur l'App Store & Google Play chez AL Manarah Advanced Co (Maqra'at Al-Rajhi), mon PFE d'ingénieur chez eSteps Health (CIRO Pizza Platform) et Barberio.",
       description2:
         "Je travaille avec une attention particulière à l'architecture, au code réutilisable, à l'UI responsive, à la fiabilité des APIs et à la conversion fidèle de maquettes Figma.",
       description3:
@@ -307,7 +307,7 @@ const translations = {
         freelance: {
           title: "Développeur Full Stack Freelance",
           company: "Indépendant",
-          duration: "Juin 2023 - Présent",
+          duration: "Janvier 2026 - Mai 2026",
           location: "À distance",
           description:
             "Développement d'applications mobiles, d'interfaces React et d'APIs backend pour des clients et produits personnels.",

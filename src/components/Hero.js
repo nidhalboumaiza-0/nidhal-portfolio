@@ -555,15 +555,15 @@ const Hero = () => {
           "Ingénieur Logiciel & Full Stack",
           "Applications Flutter en Production",
           "Next.js 16 & React 19 Web Apps",
-          "Backend Laravel 12 Reverb & Express",
-          "Architecture BLoC & Clean Code",
+          "APIs Node.js & Express Performantes",
+          "Code Modulaire & Haute Performance",
         ]
       : [
           "Software Engineer & Full Stack",
           "Production Flutter Apps (Stores)",
           "Next.js 16 & React 19 Web Apps",
-          "Laravel 12 Reverb & Express APIs",
-          "Clean Architecture & BLoC",
+          "Node.js & Express REST APIs",
+          "Modular Code & High Performance",
         ];
 
   const scrollToContact = () => {
