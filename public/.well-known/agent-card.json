@@ -1,0 +1,38 @@
+{
+  "$schema": "https://a2a-protocol.org/latest/schemas/agent-card.json",
+  "name": "nidhal-portfolio-agent",
+  "version": "1.0.0",
+  "description": "A2A Protocol agent interface for evaluating Nidhal BOUMAIZA's developer portfolio, verified production mobile apps, and technical capabilities.",
+  "supportedInterfaces": [
+    {
+      "serviceUrl": "https://nidhal-portfolio.vercel.app/api/a2a",
+      "protocol": "HTTP+JSON"
+    }
+  ],
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false
+  },
+  "skills": [
+    {
+      "id": "query-production-apps",
+      "name": "Query Production Mobile Apps",
+      "description": "Inspect verified production mobile apps on Apple App Store & Google Play Store (Maqra'at Al-Rajhi, Barberio)."
+    },
+    {
+      "id": "query-internships-pfe",
+      "name": "Query Realized Internships & PFE",
+      "description": "Inspect all 4 realized engineering and bachelor internships, including eSteps Health CIRO Pizza PFE."
+    },
+    {
+      "id": "download-cv",
+      "name": "Download Candidate CVs",
+      "description": "Direct PDF download URLs for English and French modern and classic CVs."
+    },
+    {
+      "id": "contact-candidate",
+      "name": "Contact Nidhal BOUMAIZA",
+      "description": "Retrieve verified direct email, WhatsApp, and phone contact for recruitment inquiries."
+    }
+  ]
+}

@@ -5,7 +5,7 @@
       "headers": [
         {
           "key": "Link",
-          "value": "</.well-known/api-catalog>; rel=\"api-catalog\", </.well-known/ai-catalog.json>; rel=\"service-desc\", </.well-known/agent-skills/index.json>; rel=\"agent-skills\", </.well-known/mcp/server-card.json>; rel=\"mcp-server-card\", </auth.md>; rel=\"service-doc\", </sitemap.xml>; rel=\"sitemap\", </llms.txt>; rel=\"help\""
+          "value": "</.well-known/api-catalog>; rel=\"api-catalog\", </.well-known/ai-catalog.json>; rel=\"service-desc\", </.well-known/agent-skills/index.json>; rel=\"agent-skills\", </.well-known/mcp/server-card.json>; rel=\"mcp-server-card\", </.well-known/agent-card.json>; rel=\"agent-card\", </auth.md>; rel=\"service-doc\", </sitemap.xml>; rel=\"sitemap\", </llms.txt>; rel=\"help\""
         },
         {
           "key": "Vary",
@@ -67,6 +67,19 @@
     },
     {
       "source": "/.well-known/mcp/server-card.json",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        },
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        }
+      ]
+    },
+    {
+      "source": "/.well-known/agent-card.json",
       "headers": [
         {
           "key": "Content-Type",
