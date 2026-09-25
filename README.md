@@ -92,14 +92,36 @@ Full-Stack Mobile Developer.
 - **Phone**: +216 28 316 089
 - **Location**: Tunis, Tunisia
 - **GitHub**:
-  [Github.com/NidhalBoumaiza](https://github.com/NidhalBoumaiza)
+  [github.com/nidhalboumaiza-0](https://github.com/nidhalboumaiza-0)
 
-## 🚀 Getting Started
+## Run Locally
 
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Start development server: `npm start`
-4. Build for production: `npm run build`
+1. Install Node.js 18 or newer and Git.
+2. Clone the repository and enter it:
+
+   ```bash
+   git clone https://github.com/nidhalboumaiza-0/nidhal-portfolio.git
+   cd nidhal-portfolio
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm start
+   ```
+
+5. Open `http://localhost:3000` in a browser.
+6. To create an optimized production build, stop the development server and run:
+
+   ```bash
+   npm run build
+   ```
 
 ## 📝 Recent Updates
 
