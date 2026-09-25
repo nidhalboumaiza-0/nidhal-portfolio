@@ -21,7 +21,7 @@ import {
   SiNextdotjs,
 } from "react-icons/si";
 import { useLanguage } from "../contexts/LanguageContext";
-import profileImage from "../assets/nidhal-pic.png";
+import profileImage from "../assets/nidhal-pic1.jpg";
 
 const HeroSection = styled.section`
   min-height: 100vh;
@@ -106,7 +106,7 @@ const ProfileImage = styled(motion.img)`
   width: 290px;
   height: 380px;
   object-fit: cover;
-  object-position: center 20%;
+  object-position: 34% center;
   border-radius: 29px;
   position: relative;
   z-index: 2;
