@@ -41,6 +41,7 @@ Flutter, Dart, BLoC, React 19, Next.js 16, Laravel 12, Node.js, Express.js, Dock
 
     res.setHeader('Content-Type', 'text/markdown; charset=utf-8');
     res.setHeader('x-markdown-tokens', tokenEstimate.toString());
+    res.setHeader('Vary', 'Accept');
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, OPTIONS');
     res.setHeader('Cache-Control', 'public, max-age=3600, s-maxage=86400');

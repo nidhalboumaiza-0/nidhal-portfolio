@@ -6,6 +6,10 @@
         {
           "key": "Link",
           "value": "</.well-known/api-catalog>; rel=\"api-catalog\", </.well-known/ai-catalog.json>; rel=\"service-desc\", </.well-known/agent-skills/index.json>; rel=\"agent-skills\", </.well-known/mcp/server-card.json>; rel=\"mcp-server-card\", </auth.md>; rel=\"service-doc\", </sitemap.xml>; rel=\"sitemap\", </llms.txt>; rel=\"help\""
+        },
+        {
+          "key": "Vary",
+          "value": "Accept"
         }
       ]
     },
@@ -186,7 +190,18 @@
         {
           "type": "header",
           "key": "accept",
-          "value": "(.*)text/markdown(.*)"
+          "value": ".*text/markdown.*"
+        }
+      ],
+      "destination": "/api/markdown"
+    },
+    {
+      "source": "/index.html",
+      "has": [
+        {
+          "type": "header",
+          "key": "accept",
+          "value": ".*text/markdown.*"
         }
       ],
       "destination": "/api/markdown"
