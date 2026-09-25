@@ -535,7 +535,7 @@ const Projects = () => {
       googlePlay: "https://play.google.com/store/apps/details?id=io.barberio.app",
       website: "https://barber-khaki-five.vercel.app/",
       hasScreenshots: true,
-      screenshotCount: 3,
+      screenshotCount: 6,
     },
     {
       title: "Maqra'at Al-Rajhi",

@@ -608,7 +608,10 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
         { length: 7 },
         (_, index) => `library${index + 1}.png`
       ),
-      Barberio: ["feature-graphic.png", "team.png", "app-icon.png"],
+      Barberio: Array.from(
+        { length: 6 },
+        (_, i) => `barberio-${String(i + 1).padStart(2, "0")}.png`
+      ),
       "Maqra'at Al-Rajhi": Array.from(
         { length: 9 },
         (_, i) => `maqari-${String(i + 1).padStart(2, "0")}.png`
@@ -653,7 +656,7 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
 
     setImages(projectImages);
     setCurrentImageIndex(0);
-    setUseDeviceFrame(true);
+    setUseDeviceFrame(projectTitle !== "Barberio");
   }, [imageMap, isOpen, projectTitle]);
 
   const nextImage = useCallback(() => {
