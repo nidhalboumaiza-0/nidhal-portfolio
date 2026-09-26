@@ -105,6 +105,7 @@ const Visual = styled.div`
 
 const ScreenshotBadge = styled.div`
   position: absolute;
+  z-index: 1;
   top: 1rem;
   right: 1rem;
   color: white;
@@ -221,7 +222,7 @@ const MobileCoverStrip = styled.div`
 `;
 
 const MobileCoverFrame = styled.div`
-  height: ${(props) => (props.$featured ? "260px" : "168px")};
+  height: ${(props) => (props.$featured ? "320px" : "250px")};
   aspect-ratio: 9 / 19.5;
   overflow: hidden;
   background: #000000;
@@ -234,7 +235,7 @@ const MobileCoverFrame = styled.div`
   transition: transform 0.3s ease, border-color 0.3s ease;
 
   @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
-    height: 175px;
+    height: 250px;
   }
 
   &:hover {
@@ -262,7 +263,7 @@ const Eyebrow = styled.p`
   color: ${(props) => props.theme.colors.primary};
   font-size: 0.78rem;
   font-weight: 800;
-  letter-spacing: 0.08em;
+  letter-spacing: 0;
   text-transform: uppercase;
   margin-bottom: 0.75rem;
 `;
@@ -430,6 +431,8 @@ const ProjectVisual = ({ project }) => {
             >
               <MobileCoverImage
                 src={image}
+                loading="lazy"
+                decoding="async"
                 alt={`${project.title} interface ${index + 1}`}
               />
             </MobileCoverFrame>
@@ -450,6 +453,8 @@ const ProjectVisual = ({ project }) => {
         )}
         <CoverImage
           src={project.cover}
+          loading="lazy"
+          decoding="async"
           alt={`${project.title} interface`}
           $fit={project.coverFit}
           $position={project.coverPosition}
@@ -723,7 +728,7 @@ const Projects = () => {
   ];
 
   const openGallery = (projectTitle) => setSelectedProject(projectTitle);
-  const closeGallery = () => setSelectedProject(null);
+  const closeGallery = React.useCallback(() => setSelectedProject(null), []);
   const openRestrictedModal = () => setShowRestrictedModal(true);
   const closeRestrictedModal = () => setShowRestrictedModal(false);
 
@@ -850,6 +855,7 @@ const Projects = () => {
       </Container>
 
       <ProjectGallery
+        key={selectedProject || "closed"}
         isOpen={!!selectedProject}
         onClose={closeGallery}
         projectTitle={selectedProject}

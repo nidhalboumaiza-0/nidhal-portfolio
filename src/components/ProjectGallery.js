@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import styled from "styled-components";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -10,14 +11,13 @@ import {
   FiSmartphone,
   FiMonitor,
   FiMaximize2,
-  FiLock,
 } from "react-icons/fi";
 import { useLanguage } from "../contexts/LanguageContext";
 
 const Overlay = styled(motion.div)`
   position: fixed;
   inset: 0;
-  z-index: 1000;
+  z-index: 10000;
   display: grid;
   place-items: center;
   padding: 1rem;
@@ -25,13 +25,13 @@ const Overlay = styled(motion.div)`
   backdrop-filter: blur(14px);
 
   @media (max-width: 640px) {
-    padding: 0.25rem;
+    padding: 0;
   }
 `;
 
 const GalleryContainer = styled(motion.div)`
   width: min(1200px, calc(100vw - 2rem));
-  height: min(860px, calc(100vh - 2rem));
+  height: min(860px, calc(100dvh - 2rem));
   min-height: 0;
   display: grid;
   grid-template-rows: auto minmax(0, 1fr) auto;
@@ -39,7 +39,7 @@ const GalleryContainer = styled(motion.div)`
   color: #f8fafc;
   background: #0d1122;
   border: 1px solid rgba(139, 92, 246, 0.25);
-  border-radius: 20px;
+  border-radius: 8px;
   box-shadow:
     0 30px 90px rgba(0, 0, 0, 0.75),
     0 0 50px rgba(139, 92, 246, 0.15);
@@ -83,11 +83,16 @@ const Title = styled.h2`
   margin: 0;
   overflow: hidden;
   color: #ffffff;
-  font-size: clamp(1rem, 2vw, 1.25rem);
+  font-size: 1.25rem;
+  letter-spacing: 0;
   font-weight: 700;
   line-height: 1.3;
   text-overflow: ellipsis;
   white-space: nowrap;
+
+  @media (max-width: 640px) {
+    font-size: 1rem;
+  }
 `;
 
 const Badge = styled.span`
@@ -127,6 +132,11 @@ const Counter = styled.span`
   font-size: 0.8rem;
   font-weight: 700;
   font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+
+  @media (max-width: 640px) {
+    padding: 0.3rem 0.4rem;
+  }
 `;
 
 const HeaderButton = styled.button`
@@ -188,8 +198,11 @@ const Stage = styled.div`
   position: relative;
   min-height: 0;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
   place-items: center;
   overflow: hidden;
+  touch-action: pan-y;
   padding: 1.2rem 4.5rem;
   background:
     radial-gradient(
@@ -206,6 +219,8 @@ const Stage = styled.div`
 
 /* ===== PHONE MOCKUP STYLING ===== */
 const PhoneWrapper = styled.div`
+  min-height: 0;
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -215,7 +230,7 @@ const PhoneWrapper = styled.div`
 
 const PhoneFrame = styled(motion.div)`
   position: relative;
-  height: min(640px, calc(100vh - 240px));
+  height: min(640px, 100%);
   aspect-ratio: 9 / 19.5;
   background: #000000;
   border: 8px solid #1c2237;
@@ -235,38 +250,6 @@ const PhoneFrame = styled(motion.div)`
   }
 `;
 
-const DynamicIsland = styled.div`
-  position: absolute;
-  top: 9px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 78px;
-  height: 18px;
-  background: #000000;
-  border-radius: 20px;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
-
-  &::after {
-    content: "";
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 35% 35%, #2a3b5c, #0a101f);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-  }
-
-  @media (max-width: 640px) {
-    width: 65px;
-    height: 15px;
-    top: 7px;
-  }
-`;
-
 const PhoneScreen = styled.div`
   width: 100%;
   height: 100%;
@@ -283,29 +266,18 @@ const PhoneScreen = styled.div`
   }
 `;
 
-const PhoneHomeBar = styled.div`
-  position: absolute;
-  bottom: 7px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100px;
-  height: 4px;
-  background: rgba(255, 255, 255, 0.35);
-  border-radius: 4px;
-  z-index: 10;
-  pointer-events: none;
-`;
-
 const PhoneImage = styled(motion.img)`
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover;
+  object-fit: contain;
   object-position: top;
 `;
 
 /* ===== BROWSER MOCKUP STYLING ===== */
 const BrowserWrapper = styled.div`
+  min-height: 0;
+  min-width: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -398,13 +370,14 @@ const BrowserImage = styled(motion.img)`
 /* ===== RAW FIT STYLING (TOGGLEABLE) ===== */
 const RawImage = styled(motion.img)`
   display: block;
-  width: auto;
-  height: auto;
+  min-height: 0;
+  min-width: 0;
+  width: 100%;
+  height: 100%;
   max-width: 100%;
-  max-height: min(620px, calc(100vh - 240px));
+  max-height: 100%;
   object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
 `;
 
 /* ===== NAVIGATION CONTROLS ===== */
@@ -436,8 +409,15 @@ const NavButton = styled.button`
   @media (max-width: 640px) {
     width: 36px;
     height: 36px;
+    top: auto;
+    bottom: 0.5rem;
+    transform: none;
     ${(props) =>
       props.$direction === "left" ? "left: 0.5rem;" : "right: 0.5rem;"}
+
+    &:hover {
+      transform: scale(1.08);
+    }
   }
 `;
 
@@ -522,11 +502,13 @@ const ThumbnailImage = styled.img`
 `;
 
 const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
-  const [images, setImages] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [useDeviceFrame, setUseDeviceFrame] = useState(true);
-  const { language, t } = useLanguage();
+  const [useDeviceFrame, setUseDeviceFrame] = useState(false);
+  const { language } = useLanguage();
   const thumbnailRefs = useRef([]);
+  const dialogRef = useRef(null);
+  const closeButtonRef = useRef(null);
+  const touchStartRef = useRef(null);
 
   const isMobileProject = useMemo(() => {
     return [
@@ -551,21 +533,6 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
 
   const isCurrentMobile = isImageMobileAt(currentImageIndex);
 
-  const domainMap = useMemo(
-    () => ({
-      "Medical App": "app.medilink.com",
-      "AASD Medical Platform": "aasd-medical.app",
-      HajMoto: "hajmoto-stock.flutter.app",
-      GASPINO: "gaspino.mobile.app",
-      TeamFlow: "teamflow-pfa.io",
-      "Gestion de Librairie": "biblio-library.local",
-      Barberio: "barberio.app",
-      "Maqra'at Al-Rajhi": "maqari.almanarah.sa",
-      "CIRO Pizza Platform": "ciro-pizza.app",
-    }),
-    []
-  );
-
   const imageMap = useMemo(
     () => ({
       "Medical App": Array.from(
@@ -573,7 +540,7 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
         (_, i) => `medical-${String(i + 1).padStart(2, "0")}.jpg`
       ),
       "AASD Medical Platform": ["doctor-dashboard.png", "login.png"],
-      HajMoto: ["dashboard.png", "login.png", "sidebar_logo.png"],
+      HajMoto: ["dashboard.png", "login.png"],
       GASPINO: [
         "pino.jpg",
         "gas.jpg",
@@ -624,10 +591,9 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
     []
   );
 
-  useEffect(() => {
-    if (!isOpen || !projectTitle || !imageMap[projectTitle]) {
-      setImages([]);
-      return;
+  const images = useMemo(() => {
+    if (!projectTitle || !imageMap[projectTitle]) {
+      return [];
     }
 
     const folderMap = {
@@ -654,10 +620,8 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
       }
     });
 
-    setImages(projectImages);
-    setCurrentImageIndex(0);
-    setUseDeviceFrame(projectTitle !== "Barberio");
-  }, [imageMap, isOpen, projectTitle]);
+    return projectImages;
+  }, [imageMap, projectTitle]);
 
   const nextImage = useCallback(() => {
     if (images.length < 2) return;
@@ -677,9 +641,31 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
 
     const previousOverflow = document.body.style.overflow;
     const handleKeyDown = (event) => {
-      if (event.key === "Escape") onClose();
-      if (event.key === "ArrowRight") nextImage();
-      if (event.key === "ArrowLeft") previousImage();
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onClose();
+      }
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        nextImage();
+      }
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        previousImage();
+      }
+      if (event.key === "Tab") {
+        const buttons = dialogRef.current?.querySelectorAll("button:not([disabled])");
+        if (!buttons?.length) return;
+        const first = buttons[0];
+        const last = buttons[buttons.length - 1];
+        if (event.shiftKey && document.activeElement === first) {
+          event.preventDefault();
+          last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first.focus();
+        }
+      }
     };
 
     document.body.style.overflow = "hidden";
@@ -689,6 +675,17 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen, nextImage, onClose, previousImage]);
+
+  useEffect(() => {
+    if (!isOpen) return undefined;
+    const previouslyFocused = document.activeElement;
+    closeButtonRef.current?.focus({ preventScroll: true });
+    return () => {
+      if (previouslyFocused instanceof HTMLElement && previouslyFocused.isConnected) {
+        previouslyFocused.focus({ preventScroll: true });
+      }
+    };
+  }, [isOpen]);
 
   // Auto-scroll active thumbnail into view
   useEffect(() => {
@@ -709,9 +706,7 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
   const nextLabel = language === "fr" ? "Image suivante" : "Next image";
   const imageCounterText =
     images.length > 0
-      ? t("gallery.imageOf")
-          .replace("{current}", currentImageIndex + 1)
-          .replace("{total}", images.length)
+      ? `${currentImageIndex + 1} / ${images.length}`
       : "";
 
   let imageTag;
@@ -758,18 +753,7 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
       : { icon: <FiMonitor />, text: "Web UI" };
   }
 
-  let currentDomain;
-  if (projectTitle === "CIRO Pizza Platform") {
-    if (currentImageIndex === 7) currentDomain = "admin.ciro-pizza.app/intelligence";
-    else if (currentImageIndex === 8) currentDomain = "admin.ciro-pizza.app/deliveries";
-    else if (currentImageIndex === 10) currentDomain = "scada.ciro-robotics.local/monitor";
-    else if ([5, 6].includes(currentImageIndex)) currentDomain = "kiosk.ciro-pizza.app";
-    else currentDomain = "ciro-pizza.app";
-  } else {
-    currentDomain = domainMap[projectTitle] || "portfolio.nidhal.dev";
-  }
-
-  return (
+  return createPortal(
     <AnimatePresence>
       <Overlay
         initial={{ opacity: 0 }}
@@ -778,6 +762,7 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
         onClick={onClose}
       >
         <GalleryContainer
+          ref={dialogRef}
           role="dialog"
           aria-modal="true"
           aria-labelledby="project-gallery-title"
@@ -803,6 +788,8 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
               <HeaderButton
                 type="button"
                 $active={useDeviceFrame}
+                aria-label={language === "fr" ? "Cadre appareil" : "Device frame"}
+                aria-pressed={useDeviceFrame}
                 onClick={() => setUseDeviceFrame((prev) => !prev)}
                 title={
                   useDeviceFrame
@@ -817,7 +804,7 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
                 {useDeviceFrame ? (
                   <>
                     <FiMaximize2 />
-                    <span>{language === "fr" ? "Plein écran" : "Fit view"}</span>
+                    <span>{language === "fr" ? "Capture originale" : "Original screenshot"}</span>
                   </>
                 ) : (
                   <>
@@ -828,6 +815,7 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
               </HeaderButton>
 
               <CloseButton
+                ref={closeButtonRef}
                 type="button"
                 onClick={onClose}
                 aria-label={closeLabel}
@@ -838,7 +826,23 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
             </HeaderRight>
           </Header>
 
-          <Stage>
+          <Stage
+            onTouchStart={(event) => {
+              const touch = event.touches[0];
+              touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+            }}
+            onTouchEnd={(event) => {
+              if (!touchStartRef.current) return;
+              const touch = event.changedTouches[0];
+              const deltaX = touch.clientX - touchStartRef.current.x;
+              const deltaY = touch.clientY - touchStartRef.current.y;
+              touchStartRef.current = null;
+              if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > Math.abs(deltaY)) {
+                if (deltaX < 0) nextImage();
+                else previousImage();
+              }
+            }}
+          >
             {images.length > 0 ? (
               useDeviceFrame ? (
                 isCurrentMobile ? (
@@ -850,14 +854,12 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <DynamicIsland />
                       <PhoneScreen>
                         <PhoneImage
                           src={images[currentImageIndex]}
                           alt={`${projectTitle} screenshot ${currentImageIndex + 1}`}
                         />
                       </PhoneScreen>
-                      <PhoneHomeBar />
                     </PhoneFrame>
                   </PhoneWrapper>
                 ) : (
@@ -876,8 +878,7 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
                           <TrafficDot $color="#27c93f" />
                         </TrafficDots>
                         <BrowserUrl>
-                          <FiLock size={10} />
-                          <span>{currentDomain}</span>
+                          <span>{projectTitle}</span>
                         </BrowserUrl>
                         <div style={{ width: 40 }} />
                       </BrowserHeader>
@@ -938,7 +939,9 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
               {images.map((image, index) => (
                 <ThumbnailButton
                   key={image + index}
-                  ref={(el) => (thumbnailRefs.current[index] = el)}
+                  ref={(element) => {
+                    thumbnailRefs.current[index] = element;
+                  }}
                   type="button"
                   $isMobile={isImageMobileAt(index)}
                   $active={index === currentImageIndex}
@@ -958,7 +961,8 @@ const ProjectGallery = ({ isOpen, onClose, projectTitle }) => {
           )}
         </GalleryContainer>
       </Overlay>
-    </AnimatePresence>
+    </AnimatePresence>,
+    document.body
   );
 };
 
