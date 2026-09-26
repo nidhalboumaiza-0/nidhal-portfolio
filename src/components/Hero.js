@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import styled from "styled-components";
 import { motion, AnimatePresence } from "framer-motion";
 import { ReactTyped } from "react-typed";
@@ -351,7 +352,7 @@ const FloatingShape = styled(motion.div)`
 const ModalOverlay = styled(motion.div)`
   position: fixed;
   inset: 0;
-  z-index: 1200;
+  z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -361,36 +362,39 @@ const ModalOverlay = styled(motion.div)`
 `;
 
 const ModalCard = styled(motion.div)`
-  width: min(650px, calc(100vw - 2rem));
-  max-height: calc(100vh - 3rem);
-  overflow-y: auto;
+  width: min(650px, 100%);
+  max-height: calc(100dvh - 2.4rem);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
   background: rgba(15, 23, 42, 0.96);
   border: 1px solid rgba(139, 92, 246, 0.35);
-  border-radius: 24px;
-  padding: 2rem;
+  border-radius: 8px;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(139, 92, 246, 0.2);
   color: #f8fafc;
   position: relative;
-
-  @media (max-width: 640px) {
-    padding: 1.4rem;
-  }
 `;
 
 const ModalHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1rem;
+  flex-shrink: 0;
+  padding: 1.25rem 1.5rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   gap: 1rem;
+
+  @media (max-width: 640px) {
+    padding: 1rem;
+    gap: 0.75rem;
+  }
 `;
 
 const ModalTitleBlock = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.3rem;
+  min-width: 0;
 `;
 
 const ModalTitle = styled.h3`
@@ -402,6 +406,15 @@ const ModalTitle = styled.h3`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  letter-spacing: 0;
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  @media (max-width: 640px) {
+    font-size: 1.15rem;
+  }
 `;
 
 const ModalSubtitle = styled.p`
@@ -414,8 +427,8 @@ const CloseButton = styled.button`
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: #cbd5e1;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -436,17 +449,27 @@ const CvOptionsList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 1.25rem 1.5rem;
+
+  @media (max-width: 640px) {
+    padding: 1rem;
+  }
 `;
 
 const CvOptionCard = styled(motion.div)`
   background: rgba(30, 41, 59, 0.7);
   border: 1px solid rgba(139, 92, 246, 0.2);
-  border-radius: 16px;
+  border-radius: 8px;
   padding: 1.2rem;
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
   transition: all 0.25s ease;
+  flex-shrink: 0;
+  min-width: 0;
 
   &:hover {
     border-color: rgba(56, 189, 248, 0.5);
@@ -470,6 +493,13 @@ const CvOptionTitle = styled.h4`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  min-width: 0;
+  letter-spacing: 0;
+  overflow-wrap: anywhere;
+
+  svg {
+    flex-shrink: 0;
+  }
 `;
 
 const CvBadges = styled.div`
@@ -548,6 +578,46 @@ const CvPreviewBtn = styled(motion.a)`
 const Hero = () => {
   const { t, language } = useLanguage();
   const [isCvModalOpen, setIsCvModalOpen] = useState(false);
+  const cvModalRef = useRef(null);
+  const cvCloseRef = useRef(null);
+
+  useEffect(() => {
+    if (!isCvModalOpen) return;
+
+    const trigger = document.activeElement;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    cvCloseRef.current?.focus({ preventScroll: true });
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        setIsCvModalOpen(false);
+        return;
+      }
+      if (event.key !== "Tab") return;
+
+      const controls = cvModalRef.current?.querySelectorAll("button, a[href]");
+      if (!controls?.length) return;
+      const first = controls[0];
+      const last = controls[controls.length - 1];
+      const outside = !cvModalRef.current.contains(document.activeElement);
+      if (event.shiftKey && (document.activeElement === first || outside)) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && (document.activeElement === last || outside)) {
+        event.preventDefault();
+        first.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousOverflow;
+      trigger?.focus({ preventScroll: true });
+    };
+  }, [isCvModalOpen]);
 
   const typedStrings =
     language === "fr"
@@ -661,7 +731,7 @@ const Hero = () => {
               <FiMail /> {t("contact.title")}
             </Button>
             <Button
-              as="button"
+              as={motion.button}
               className="secondary"
               onClick={() => setIsCvModalOpen(true)}
               whileHover={{ scale: 1.05 }}
@@ -830,7 +900,7 @@ const Hero = () => {
         </StatsCard>
       </Container>
 
-      <AnimatePresence>
+      {createPortal(<AnimatePresence>
         {isCvModalOpen && (
           <ModalOverlay
             initial={{ opacity: 0 }}
@@ -839,6 +909,11 @@ const Hero = () => {
             onClick={() => setIsCvModalOpen(false)}
           >
             <ModalCard
+              ref={cvModalRef}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="cv-modal-title"
+              aria-describedby="cv-modal-description"
               initial={{ scale: 0.92, opacity: 0, y: 20 }}
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.92, opacity: 0, y: 20 }}
@@ -847,16 +922,16 @@ const Hero = () => {
             >
               <ModalHeader>
                 <ModalTitleBlock>
-                  <ModalTitle>
+                  <ModalTitle id="cv-modal-title">
                     <FiDownload /> {language === "fr" ? "Télécharger le CV" : "Download CV"}
                   </ModalTitle>
-                  <ModalSubtitle>
+                  <ModalSubtitle id="cv-modal-description">
                     {language === "fr"
                       ? "Sélectionnez le format adapté à votre besoin ou au processus de recrutement :"
                       : "Choose the CV format tailored to your target position or recruitment pipeline:"}
                   </ModalSubtitle>
                 </ModalTitleBlock>
-                <CloseButton onClick={() => setIsCvModalOpen(false)} aria-label="Close modal">
+                <CloseButton ref={cvCloseRef} onClick={() => setIsCvModalOpen(false)} aria-label={language === "fr" ? "Fermer le CV" : "Close CV"}>
                   <FiX />
                 </CloseButton>
               </ModalHeader>
@@ -1036,7 +1111,7 @@ const Hero = () => {
             </ModalCard>
           </ModalOverlay>
         )}
-      </AnimatePresence>
+      </AnimatePresence>, document.body)}
     </HeroSection>
   );
 };
