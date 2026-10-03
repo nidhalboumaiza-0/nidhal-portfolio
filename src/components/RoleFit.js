@@ -109,31 +109,31 @@ const RoleFit = () => {
   const content =
     language === "fr"
       ? {
-          label: "Ciblé pour ce poste",
-          title: "Full Stack Developer: Flutter, Express, robustesse et produit réel.",
+          label: "En bref",
+          title: "Ingénieur logiciel: Flutter, full-stack et applications en production.",
           summary:
-            "Une page plus directe: production, API, tests, UI fidèle aux maquettes et livraison multi-plateforme.",
+            "Applications mobiles publiées, APIs et back-offices web, du besoin jusqu'à la mise en ligne.",
           cards: [
-            ["App publiée", "Barberio est en production sur App Store et Google Play.", <FiSmartphone />],
-            ["Backend solide", "Express, REST APIs, MongoDB/Firebase, validation et gestion d'erreurs.", <FiLayers />],
-            ["Qualité", "Code réutilisable, revues, tests Jest et tests Flutter à renforcer.", <FiCheckCircle />],
-            ["Déploiement", "Docker, GitHub Actions et pipelines CI/CD comme axe de montée en puissance.", <FiBox />],
-            ["UI précise", "Conversion Figma vers pages responsive avec attention aux détails.", <FiCode />],
-            ["Collaboration", "Git, branches, PRs, architecture et amélioration continue.", <FiGitBranch />],
+            ["Apps publiées", "Barberio (mon application) et Maqra'at Al-Rajhi (client) sont disponibles sur l'App Store et Google Play.", <FiSmartphone />],
+            ["Mobile", "Flutter, Dart, BLoC, Firebase, Supabase, Google Maps, notifications push et support arabe RTL.", <FiCheckCircle />],
+            ["Backend", "Laravel 12, Node.js/Express, Flask, REST APIs et WebSockets temps réel (Reverb, Socket.IO).", <FiLayers />],
+            ["Web", "Back-offices et dashboards avec React, Next.js et TypeScript.", <FiCode />],
+            ["Déploiement", "Docker, Linux/VPS, publication App Store et Google Play.", <FiBox />],
+            ["Méthode", "Git/GitHub, Clean Architecture, MVC, Agile/Scrum.", <FiGitBranch />],
           ],
         }
       : {
-          label: "Role-targeted",
-          title: "Full Stack Developer: Flutter, Express, reliability, real production.",
+          label: "At a glance",
+          title: "Software engineer: Flutter, full-stack, and apps in production.",
           summary:
-            "Sharper positioning around production apps, APIs, tests, Figma-perfect UI, and cross-platform delivery.",
+            "Published mobile apps, APIs, and web back offices, from requirements to release.",
           cards: [
-            ["Published app", "Barberio is live on App Store and Google Play.", <FiSmartphone />],
-            ["Backend craft", "Express, REST APIs, MongoDB/Firebase, validation, and error handling.", <FiLayers />],
-            ["Quality loop", "Reusable code, reviews, Jest tests, and Flutter test coverage as a priority.", <FiCheckCircle />],
-            ["Deployment ready", "Docker, GitHub Actions, and CI/CD pipelines as the next strong signal.", <FiBox />],
-            ["Pixel focus", "Figma-to-responsive UI with clean, platform-aware screens.", <FiCode />],
-            ["Team workflow", "Git branches, PRs, architecture discussion, and best practices.", <FiGitBranch />],
+            ["Published apps", "Barberio (my own app) and Maqra'at Al-Rajhi (client app) are live on the App Store and Google Play.", <FiSmartphone />],
+            ["Mobile", "Flutter, Dart, BLoC, Firebase, Supabase, Google Maps, push notifications, and Arabic RTL support.", <FiCheckCircle />],
+            ["Backend", "Laravel 12, Node.js/Express, Flask, REST APIs, and real-time WebSockets (Reverb, Socket.IO).", <FiLayers />],
+            ["Web", "Admin back offices and dashboards with React, Next.js, and TypeScript.", <FiCode />],
+            ["Deployment", "Docker, Linux/VPS, and App Store / Google Play releases.", <FiBox />],
+            ["Workflow", "Git/GitHub, Clean Architecture, MVC, Agile/Scrum.", <FiGitBranch />],
           ],
         };
 

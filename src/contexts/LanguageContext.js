@@ -37,7 +37,7 @@ const translations = {
       description2:
         "I care about software performance, reusable code, responsive UI, API reliability, and turning Figma designs into polished screens.",
       description3:
-        "Now I am sharpening the exact stack this role needs: TypeScript, Express, Docker, Jest, CI/CD, Flutter testing, and scalable product delivery.",
+        "I hold an engineering degree in Software Engineering and currently work on a remote Flutter contract, while continuing to deepen testing, CI/CD, and TypeScript on the web side.",
       passions: {
         innovation: {
           title: "Product Thinking",
@@ -67,7 +67,7 @@ const translations = {
     },
     skills: {
       title: "Role Stack",
-      subtitle: "What I bring to this Full Stack role",
+      subtitle: "Mobile, web, and backend technologies I use",
     },
     experience: {
       title: "Experience",
@@ -80,7 +80,7 @@ const translations = {
           duration: "September 2025 - Present",
           location: "Remote / Saudi Arabia",
           description:
-            "Lead mobile developer delivering production Flutter applications deployed on the App Store and Google Play.",
+            "Flutter mobile developer on a remote contract, working on a production app available on the App Store and Google Play.",
           achievements: [
             "Engineered and published Maqra'at Al-Rajhi on the App Store and Google Play Store",
             "Implemented low-latency audio streaming for live Quran recitation sessions",
@@ -237,7 +237,7 @@ const translations = {
       description2:
         "Je travaille avec une attention particulière à l'architecture, au code réutilisable, à l'UI responsive, à la fiabilité des APIs et à la conversion fidèle de maquettes Figma.",
       description3:
-        "Je renforce maintenant le stack ciblé par ce poste: TypeScript, Express, Docker, Jest, CI/CD, tests Flutter et livraison scalable.",
+        "Ingénieur diplômé en Génie Logiciel, je travaille actuellement en freelance sur une mission Flutter à distance, tout en approfondissant les tests, la CI/CD et TypeScript côté web.",
       passions: {
         innovation: {
           title: "Vision produit",
@@ -267,7 +267,7 @@ const translations = {
     },
     skills: {
       title: "Stack ciblé",
-      subtitle: "Ce que j'apporte à ce poste Full Stack",
+      subtitle: "Technologies mobile, web et backend que j'utilise",
     },
     experience: {
       title: "Expérience",
@@ -280,7 +280,7 @@ const translations = {
           duration: "Septembre 2025 - Présent",
           location: "À distance / Arabie Saoudite",
           description:
-            "Développeur mobile principal sur des applications Flutter en production publiées sur l'App Store et Google Play.",
+            "Développeur mobile Flutter en mission à distance sur une application en production disponible sur l'App Store et Google Play.",
           achievements: [
             "Développement et publication de l'application Maqra'at Al-Rajhi sur l'App Store et Google Play",
             "Intégration de streaming audio temps réel à faible latence pour séances de récitation en direct",
