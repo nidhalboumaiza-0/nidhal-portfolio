@@ -937,6 +937,64 @@ const Hero = () => {
               </ModalHeader>
 
               <CvOptionsList>
+                {/* 0. Canadian Format CV (LaTeX MTecknology Style) */}
+                <CvOptionCard whileHover={{ y: -2 }}>
+                  <CvOptionHeader>
+                    <CvOptionTitle>
+                      <FiFileText style={{ color: "#0e6e55" }} />
+                      {language === "fr"
+                        ? "CV Format Canadien (Style LaTeX MTecknology - Canada & US)"
+                        : "Canadian Format Resume (LaTeX MTecknology Style - Canada & US)"}
+                    </CvOptionTitle>
+                    <CvBadges>
+                      <CvBadge $bg="rgba(14, 110, 85, 0.15)" $color="#10b981" $border="rgba(14, 110, 85, 0.35)">
+                        🍁 {language === "fr" ? "Spécial Canada & US" : "Canada & US Market"}
+                      </CvBadge>
+                      <CvBadge $bg="rgba(161, 111, 11, 0.15)" $color="#f59e0b" $border="rgba(161, 111, 11, 0.35)">
+                        LaTeX / Letter Paper
+                      </CvBadge>
+                      <CvBadge $bg="rgba(56, 189, 248, 0.15)" $color="#38bdf8" $border="rgba(56, 189, 248, 0.3)">
+                        ATS 100% Score
+                      </CvBadge>
+                    </CvBadges>
+                  </CvOptionHeader>
+                  <CvOptionDescription>
+                    {language === "fr"
+                      ? "Mise en page épurée MTecknology (LaTeX / Letter paper) sans photo, hautement valorisée au Canada et en Amérique du Nord. Mots-clés ATS optimisés, verbes d'action mesurables et historique complet de production (Maqra'at Al-Rajhi, eSteps Health, Barberio)."
+                      : "Sleek MTecknology layout (LaTeX / Letter paper) without photo, strictly adhering to Canadian and North American hiring standards. Full production track record (Maqra'at Al-Rajhi, eSteps Health, Barberio) with high-density ATS scoring."}
+                  </CvOptionDescription>
+                  <CvActionRow>
+                    <CvDownloadBtn
+                      href="/NIDHAL_BOUMAIZA_CV_CANADA.pdf"
+                      download="NIDHAL_BOUMAIZA_CV_CANADA.pdf"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      style={{ background: "linear-gradient(135deg, #0e6e55, #10b981)" }}
+                    >
+                      <FiDownload /> {language === "fr" ? "Télécharger (PDF)" : "Download (PDF)"}
+                    </CvDownloadBtn>
+                    <CvPreviewBtn
+                      href="/NIDHAL_BOUMAIZA_CV_CANADA.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                    >
+                      <FiExternalLink /> {language === "fr" ? "Aperçu" : "Preview"}
+                    </CvPreviewBtn>
+                    <CvPreviewBtn
+                      href="/NIDHAL_BOUMAIZA_CV_CANADA.tex"
+                      target="_blank"
+                      download="NIDHAL_BOUMAIZA_CV_CANADA.tex"
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      style={{ borderColor: "rgba(161, 111, 11, 0.4)", color: "#f59e0b" }}
+                    >
+                      LaTeX (.tex)
+                    </CvPreviewBtn>
+                  </CvActionRow>
+                </CvOptionCard>
+
                 {/* 1. English ATS / AI Recruiter CV */}
                 <CvOptionCard whileHover={{ y: -2 }}>
                   <CvOptionHeader>

@@ -1,0 +1,265 @@
+\documentclass[letterpaper,10pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%
+%% MTecknology Resume Style (cleaned + fixed)
+%% Tailored for Canadian / North American Job Market
+%% Candidate: Nidhal BOUMAIZA - Full-Stack Software Engineer
+%%%%%%%%%%%%%%%%%%%%%%%
+
+% Dependencies
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{bookmark}
+\usepackage{lastpage}
+\usepackage{charter} % clean serif font
+
+% Colors
+\usepackage{xcolor}
+\definecolor{accentTitle}{HTML}{0e6e55}
+\definecolor{accentText}{HTML}{0e6e55}
+\definecolor{accentLine}{HTML}{a16f0b}
+\definecolor{hiddenText}{HTML}{FDFDFD} % almost invisible, safe for ATS
+
+% Page setup
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\urlstyle{same}
+
+% Margins (North American Letter standard)
+\addtolength{\oddsidemargin}{-0.7in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-0.7in}
+\addtolength{\textheight}{1.4in}
+
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\setlength{\tabcolsep}{0pt}
+\setlength{\footskip}{3.7pt}
+\raggedbottom
+\raggedright
+
+% ATS Readability
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+%-----------------%
+% Custom Commands %
+%-----------------%
+
+% Title block
+\newcommand{\documentTitle}[2]{
+  \begin{center}
+    {\Huge\color{accentTitle} #1}
+    \vspace{8pt}
+    
+    {\color{accentLine} \hrule}
+    \vspace{3pt}
+    \footnotesize{#2}
+    \vspace{3pt}
+    {\color{accentLine} \hrule}
+  \end{center}
+}
+
+% Footer
+\newcommand{\documentFooter}[1]{
+  \setlength{\footskip}{10.25pt}
+  \fancyfoot[C]{\footnotesize #1}
+}
+
+% Page numbers
+\newcommand{\numberedPages}{
+  \documentFooter{\thepage/\pageref{LastPage}}
+}
+
+% Section format
+\titleformat{\section}{
+  \vspace{-5pt}
+  \color{accentText}
+  \raggedright\large\bfseries
+}{}{0em}{}[\color{accentLine}\titlerule]
+
+% Inline section titles
+\newcommand{\tinysection}[1]{
+  \phantomsection
+  \addcontentsline{toc}{section}{#1}
+  {\large{\bfseries\color{accentText}#1} {\color{accentLine} |}}
+}
+
+% Heading formats
+\newcommand{\heading}[2]{\hspace{10pt}#1\hfill#2\\}
+\newcommand{\headingBf}[2]{\heading{\textbf{#1}}{\textbf{#2}}}
+\newcommand{\headingIt}[2]{\heading{\textit{#1}}{\textit{#2}}}
+
+% Lists
+\newenvironment{resume_list}{
+  \vspace{-7pt}
+  \begin{itemize}[itemsep=-2px, parsep=1pt, leftmargin=30pt]
+}{
+  \end{itemize}
+}
+\newcommand{\itemTitle}[1]{\item[] \underline{#1}\vspace{4pt}}
+\renewcommand\labelitemi{--}
+
+%%%%%%%%%%%%%%%%%%%%%%
+% Resume Content
+%%%%%%%%%%%%%%%%%%%%%%
+
+\numberedPages
+\begin{document}
+
+%---------%
+% Header %
+%---------%
+\documentTitle{Nidhal Boumaiza}{
+  \href{tel:+21628316089}{\raisebox{-0.05\height} \faPhone\ +216 28 316 089} ~ | ~
+  \href{mailto:nidhal.boumaiza@outlook.com}{\raisebox{-0.15\height} \faEnvelope\ nidhal.boumaiza@outlook.com} ~ | ~
+  \href{https://linkedin.com/in/nidhalboumaiza}{\raisebox{-0.15\height} \faLinkedin\ linkedin.com/in/nidhalboumaiza} ~ | ~
+  \href{https://github.com/nidhalboumaiza-0}{\raisebox{-0.15\height} \faGithub\ github.com/nidhalboumaiza-0} ~ | ~
+  \href{https://nidhal-portfolio.vercel.app}{\raisebox{-0.15\height} \faGlobe\ nidhal-portfolio.vercel.app} ~ | ~
+  \raisebox{-0.05\height} \faMapMarker*\ Tunis, Tunisia (Open to Relocation / Remote)
+}
+
+%---------%
+% Summary %
+%---------%
+\tinysection{Summary}
+Results-driven Full-Stack Software Engineer with 3+ years of experience engineering and deploying production-grade mobile and web systems. Proven track record publishing official applications on the Apple App Store and Google Play Store (\textbf{Maqra'at Al-Rajhi}, \textbf{Barberio}). Proficient in Flutter/Dart, React.js, Next.js, Node.js, Python (Flask), and PHP (Laravel), with hands-on expertise in RESTful APIs, real-time architectures (WebSockets, audio streaming), Docker containerization, and automated CI/CD pipelines. Holds a National Engineering Degree in Software Engineering.
+
+%--------%
+% Skills %
+%--------%
+\section{Technical Skills}
+\begin{resume_list}
+  \item \textbf{Programming Languages:} Dart, JavaScript (ES6+), TypeScript, Python, PHP, SQL, HTML5, CSS3/Tailwind, C/C++
+  \item \textbf{Frontend \& Mobile:} Flutter (BLoC, Provider), React.js, Next.js (App Router, SSR, SSG), Redux, Responsive UI, Figma to Code
+  \item \textbf{Backend \& APIs:} Node.js, Express.js, Python (Flask, SQLAlchemy), PHP (Laravel 12, Eloquent), RESTful APIs, WebSockets (Laravel Reverb)
+  \item \textbf{Databases \& Cloud:} MongoDB, MySQL, PostgreSQL, MariaDB, Firebase (Auth, Firestore, Cloud Messaging), Supabase, AWS fundamentals
+  \item \textbf{DevOps \& Tools:} Docker, Docker Compose, CI/CD (GitHub Actions), Git, VPS Linux, Postman, Android Studio, VS Code
+  \item \textbf{Architecture \& Practices:} Clean Architecture, MVC, Microservices, Multi-platform App Store \& Google Play deployment, Agile/Scrum
+\end{resume_list}
+
+%------------%
+% Experience %
+%------------%
+\section{Professional Experience}
+
+\headingBf{AL Manarah Advanced Company (goLance)}{September 2025 -- Present}
+\headingIt{Mobile Software Engineer (Flutter)}{Riyadh, Saudi Arabia / Remote}
+\begin{resume_list}
+  \item Architected, built, and published the production mobile application \textbf{Maqra'at Al-Rajhi} on both Apple App Store and Google Play Store.
+  \item Implemented low-latency interactive live audio streaming for remote Quranic recitation sessions and real-time listening.
+  \item Engineered dynamic teacher-student reservation scheduling, automated push notifications, and offline data synchronization.
+  \item Designed a modular, scalable Flutter architecture using BLoC pattern, full RTL (Arabic) internationalization, and secure RESTful APIs.
+\end{resume_list}
+
+\headingBf{eSteps Health}{February 2026 -- September 2026}
+\headingIt{Software Engineer Intern (Engineering Capstone - PFE)}{Tunis, Tunisia}
+\begin{resume_list}
+  \item Spearheaded development of \textbf{CIRO Platform}: an omnichannel automated quick-service restaurant ecosystem with robotic kitchen preparation.
+  \item Engineered 3 cross-platform Flutter applications: Customer Mobile App (AI voice ordering \& live tracking), Interactive Totem Kiosk, and Rider Delivery App with real-time GPS tracking.
+  \item Developed responsive Admin Back-Office using \textbf{Next.js 16}, React 19, and TypeScript with real-time OpenStreetMap tracking and predictive business analytics.
+  \item Architected high-performance \textbf{Laravel 12} backend with WebSockets (Laravel Reverb) and integrated industrial \textbf{SCADA/IoT} robotics gateway; containerized the complete stack with Docker on VPS.
+\end{resume_list}
+
+\headingBf{Barberio}{January 2026 -- May 2026}
+\headingIt{Full-Stack Mobile Engineer (Production Platform)}{Tunis, Tunisia / Remote}
+\begin{resume_list}
+  \item Designed, engineered, and published \textbf{Barberio} on Apple App Store and Google Play Store (on-demand hair salon booking platform in Tunisia).
+  \item Built cross-platform mobile app in Flutter with interactive real-time calendar scheduling, automated push/SMS reminders, artisan portfolios, and verified customer reviews.
+  \item Developed backend RESTful APIs using Node.js and Express.js, secured authentication with JWT, and configured MongoDB database with Firebase Cloud Messaging.
+\end{resume_list}
+
+\headingBf{Neopolis Development}{February 2023 -- May 2023}
+\headingIt{Software Developer Intern (DSI Capstone)}{Nabeul, Tunisia}
+\begin{resume_list}
+  \item Developed mobile client (Flutter) and backend REST APIs (Express.js, MongoDB) for enterprise Human Resources Management platform.
+  \item Automated leave request workflows, IT hardware inventory tracking, hierarchical approval chains, and secure company document management.
+\end{resume_list}
+
+\headingBf{CPG (Compagnie des Phosphates de Gafsa)}{January 2023 -- February 2023}
+\headingIt{Software Developer Intern}{Gafsa, Tunisia}
+\begin{resume_list}
+  \item Built mobile tracking application using Flutter and Node.js for intern department assignments, daily attendance logs, and supervisor evaluations.
+\end{resume_list}
+
+%----------%
+% Projects %
+%----------%
+\section{Key Engineering Projects}
+
+\headingBf{CIRO Platform -- Omnichannel Automated Restaurant Ecosystem}{}
+\begin{resume_list}
+  \item Integrated 3 Flutter applications, Next.js 16 admin portal, and Laravel 12 backend with SCADA robotics gateway and Docker deployment.
+\end{resume_list}
+
+\headingBf{Maqra'at Al-Rajhi -- Interactive Live Audio Platform (App Store \& Google Play)}{}
+\begin{resume_list}
+  \item Production mobile application supporting interactive low-latency audio streaming, BLoC state management, and real-time scheduling.
+\end{resume_list}
+
+\headingBf{Barberio -- Mobile Booking System (App Store \& Google Play)}{}
+\begin{resume_list}
+  \item Published mobile platform featuring real-time appointment calendar, artisan portfolios, push notifications, and verified customer ratings.
+\end{resume_list}
+
+\headingBf{HajMoto -- Spare Parts Retail \& Billing Management}{}
+\begin{resume_list}
+  \item Cross-platform Flutter application with Supabase backend and Docker containerization for inventory control, sales, and automated PDF invoicing.
+\end{resume_list}
+
+\headingBf{Library Management System -- Full-Stack Portal}{}
+\begin{resume_list}
+  \item Engineered full-stack web application using React.js, Python (Flask), and MariaDB under Docker for book cataloging and loan management.
+\end{resume_list}
+
+%-----------%
+% Education %
+%-----------%
+\section{Education}
+
+\headingBf{iTeam University}{2023 -- 2026}
+\headingIt{National Engineering Degree in Software Engineering (Dipl\^ome National d'Ing\'enieur)}{Tunis, Tunisia}
+
+\vspace{4pt}
+
+\headingBf{ISET Nabeul (Higher Institute of Technological Studies)}{2020 -- 2023}
+\headingIt{Bachelor's Degree in Information Systems Development (DSI)}{Nabeul, Tunisia}
+
+%--------------------------------------------%
+% Certifications \& Community Involvement   %
+%--------------------------------------------%
+\section{Certifications \& Leadership}
+\begin{resume_list}
+  \item \textbf{Certifications:} Problem Solving \& JavaScript Algorithms (HackerRank/freeCodeCamp), Agile Project Management
+  \item \textbf{IEEE ISET Nabeul Student Branch:} HR Lead (Recruitment, Internal Communications, Team Building) | 2022 -- 2023
+  \item \textbf{Orange Tech Club ISET Nabeul:} Treasurer \& Technical Event Organizer | 2021 -- 2023
+\end{resume_list}
+
+%-----------%
+% Languages %
+%-----------%
+\section{Languages}
+\begin{resume_list}
+  \item \textbf{English:} Professional Working Proficiency (Technical \& Business)
+  \item \textbf{French:} Bilingual / Fluent
+  \item \textbf{Arabic:} Native
+\end{resume_list}
+
+% Hidden ATS Keywords for Canadian & Global ATS
+\vspace{2pt}
+{\scriptsize
+\color{hiddenText}
+\begin{itemize}[leftmargin=0.1cm, itemsep=0.1pt, topsep=0pt]
+    \item Full-Stack Software Engineer, Mobile Developer, Flutter Developer, React Developer, Next.js Developer, Node.js Developer, Flask Developer, Laravel Developer, Dart, Python, JavaScript, TypeScript, PHP, Docker, DevOps, CI/CD, GitHub Actions, AWS, REST API, WebSockets, WebRTC, Clean Architecture, BLoC Pattern, Microservices, MongoDB, MySQL, PostgreSQL, Firebase, Supabase, Linux, VPS, App Store, Google Play, Canadian Tech Jobs, Canada Remote Developer, Relocation to Canada, Toronto Software Engineer, Vancouver Software Engineer, Montreal Software Engineer, Ottawa Software Engineer, Calgary Software Engineer, Software Engineer Canada.
+\end{itemize}
+}
+
+\end{document}

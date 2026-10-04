@@ -61,6 +61,7 @@ Software Engineer and Full-Stack Mobile Developer with deep expertise in **Flutt
 ---
 
 ## Download CVs (PDF)
+- [Canadian Format CV (LaTeX MTecknology Style - Canada / US)](https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CANADA.pdf)
 - [Modern English CV](https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_EN.pdf)
 - [Modern French CV](https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_FR.pdf)
 - [Classic English CV (Photo & 2 Columns)](https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_EN.pdf)

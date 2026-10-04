@@ -9,6 +9,7 @@
 - Location: Tunis, Tunisia (International Mobility)
 
 ## Primary Documents
+- [Curriculum Vitae (Canadian Format MTecknology PDF)](https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CANADA.pdf): Canadian & North American ATS optimized CV (LaTeX MTecknology Style).
 - [Curriculum Vitae (English Modern PDF)](https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_EN.pdf): ATS & AI optimized CV.
 - [Curriculum Vitae (French Modern PDF)](https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_FR.pdf): Version française moderne.
 - [Curriculum Vitae (English Classic PDF)](https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_EN.pdf): 2-column format with photo.
