@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { motion, useReducedMotion } from "framer-motion";
 import { FiArrowDownRight, FiDownload, FiMail, FiMapPin } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
-import { SiFlutter, SiReact, SiExpress, SiLaravel } from "react-icons/si";
+import { SiFlutter, SiReact, SiExpress, SiFirebase, SiFlask, SiNextdotjs } from "react-icons/si";
 import { useLanguage } from "../contexts/LanguageContext";
 import CvModal from "./CvModal";
 import profileImage from "../assets/nidhal-pic1.jpg";
 
 const HeroSection = styled.section`
   position: relative;
-  padding: 6.5rem 2rem 2rem;
+  padding: 9rem 2rem 3rem;
   @media (max-width: 768px) { padding: 6rem 1.25rem 0.5rem; }
-  @media (min-width: 769px) and (max-height: 800px) { padding: 6rem 2rem 1rem; }
+  @media (min-width: 769px) and (max-height: 800px) { padding: 7.5rem 2rem 2rem; }
+  @media (max-width: 380px) { padding-bottom: 0; }
 `;
 
 const Container = styled.div`
@@ -19,39 +21,101 @@ const Container = styled.div`
   margin: 0 auto;
 `;
 
-const Introduction = styled.div`
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
+const IntroLayout = styled.div`
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(360px, 1fr);
+  align-items: center;
+  gap: 4rem;
+  min-height: 420px;
+  @media (max-width: 1024px) {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+    min-height: 0;
+  }
+  @media (max-width: 768px) { gap: 1.25rem; }
+  @media (max-width: 380px) { gap: 1rem; }
 `;
 
-const Portrait = styled.figure`
-  display: block;
+const Introduction = styled.div`
+  min-width: 0;
+  @media (max-width: 1024px) { text-align: center; }
+  @media (max-width: 380px) {
+    & > p:first-child { margin-bottom: 0; }
+    h1 { margin-bottom: 0.5rem; }
+    & > p { margin-bottom: 0.75rem; }
+  }
+`;
+
+const Portrait = styled.div`
   position: relative;
-  width: 208px;
-  aspect-ratio: 1;
-  margin: 0 auto 1rem;
-  overflow: hidden;
-  border: 1px solid ${(props) => props.theme.colors.border};
-  border-radius: 8px;
+  width: 296px;
+  margin: 0 auto;
+  isolation: isolate;
+  @media (max-width: 1024px) { width: 226px; order: -1; }
+  @media (max-width: 768px) { width: 176px; }
+  @media (max-width: 380px) { width: 146px; }
+`;
 
-  img {
-    position: absolute;
-    display: block;
-    width: 150%;
-    height: 150%;
-    max-width: none;
-    left: -6%;
-    top: -4%;
-    object-fit: cover;
+const ProfileGlow = styled(motion.div)`
+  position: absolute;
+  inset: 0 -1.5rem;
+  z-index: -1;
+  border-radius: 50%;
+  background: conic-gradient(from 180deg, rgba(139,92,246,0.45), rgba(34,211,238,0.4), rgba(244,114,182,0.35), rgba(139,92,246,0.45));
+  opacity: 0.35;
+  filter: blur(60px);
+  pointer-events: none;
+`;
+
+const PhotoFrame = styled(motion.div)`
+  padding: 3px;
+  border-radius: 32px;
+  background: linear-gradient(120deg, #8b5cf6, #22d3ee, #f472b6, #8b5cf6);
+  background-size: 300% 300%;
+  animation: heroBorderFlow 7s linear infinite;
+  box-shadow: 0 24px 60px rgba(139,92,246,0.35), 0 8px 28px rgba(34,211,238,0.18);
+  @keyframes heroBorderFlow {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 300% 50%; }
   }
+`;
 
-  @media (min-width: 769px) and (max-height: 800px) { width: 152px; }
+const ProfileImage = styled.img`
+  display: block;
+  width: 290px;
+  height: 380px;
+  object-fit: cover;
+  object-position: 34% center;
+  border-radius: 29px;
+  @media (max-width: 1024px) { width: 220px; height: 290px; }
+  @media (max-width: 768px) { width: 170px; height: 224px; }
+  @media (max-width: 380px) { width: 140px; height: 184px; }
+`;
+
+const FloatingChip = styled(motion.div)`
+  position: absolute;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(13,16,32,0.9);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.12);
+  font-family: ${(props) => props.theme.fonts.mono};
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: ${(props) => props.theme.colors.text};
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+  white-space: nowrap;
+  svg { color: ${(props) => props.$color}; font-size: 1rem; }
   @media (max-width: 768px) {
-    width: 144px;
-    margin-bottom: 0.75rem;
+    font-size: 0.62rem;
+    gap: 0.35rem;
+    padding: 0.4rem 0.65rem;
+    svg { font-size: 0.8rem; }
   }
-  @media (max-width: 380px) { width: 128px; }
 `;
 
 const Greeting = styled.p`
@@ -86,16 +150,18 @@ const Description = styled.p`
   line-height: 1.7;
   max-width: 640px;
   color: ${(props) => props.theme.colors.textSecondary};
-  margin: 0 auto 1.5rem;
+  margin: 0 0 1.5rem;
+  @media (max-width: 1024px) { margin-left: auto; margin-right: auto; }
   @media (max-width: 768px) { font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.25rem; }
   @media (min-width: 769px) and (max-height: 800px) { font-size: 1rem; margin-bottom: 1.25rem; }
 `;
 
 const ButtonGroup = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   flex-wrap: wrap;
   gap: 0.75rem;
+  @media (max-width: 1024px) { justify-content: center; }
   @media (max-width: 768px) {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -141,21 +207,6 @@ const Button = styled.a`
   }
 `;
 
-const TechStack = styled.ul`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  list-style: none;
-  gap: 0.75rem 1.25rem;
-  margin-top: 1.25rem;
-  color: ${(props) => props.theme.colors.textSecondary};
-  font-size: 0.85rem;
-  li { display: flex; align-items: center; gap: 0.5rem; }
-  svg { font-size: 1.1rem; color: ${(props) => props.theme.colors.primary}; }
-  @media (max-width: 768px), (max-height: 800px) { margin-top: 1rem; }
-  @media (max-width: 380px) and (max-height: 760px) { display: none; }
-`;
-
 const Footer = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -172,6 +223,7 @@ const Footer = styled.div`
   a:hover { color: ${(props) => props.theme.colors.secondary}; }
   a.whatsapp { min-height: 44px; color: #7de6a4; }
   @media (min-width: 769px) and (max-height: 800px) { margin-top: 1rem; }
+  @media (max-width: 380px) { margin-top: 0.5rem; }
   @media (max-width: 768px) {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
@@ -189,13 +241,20 @@ const Footer = styled.div`
 export default function Hero() {
   const { t, language } = useLanguage();
   const [isCvModalOpen, setIsCvModalOpen] = useState(false);
+  const reducedMotion = useReducedMotion();
+  const techChips = [
+    { label: "Flutter", icon: SiFlutter, color: "#54C5F8", position: { top: "6%", left: "-12%" }, distance: -10, duration: 4.5 },
+    { label: "React", icon: SiReact, color: "#61DAFB", position: { top: "20%", right: "-14%" }, distance: 12, duration: 5.2 },
+    { label: "Flask", icon: SiFlask, color: "#38BDF8", position: { top: "50%", right: "-16%" }, distance: -8, duration: 4.8 },
+    { label: "Next.js 16", icon: SiNextdotjs, color: "#FFFFFF", position: { top: "52%", left: "-16%" }, distance: -9, duration: 4.8 },
+    { label: "Express", icon: SiExpress, color: "#F472B6", position: { bottom: "10%", left: "-14%" }, distance: -8, duration: 4 },
+    { label: "Firebase", icon: SiFirebase, color: "#FFCA28", position: { bottom: "6%", right: "-10%" }, distance: 10, duration: 5.8 },
+  ];
   return (
     <HeroSection id="hero">
       <Container>
+        <IntroLayout>
         <Introduction>
-          <Portrait>
-            <img src={profileImage} alt="Nidhal Boumaiza" width="1080" height="1083" fetchPriority="high" />
-          </Portrait>
           <Greeting>{t("hero.greeting")}</Greeting>
           <Name>Nidhal BOUMAIZA</Name>
           <Role>{language === "fr" ? "Ingénieur logiciel & développeur Full Stack" : "Software Engineer & Full Stack Developer"}</Role>
@@ -208,13 +267,19 @@ export default function Hero() {
               <FiDownload aria-hidden="true" /> {t("hero.downloadCV")}
             </Button>
           </ButtonGroup>
-          <TechStack aria-label={language === "fr" ? "Technologies" : "Tech stack"}>
-            <li><SiFlutter aria-hidden="true" /> Flutter</li>
-            <li><SiReact aria-hidden="true" /> React / Next.js</li>
-            <li><SiExpress aria-hidden="true" /> Express.js</li>
-            <li><SiLaravel aria-hidden="true" /> Laravel</li>
-          </TechStack>
         </Introduction>
+        <Portrait>
+          <ProfileGlow aria-hidden="true" animate={reducedMotion ? undefined : { rotate: 360, opacity: [0.28, 0.4, 0.28] }} transition={{ rotate: { duration: 30, repeat: Infinity, ease: "linear" }, opacity: { duration: 5, repeat: Infinity, ease: "easeInOut" } }} />
+          <PhotoFrame whileHover={reducedMotion ? undefined : { y: -6 }} transition={{ duration: 0.35 }}>
+            <ProfileImage src={profileImage} alt="Nidhal Boumaiza" width="290" height="380" fetchPriority="high" />
+          </PhotoFrame>
+          {techChips.map(({ label, icon: Icon, color, position, distance, duration }) => (
+            <FloatingChip key={label} $color={color} style={position} animate={reducedMotion ? undefined : { y: [0, distance, 0] }} transition={{ duration, repeat: Infinity, ease: "easeInOut" }}>
+              <Icon aria-hidden="true" /> {label}
+            </FloatingChip>
+          ))}
+        </Portrait>
+        </IntroLayout>
         <Footer>
           <span><FiMapPin aria-hidden="true" /> {language === "fr" ? "Tunis, Tunisie" : "Tunis, Tunisia"}</span>
           <a href="mailto:nidhal.boumaiza@outlook.com"><FiMail aria-hidden="true" /> nidhal.boumaiza@outlook.com</a>
