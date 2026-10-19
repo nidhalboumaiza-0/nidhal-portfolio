@@ -9,9 +9,9 @@ import profileImage from "../assets/nidhal-pic1.jpg";
 
 const HeroSection = styled.section`
   position: relative;
-  padding: 8rem 2rem 2rem;
-  @media (max-width: 768px) { padding: 5.5rem 1.25rem 1rem; }
-  @media (min-width: 769px) and (max-height: 800px) { padding-top: 6rem; }
+  padding: 6.5rem 2rem 2rem;
+  @media (max-width: 768px) { padding: 6rem 1.25rem 0.5rem; }
+  @media (min-width: 769px) and (max-height: 800px) { padding: 6rem 2rem 1rem; }
 `;
 
 const Container = styled.div`
@@ -25,19 +25,33 @@ const Introduction = styled.div`
   text-align: center;
 `;
 
-const Portrait = styled.img`
+const Portrait = styled.figure`
   display: block;
-  width: 88px;
-  height: 104px;
-  margin: 0 auto 1.25rem;
-  object-fit: cover;
-  object-position: 34% center;
+  position: relative;
+  width: 208px;
+  aspect-ratio: 1;
+  margin: 0 auto 1rem;
+  overflow: hidden;
+  border: 1px solid ${(props) => props.theme.colors.border};
   border-radius: 8px;
-  @media (max-width: 768px), (max-height: 800px) {
-    width: 56px;
-    height: 66px;
+
+  img {
+    position: absolute;
+    display: block;
+    width: 150%;
+    height: 150%;
+    max-width: none;
+    left: -6%;
+    top: -4%;
+    object-fit: cover;
+  }
+
+  @media (min-width: 769px) and (max-height: 800px) { width: 152px; }
+  @media (max-width: 768px) {
+    width: 144px;
     margin-bottom: 0.75rem;
   }
+  @media (max-width: 380px) { width: 128px; }
 `;
 
 const Greeting = styled.p`
@@ -47,31 +61,34 @@ const Greeting = styled.p`
 `;
 
 const Name = styled.h1`
-  font-size: 4rem;
+  font-size: 3.5rem;
   line-height: 1.15;
   font-weight: 700;
   text-wrap: balance;
   margin-bottom: 0.85rem;
+  @media (min-width: 769px) and (max-height: 800px) { font-size: 3rem; }
   @media (max-width: 768px) { font-size: 2rem; }
   @media (max-width: 380px) { font-size: 1.75rem; }
 `;
 
 const Role = styled.p`
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 500;
   color: ${(props) => props.theme.colors.secondary};
   margin-bottom: 1rem;
   text-wrap: balance;
-  @media (max-width: 768px) { font-size: 1.2rem; }
+  @media (max-width: 768px) { font-size: 1.1rem; }
+  @media (min-width: 769px) and (max-height: 800px) { font-size: 1.25rem; }
 `;
 
 const Description = styled.p`
-  font-size: 1.1rem;
-  line-height: 1.8;
+  font-size: 1.05rem;
+  line-height: 1.7;
   max-width: 640px;
   color: ${(props) => props.theme.colors.textSecondary};
-  margin: 0 auto 1.75rem;
-  @media (max-width: 768px) { font-size: 0.95rem; line-height: 1.65; margin-bottom: 1.25rem; }
+  margin: 0 auto 1.5rem;
+  @media (max-width: 768px) { font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.25rem; }
+  @media (min-width: 769px) and (max-height: 800px) { font-size: 1rem; margin-bottom: 1.25rem; }
 `;
 
 const ButtonGroup = styled.div`
@@ -79,6 +96,13 @@ const ButtonGroup = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   gap: 0.75rem;
+  @media (max-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.5rem;
+    max-width: 360px;
+    margin: 0 auto;
+  }
 `;
 
 const Button = styled.a`
@@ -108,9 +132,12 @@ const Button = styled.a`
     border-color: transparent;
     &:hover { background: #9aeccc; }
   }
-  @media (max-width: 380px) {
+  @media (max-width: 768px) {
     font-size: 0.8rem;
-    padding: 0.65rem 0.6rem;
+    padding: 0.65rem 0.5rem;
+    gap: 0.4rem;
+    min-width: 0;
+    svg { flex-shrink: 0; }
   }
 `;
 
@@ -120,11 +147,13 @@ const TechStack = styled.ul`
   flex-wrap: wrap;
   list-style: none;
   gap: 0.75rem 1.25rem;
-  margin-top: 1.5rem;
+  margin-top: 1.25rem;
   color: ${(props) => props.theme.colors.textSecondary};
   font-size: 0.85rem;
   li { display: flex; align-items: center; gap: 0.5rem; }
   svg { font-size: 1.1rem; color: ${(props) => props.theme.colors.primary}; }
+  @media (max-width: 768px), (max-height: 800px) { margin-top: 1rem; }
+  @media (max-width: 380px) and (max-height: 760px) { display: none; }
 `;
 
 const Footer = styled.div`
@@ -133,8 +162,8 @@ const Footer = styled.div`
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-top: 3rem;
-  padding: 1.25rem 0;
+  margin-top: 2rem;
+  padding: 1rem 0;
   border-top: 1px solid ${(props) => props.theme.colors.border};
   font-size: 0.85rem;
   color: ${(props) => props.theme.colors.textSecondary};
@@ -142,12 +171,13 @@ const Footer = styled.div`
   a { color: inherit; text-decoration: none; overflow-wrap: anywhere; }
   a:hover { color: ${(props) => props.theme.colors.secondary}; }
   a.whatsapp { min-height: 44px; color: #7de6a4; }
+  @media (min-width: 769px) and (max-height: 800px) { margin-top: 1rem; }
   @media (max-width: 768px) {
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 0.25rem 0.75rem;
-    margin-top: 1.5rem;
-    padding: 0.75rem 0;
+    margin-top: 1rem;
+    padding: 0.5rem 0;
     font-size: 0.75rem;
     span { grid-column: 1 / -1; justify-content: center; }
     a { min-height: 44px; justify-content: center; }
@@ -163,7 +193,9 @@ export default function Hero() {
     <HeroSection id="hero">
       <Container>
         <Introduction>
-          <Portrait src={profileImage} alt="Nidhal Boumaiza" width="88" height="104" />
+          <Portrait>
+            <img src={profileImage} alt="Nidhal Boumaiza" width="1080" height="1083" fetchPriority="high" />
+          </Portrait>
           <Greeting>{t("hero.greeting")}</Greeting>
           <Name>Nidhal BOUMAIZA</Name>
           <Role>{language === "fr" ? "Ingénieur logiciel & développeur Full Stack" : "Software Engineer & Full Stack Developer"}</Role>
