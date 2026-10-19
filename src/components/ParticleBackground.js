@@ -17,11 +17,12 @@ const ParticleBackground = () => {
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
+    if (!ctx || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     let animationId;
     const mouse = { x: null, y: null };
 
     // Aurora palette
-    const palette = ["#8B5CF6", "#22D3EE", "#F472B6", "#A78BFA"];
+    const palette = ["#A897EC", "#86E5C4", "#F2B39B"];
 
     const resizeCanvas = () => {
       canvas.width = window.innerWidth;
@@ -30,7 +31,7 @@ const ParticleBackground = () => {
     };
 
     const particles = [];
-    const particleCount = window.innerWidth < 768 ? 45 : 80;
+    const particleCount = window.innerWidth < 768 ? 18 : 36;
 
     class Particle {
       constructor() {
@@ -46,7 +47,7 @@ const ParticleBackground = () => {
           Math.random() < 0.15
             ? Math.random() * 2.4 + 1.6
             : Math.random() * 1.6 + 0.4;
-        this.opacity = Math.random() * 0.5 + 0.25;
+        this.opacity = Math.random() * 0.2 + 0.08;
         this.color = palette[Math.floor(Math.random() * palette.length)];
         this.depth = Math.random() * 0.6 + 0.4; // parallax depth factor
       }
@@ -100,7 +101,7 @@ const ParticleBackground = () => {
 
           if (distance < 110) {
             ctx.save();
-            ctx.globalAlpha = ((110 - distance) / 110) * 0.14;
+            ctx.globalAlpha = ((110 - distance) / 110) * 0.06;
             ctx.beginPath();
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
@@ -149,7 +150,7 @@ const ParticleBackground = () => {
     };
   }, []);
 
-  return <Canvas ref={canvasRef} />;
+  return <Canvas ref={canvasRef} aria-hidden="true" />;
 };
 
 export default ParticleBackground;

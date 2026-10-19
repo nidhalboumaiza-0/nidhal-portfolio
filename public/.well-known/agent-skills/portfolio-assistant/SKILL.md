@@ -35,7 +35,7 @@ description: Instructions and tools for AI agents to query projects, verify prod
 4. **Evolve'Com** (01/2022 – 02/2022): Introductory Internship (Stage d'Initiation) — Prestashop e-commerce catalog
 
 ## CV Downloads (PDF)
-- Modern English: https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_EN.pdf
-- Modern French: https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_FR.pdf
-- Classic English (Photo & 2 Columns): https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_EN.pdf
-- Classic French (Photo & 2 Columns): https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_FR.pdf
+- Canadian Resume (English): https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CANADA.pdf
+- Canadian Resume (French): https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CANADA_FR.pdf
+- Classic CV Format (English): https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_EN.pdf
+- Classic CV Format (French): https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_FR.pdf

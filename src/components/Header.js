@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { FiMenu, FiX, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
 import { useLanguage } from "../contexts/LanguageContext";
+import LanguageToggle from "./LanguageToggle";
 
 const HeaderContainer = styled(motion.header)`
   position: fixed;
@@ -21,18 +22,16 @@ const Nav = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1100px;
-  margin: ${(props) => (props.$scrolled ? "0 auto" : "0 auto")};
-  padding: ${(props) =>
-    props.$scrolled ? "0.55rem 1.4rem" : "0.2rem 0"};
-  border-radius: 999px;
-  background: ${(props) =>
-    props.$scrolled ? "rgba(13, 16, 32, 0.78)" : "transparent"};
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 1rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 8px;
+  background: rgba(9, 13, 18, 0.95);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   border: 1px solid
-    ${(props) =>
-      props.$scrolled ? "rgba(139, 92, 246, 0.28)" : "transparent"};
+    ${(props) => props.$scrolled ? "rgba(255, 255, 255, 0.14)" : "transparent"};
   box-shadow: ${(props) =>
     props.$scrolled
       ? "0 12px 40px rgba(3, 5, 14, 0.6), inset 0 1px 0 rgba(255,255,255,0.06)"
@@ -40,15 +39,13 @@ const Nav = styled.nav`
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
-const Logo = styled(motion.div)`
+const Logo = styled(motion.a)`
   font-family: ${(props) => props.theme.fonts.mono};
   font-size: 1.4rem;
   font-weight: 700;
   cursor: pointer;
-  background: linear-gradient(120deg, #a78bfa, #22d3ee);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: ${(props) => props.theme.colors.text};
+  text-decoration: none;
 `;
 
 const NavLinks = styled.div`
@@ -56,7 +53,7 @@ const NavLinks = styled.div`
   gap: 0.25rem;
   align-items: center;
 
-  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
+  @media (max-width: 1100px) {
     display: none;
   }
 `;
@@ -69,16 +66,15 @@ const NavLink = styled(motion.a)`
   font-size: 0.92rem;
   cursor: pointer;
   position: relative;
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
+  padding: 0.65rem 0.7rem;
+  border-radius: 5px;
   transition: color 0.25s ease, background 0.25s ease,
     box-shadow 0.25s ease;
 
   ${(props) =>
     props.$active &&
     `
-      background: linear-gradient(120deg, rgba(139,92,246,0.28), rgba(34,211,238,0.18));
-      box-shadow: inset 0 0 0 1px rgba(139,92,246,0.35);
+      background: rgba(255,255,255,0.08);
     `}
 
   &:hover {
@@ -96,7 +92,19 @@ const SocialLinks = styled.div`
   }
 `;
 
+const NavActions = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-left: auto;
+`;
+
 const SocialLink = styled(motion.a)`
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 44px;
   color: ${(props) => props.theme.colors.textSecondary};
   font-size: 1.2rem;
   transition: color 0.3s ease;
@@ -113,9 +121,13 @@ const MobileMenuButton = styled(motion.button)`
   color: ${(props) => props.theme.colors.text};
   font-size: 1.5rem;
   cursor: pointer;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
 
-  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
-    display: block;
+  @media (max-width: 1100px) {
+    display: flex;
   }
 `;
 
@@ -153,7 +165,26 @@ const Header = () => {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKeyDown = (event) => {
+      if (event.key === "Escape") setMobileMenuOpen(false);
+    };
+    const onResize = () => {
+      if (window.innerWidth > 1100) setMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("resize", onResize);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [mobileMenuOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -210,6 +241,8 @@ const Header = () => {
       >
         <Nav $scrolled={scrolled}>
           <Logo
+            href="#hero"
+            aria-label={language === "fr" ? "Nidhal Boumaiza, accueil" : "Nidhal Boumaiza, home"}
             whileHover={{ scale: 1.05 }}
             onClick={() => scrollToSection("hero")}
           >
@@ -217,24 +250,26 @@ const Header = () => {
           </Logo>
 
           <NavLinks>
-            {navItems.map((item, index) => (
+            {navItems.map((item) => (
               <NavLink
                 key={item.id}
+                href={`#${item.id}`}
+                aria-current={activeSection === item.id ? "location" : undefined}
                 onClick={() => scrollToSection(item.id)}
                 $active={activeSection === item.id}
                 whileHover={{ y: -2 }}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
               >
                 {item.label}
               </NavLink>
             ))}
           </NavLinks>
 
+          <NavActions>
           <SocialLinks>
             <SocialLink
               href="https://github.com/nidhalboumaiza-0"
+              aria-label="GitHub"
+              title="GitHub"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.2 }}
@@ -243,6 +278,8 @@ const Header = () => {
             </SocialLink>
             <SocialLink
               href="https://linkedin.com/in/nidhal-boumaiza"
+              aria-label="LinkedIn"
+              title="LinkedIn"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.2 }}
@@ -251,34 +288,41 @@ const Header = () => {
             </SocialLink>
             <SocialLink
               href="mailto:nidhal.boumaiza@outlook.com"
+              aria-label="Email"
+              title="Email"
               whileHover={{ scale: 1.2 }}
             >
               <FiMail />
             </SocialLink>
           </SocialLinks>
+          <LanguageToggle />
 
           <MobileMenuButton
+            type="button"
+            aria-label={mobileMenuOpen ? (language === "fr" ? "Fermer le menu" : "Close menu") : (language === "fr" ? "Ouvrir le menu" : "Open menu")}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-navigation"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             whileTap={{ scale: 0.9 }}
           >
             {mobileMenuOpen ? <FiX /> : <FiMenu />}
           </MobileMenuButton>
+          </NavActions>
         </Nav>
       </HeaderContainer>
 
       {mobileMenuOpen && (
         <MobileMenu
+          id="mobile-navigation"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
         >
-          {navItems.map((item, index) => (
+          {navItems.map((item) => (
             <MobileNavLink
               key={item.id}
+              href={`#${item.id}`}
               onClick={() => scrollToSection(item.id)}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
             >
               {item.label}
             </MobileNavLink>

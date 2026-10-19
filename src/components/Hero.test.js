@@ -2,6 +2,7 @@ import { fireEvent, render, screen, waitFor, within } from "@testing-library/rea
 import { ThemeProvider } from "styled-components";
 import { LanguageProvider } from "../contexts/LanguageContext";
 import Hero from "./Hero";
+import LanguageToggle from "./LanguageToggle";
 
 jest.mock("react-typed", () => ({ ReactTyped: () => null }));
 
@@ -14,7 +15,7 @@ const theme = {
 function openCv() {
   const view = render(
     <ThemeProvider theme={theme}>
-      <LanguageProvider><Hero /></LanguageProvider>
+      <LanguageProvider><LanguageToggle /><Hero /></LanguageProvider>
     </ThemeProvider>
   );
   const trigger = screen.getByRole("button", { name: "Download CV" });
@@ -23,7 +24,7 @@ function openCv() {
   return { ...view, trigger, dialog: screen.getByRole("dialog") };
 }
 
-test("CV is portaled outside the hero and all PDF actions are preserved", () => {
+test("CV offers only Canadian and Classic formats in English and French", () => {
   const { container, dialog } = openCv();
   expect(container).not.toContainElement(dialog);
   expect(dialog.parentElement.parentElement).toBe(document.body);
@@ -31,9 +32,30 @@ test("CV is portaled outside the hero and all PDF actions are preserved", () => 
   const downloads = within(dialog).getAllByRole("link", { name: "Download (PDF)" });
   expect(downloads).toHaveLength(4);
   expect(within(dialog).getAllByRole("link", { name: "Preview" })).toHaveLength(4);
+  [
+    ["Canadian Resume (English)", "NIDHAL_BOUMAIZA_CV_CANADA.pdf"],
+    ["Canadian Resume (French)", "NIDHAL_BOUMAIZA_CV_CANADA_FR.pdf"],
+    ["Classic CV Format (English)", "NIDHAL_BOUMAIZA_CV_CLASSIC_EN.pdf"],
+    ["Classic CV Format (French)", "NIDHAL_BOUMAIZA_CV_CLASSIC_FR.pdf"],
+  ].forEach(([title, file]) => {
+    const option = within(dialog).getByRole("article", { name: title });
+    expect(within(option).getByRole("link", { name: "Download (PDF)" })).toHaveAttribute("href", `/${file}`);
+    expect(within(option).getByRole("link", { name: "Preview" })).toHaveAttribute("href", `/${file}`);
+  });
+  expect(within(dialog).queryByText(/ATS|AI Recruiter|Software Engineer & Full Stack/)).not.toBeInTheDocument();
   downloads.forEach((link) => {
     expect(link).toHaveAttribute("href", `/${link.getAttribute("download")}`);
   });
+});
+
+test("French labels keep the correct language-specific CV files", () => {
+  const { dialog } = openCv();
+  fireEvent.click(screen.getByRole("button", { name: "Français" }));
+  expect(document.documentElement.lang).toBe("fr");
+  expect(dialog).toHaveAccessibleName("Télécharger le CV");
+  const option = within(dialog).getByRole("article", { name: "CV canadien (français)" });
+  expect(within(option).getByRole("link", { name: "Télécharger (PDF)" })).toHaveAttribute("href", "/NIDHAL_BOUMAIZA_CV_CANADA_FR.pdf");
+  expect(within(option).getByRole("link", { name: "Télécharger la source LaTeX (.tex)" })).toHaveAttribute("href", "/NIDHAL_BOUMAIZA_CV_CANADA_FR.tex");
 });
 
 test("CV traps focus, closes with Escape, and restores focus and scrolling", async () => {

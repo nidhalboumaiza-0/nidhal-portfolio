@@ -87,8 +87,8 @@
         ];
 
         const cvFiles = {
-          englishModern: "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_EN.pdf",
-          frenchModern: "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_FR.pdf",
+          englishCanadian: "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CANADA.pdf",
+          frenchCanadian: "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CANADA_FR.pdf",
           englishClassic: "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_EN.pdf",
           frenchClassic: "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_FR.pdf"
         };
@@ -114,12 +114,12 @@
           },
           {
             name: "get_cv_downloads",
-            description: "Returns direct download URLs for modern and classic PDF CVs in English and French.",
+            description: "Returns direct download URLs for Canadian and classic PDF CVs in English and French.",
             inputSchema: {
               type: "object",
               properties: {
                 language: { type: "string", enum: ["en", "fr"] },
-                format: { type: "string", enum: ["modern", "classic"] }
+                format: { type: "string", enum: ["canadian", "classic"] }
               }
             },
             execute: async () => ({ content: [{ type: "text", text: JSON.stringify(cvFiles, null, 2) }] })

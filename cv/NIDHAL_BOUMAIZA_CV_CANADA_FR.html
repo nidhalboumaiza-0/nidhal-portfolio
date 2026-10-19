@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nidhal Boumaiza - CV canadien (français)</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Charter:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&display=swap');
+
+    :root {
+      --accent-title: #0e6e55;
+      --accent-text: #0e6e55;
+      --accent-line: #a16f0b;
+      --text-main: #1f2937;
+      --text-muted: #374151;
+      --hidden-text: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    @page {
+      size: letter;
+      margin: 0.42in 0.52in 0.38in 0.52in;
+    }
+
+    body {
+      font-family: 'Charter', 'Source Serif 4', Georgia, 'Times New Roman', serif;
+      color: var(--text-main);
+      background-color: #ffffff;
+      line-height: 1.28;
+      font-size: 9.25pt;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .resume-container {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* Title Block */
+    .title-block {
+      text-align: center;
+      margin-bottom: 10px;
+    }
+
+    .candidate-name {
+      font-size: 24pt;
+      font-weight: 700;
+      color: var(--accent-title);
+      letter-spacing: -0.01em;
+      margin-bottom: 5px;
+    }
+
+    .accent-rule {
+      border: none;
+      border-top: 1.2px solid var(--accent-line);
+      margin: 4px 0;
+    }
+
+    .contact-line {
+      font-size: 8.8pt;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px 10px;
+      padding: 2px 0;
+    }
+
+    .contact-line a {
+      color: var(--text-muted);
+      text-decoration: none;
+    }
+
+    .contact-line a:hover {
+      color: var(--accent-text);
+      text-decoration: underline;
+    }
+
+    .contact-sep {
+      color: #9ca3af;
+      font-weight: 400;
+    }
+
+    /* Section Headers */
+    .section-title {
+      font-size: 11.5pt;
+      font-weight: 700;
+      color: var(--accent-text);
+      text-transform: none;
+      margin-top: 11px;
+      margin-bottom: 4px;
+      border-bottom: 1.2px solid var(--accent-line);
+      padding-bottom: 2px;
+      letter-spacing: 0.01em;
+    }
+
+    .tinysection {
+      font-size: 11.5pt;
+      font-weight: 700;
+      color: var(--accent-text);
+      display: inline;
+    }
+
+    .tinysection-bar {
+      color: var(--accent-line);
+      font-weight: 700;
+      margin-right: 6px;
+    }
+
+    .summary-text {
+      display: inline;
+      font-size: 9.4pt;
+      color: var(--text-main);
+      text-align: justify;
+      line-height: 1.4;
+    }
+
+    .summary-block {
+      margin-top: 6px;
+      margin-bottom: 6px;
+      text-align: justify;
+    }
+
+    /* Entry Headings */
+    .heading-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-top: 6px;
+      margin-bottom: 1px;
+      padding-left: 6px;
+    }
+
+    .heading-title-bold {
+      font-weight: 700;
+      font-size: 9.8pt;
+      color: #111827;
+    }
+
+    .heading-date-bold {
+      font-weight: 700;
+      font-size: 9.3pt;
+      color: #374151;
+      white-space: nowrap;
+    }
+
+    .heading-sub-italic {
+      font-style: italic;
+      font-size: 9.3pt;
+      color: #4b5563;
+    }
+
+    .heading-loc-italic {
+      font-style: italic;
+      font-size: 9.1pt;
+      color: #4b5563;
+      white-space: nowrap;
+    }
+
+    /* Lists */
+    .resume-list {
+      list-style-type: none;
+      padding-left: 20px;
+      margin-top: 2px;
+      margin-bottom: 5px;
+    }
+
+    .resume-list li {
+      position: relative;
+      margin-bottom: 2.2px;
+      font-size: 9.3pt;
+      line-height: 1.34;
+      text-align: justify;
+      color: var(--text-main);
+    }
+
+    .resume-list li::before {
+      content: "–";
+      position: absolute;
+      left: -14px;
+      color: #4b5563;
+      font-weight: 600;
+    }
+
+    .skills-list {
+      list-style-type: none;
+      padding-left: 20px;
+      margin-top: 3px;
+      margin-bottom: 5px;
+    }
+
+    .skills-list li {
+      position: relative;
+      margin-bottom: 2.5px;
+      font-size: 9.3pt;
+      line-height: 1.34;
+    }
+
+    .skills-list li::before {
+      content: "–";
+      position: absolute;
+      left: -14px;
+      color: #4b5563;
+      font-weight: 600;
+    }
+
+    .skills-label {
+      font-weight: 700;
+      color: #111827;
+    }
+
+    /* Page break helper */
+    .page-break {
+      page-break-before: always;
+    }
+
+    /* Footer & Page Numbers */
+    .page-footer {
+      text-align: center;
+      font-size: 8pt;
+      color: #6b7280;
+      margin-top: 14px;
+    }
+
+    /* Hidden ATS Text */
+    .ats-hidden {
+      color: var(--hidden-text);
+      font-size: 1pt;
+      line-height: 1;
+      height: 1px;
+      overflow: hidden;
+      user-select: none;
+    }
+
+    @media print {
+      body {
+        background-color: transparent;
+      }
+      .resume-container {
+        max-width: 100%;
+      }
+    }
+  .section-title, .heading-row { break-after: avoid; }
+    li { break-inside: avoid; }
+  </style>
+</head>
+<body>
+<div class="resume-container">
+  <div class="title-block">
+    <div class="candidate-name">Nidhal Boumaiza</div>
+    <hr class="accent-rule" />
+    <div class="contact-line">
+      <span><strong>Téléphone :</strong> <a href="tel:+21628316089">+216 28 316 089</a></span>
+      <span class="contact-sep">|</span>
+      <span><strong>E-mail :</strong> <a href="mailto:nidhal.boumaiza@outlook.com">nidhal.boumaiza@outlook.com</a></span>
+      <span class="contact-sep">|</span>
+      <span><a href="https://linkedin.com/in/nidhalboumaiza">linkedin.com/in/nidhalboumaiza</a></span>
+      <span class="contact-sep">|</span>
+      <span><a href="https://github.com/nidhalboumaiza-0">github.com/nidhalboumaiza-0</a></span>
+      <span class="contact-sep">|</span>
+      <span><a href="https://nidhal-portfolio.vercel.app">nidhal-portfolio.vercel.app</a></span>
+      <span class="contact-sep">|</span>
+      <span>Tunis, Tunisie - Mobilité vers le Canada / Télétravail</span>
+    </div>
+    <hr class="accent-rule" />
+  </div>
+
+  <div class="summary-block">
+    <div class="tinysection">Profil</div>
+    <span class="tinysection-bar">|</span>
+    <div class="summary-text">
+      Ingénieur logiciel Full Stack avec plus de 3 ans d'expérience dans la conception et le déploiement de systèmes mobiles et web en production. Applications publiées sur l'App Store et Google Play (<strong>Maqra'at Al-Rajhi</strong>, <strong>Barberio</strong>). Maîtrise de Flutter/Dart, React.js, Next.js, Node.js, Python (Flask) et PHP (Laravel), avec une expérience des API REST, des architectures temps réel (WebSockets, diffusion audio), de Docker et des pipelines CI/CD. Titulaire du diplôme national d'ingénieur en génie logiciel.
+    </div>
+  </div>
+
+  <div class="section-title">Compétences techniques</div>
+  <ul class="skills-list">
+    <li><span class="skills-label">Langages :</span> Dart, JavaScript (ES6+), TypeScript, Python, PHP, SQL, HTML5, CSS3/Tailwind, C/C++</li>
+    <li><span class="skills-label">Frontend et mobile :</span> Flutter (BLoC, Provider), React.js, Next.js (App Router, SSR, SSG), Redux, interfaces adaptatives, intégration Figma</li>
+    <li><span class="skills-label">Backend et API :</span> Node.js, Express.js, Python (Flask, SQLAlchemy), PHP (Laravel 12, Eloquent), API REST, WebSockets (Laravel Reverb)</li>
+    <li><span class="skills-label">Bases de données et cloud :</span> MongoDB, MySQL, PostgreSQL, MariaDB, Firebase (Auth, Firestore, Cloud Messaging), Supabase, bases d'AWS</li>
+    <li><span class="skills-label">DevOps et outils :</span> Docker, Docker Compose, CI/CD (GitHub Actions), Git, VPS Linux, Postman, Android Studio, VS Code</li>
+    <li><span class="skills-label">Architecture et méthodes :</span> Clean Architecture, MVC, microservices, publication App Store et Google Play, Agile/Scrum</li>
+  </ul>
+
+  <div class="section-title">Expérience professionnelle</div>
+  <div class="heading-row">
+    <div class="heading-title-bold">AL Manarah Advanced Company (goLance)</div>
+    <div class="heading-date-bold">Septembre 2025 - Présent</div>
+  </div>
+  <div class="heading-row">
+    <div class="heading-sub-italic">Ingénieur logiciel mobile (Flutter)</div>
+    <div class="heading-loc-italic">Riyad, Arabie saoudite / À distance</div>
+  </div>
+  <ul class="resume-list">
+    <li>Conception, développement et publication de <strong>Maqra'at Al-Rajhi</strong> sur l'App Store et Google Play.</li>
+    <li>Implémentation de la diffusion audio interactive à faible latence pour les séances de récitation coranique à distance et l'écoute en direct.</li>
+    <li>Développement de la réservation de séances entre enseignants et élèves, des notifications push et de la synchronisation hors ligne.</li>
+    <li>Architecture Flutter modulaire avec BLoC, prise en charge complète de l'arabe (RTL) et intégration d'API REST sécurisées.</li>
+  </ul>
+
+  <div class="heading-row">
+    <div class="heading-title-bold">eSteps Health</div>
+    <div class="heading-date-bold">Février 2026 - Septembre 2026</div>
+  </div>
+  <div class="heading-row">
+    <div class="heading-sub-italic">Stagiaire ingénieur logiciel - Projet de fin d'études (PFE)</div>
+    <div class="heading-loc-italic">Tunis, Tunisie</div>
+  </div>
+  <ul class="resume-list">
+    <li>Développement de la <strong>plateforme CIRO</strong>, un écosystème de restauration rapide omnicanal avec préparation robotisée en cuisine.</li>
+    <li>Création de 3 applications Flutter : application client (commande vocale par IA et suivi en direct), borne interactive et application livreur avec géolocalisation GPS.</li>
+    <li>Développement du back-office avec <strong>Next.js 16</strong>, React 19 et TypeScript, suivi OpenStreetMap en temps réel et analyses prédictives.</li>
+    <li>Conception du backend <strong>Laravel 12</strong> avec WebSockets (Laravel Reverb), intégration d'une passerelle industrielle <strong>SCADA/IoT</strong> et déploiement de l'ensemble avec Docker sur VPS.</li>
+  </ul>
+
+  <div class="heading-row page-break">
+    <div class="heading-title-bold">Barberio</div>
+    <div class="heading-date-bold">Janvier 2026 - Mai 2026</div>
+  </div>
+  <div class="heading-row">
+    <div class="heading-sub-italic">Ingénieur mobile Full Stack - Plateforme en production</div>
+    <div class="heading-loc-italic">Tunis, Tunisie / À distance</div>
+  </div>
+  <ul class="resume-list">
+    <li>Conception et publication de <strong>Barberio</strong> sur l'App Store et Google Play, une plateforme de réservation de salons de coiffure en Tunisie.</li>
+    <li>Développement Flutter : calendrier interactif en temps réel, rappels push/SMS, portfolios des professionnels et avis clients vérifiés.</li>
+    <li>API REST avec Node.js et Express.js, authentification JWT et base MongoDB avec Firebase Cloud Messaging.</li>
+  </ul>
+
+  <div class="heading-row">
+    <div class="heading-title-bold">Neopolis Development</div>
+    <div class="heading-date-bold">Février 2023 - Mai 2023</div>
+  </div>
+  <div class="heading-row">
+    <div class="heading-sub-italic">Stagiaire développeur logiciel - PFE en DSI</div>
+    <div class="heading-loc-italic">Nabeul, Tunisie</div>
+  </div>
+  <ul class="resume-list">
+    <li>Développement du client Flutter et des API REST Express.js/MongoDB pour une plateforme de gestion des ressources humaines.</li>
+    <li>Automatisation des demandes de congés, du suivi du matériel informatique, des validations hiérarchiques et de la gestion documentaire sécurisée.</li>
+  </ul>
+
+  <div class="heading-row">
+    <div class="heading-title-bold">CPG (Compagnie des Phosphates de Gafsa)</div>
+    <div class="heading-date-bold">Janvier 2023 - Février 2023</div>
+  </div>
+  <div class="heading-row">
+    <div class="heading-sub-italic">Stagiaire développeur logiciel</div>
+    <div class="heading-loc-italic">Gafsa, Tunisie</div>
+  </div>
+  <ul class="resume-list">
+    <li>Application Flutter et Node.js pour le suivi des affectations des stagiaires, des présences quotidiennes et des évaluations des encadrants.</li>
+  </ul>
+
+  <div class="section-title">Projets principaux</div>
+  <div class="heading-row">
+    <div class="heading-title-bold">CIRO - Plateforme de restauration automatisée omnicanale</div>
+    <div class="heading-date-bold">2026</div>
+  </div>
+  <ul class="resume-list">
+    <li>Intégration de 3 applications Flutter, d'un back-office Next.js 16 et d'un backend Laravel 12 avec passerelle SCADA et déploiement Docker.</li>
+  </ul>
+  <div class="heading-row">
+    <div class="heading-title-bold">Maqra'at Al-Rajhi - Plateforme audio en direct (App Store et Google Play)</div>
+    <div class="heading-date-bold">2025 - 2026</div>
+  </div>
+  <ul class="resume-list">
+    <li>Application en production avec diffusion audio interactive à faible latence, gestion d'état BLoC et réservation de séances en temps réel.</li>
+  </ul>
+  <div class="heading-row">
+    <div class="heading-title-bold">Barberio - Réservation mobile (App Store et Google Play)</div>
+    <div class="heading-date-bold">2026</div>
+  </div>
+  <ul class="resume-list">
+    <li>Plateforme publiée avec calendrier de rendez-vous en temps réel, portfolios, notifications push et évaluations clients vérifiées.</li>
+  </ul>
+  <div class="heading-row">
+    <div class="heading-title-bold">HajMoto - Gestion de pièces détachées et facturation</div>
+    <div class="heading-date-bold">2025</div>
+  </div>
+  <ul class="resume-list">
+    <li>Application Flutter avec Supabase et Docker pour la gestion des stocks, des ventes et la génération automatique de factures PDF.</li>
+  </ul>
+  <div class="heading-row">
+    <div class="heading-title-bold">Gestion de bibliothèque - Portail web Full Stack</div>
+    <div class="heading-date-bold">2024</div>
+  </div>
+  <ul class="resume-list">
+    <li>Application web React.js, Python (Flask) et MariaDB sous Docker pour le catalogue de livres et la gestion des prêts.</li>
+  </ul>
+
+  <div class="section-title">Formation</div>
+  <div class="heading-row">
+    <div class="heading-title-bold">iTeam University</div>
+    <div class="heading-date-bold">2023 - 2026</div>
+  </div>
+  <div class="heading-row">
+    <div class="heading-sub-italic">Diplôme national d'ingénieur en génie logiciel</div>
+    <div class="heading-loc-italic">Tunis, Tunisie</div>
+  </div>
+  <div class="heading-row">
+    <div class="heading-title-bold">ISET Nabeul - Institut supérieur des études technologiques</div>
+    <div class="heading-date-bold">2020 - 2023</div>
+  </div>
+  <div class="heading-row">
+    <div class="heading-sub-italic">Licence en développement des systèmes d'information (DSI)</div>
+    <div class="heading-loc-italic">Nabeul, Tunisie</div>
+  </div>
+
+  <div class="section-title">Certifications et vie associative</div>
+  <ul class="resume-list">
+    <li><strong>Certifications :</strong> Résolution de problèmes et algorithmes JavaScript (HackerRank/freeCodeCamp), gestion de projet Agile</li>
+    <li><strong>IEEE ISET Nabeul Student Branch :</strong> Responsable RH (recrutement, communication interne, cohésion d'équipe) | 2022 - 2023</li>
+    <li><strong>Orange Tech Club ISET Nabeul :</strong> Trésorier et organisateur d'événements techniques | 2021 - 2023</li>
+  </ul>
+
+  <div class="section-title">Langues</div>
+  <ul class="resume-list">
+    <li><strong>Anglais :</strong> Niveau professionnel (technique et affaires) | <strong>Français :</strong> Bilingue / Courant | <strong>Arabe :</strong> Langue maternelle</li>
+  </ul>
+</div>
+</body>
+</html>

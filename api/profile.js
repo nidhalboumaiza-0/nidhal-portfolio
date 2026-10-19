@@ -76,8 +76,8 @@ module.exports = function handler(req, res) {
       }
     ],
     cvDownloads: {
-      englishModern: "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_EN.pdf",
-      frenchModern: "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_FR.pdf",
+      englishCanadian: "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CANADA.pdf",
+      frenchCanadian: "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CANADA_FR.pdf",
       englishClassic: "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_EN.pdf",
       frenchClassic: "https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_FR.pdf"
     }

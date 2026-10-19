@@ -47,8 +47,11 @@
 \raggedright
 
 % ATS Readability
-\input{glyphtounicode}
-\pdfgentounicode=1
+\usepackage{iftex}
+\ifPDFTeX
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+\fi
 
 %-----------------%
 % Custom Commands %
@@ -101,7 +104,7 @@
 % Lists
 \newenvironment{resume_list}{
   \vspace{-7pt}
-  \begin{itemize}[itemsep=-2px, parsep=1pt, leftmargin=30pt]
+  \begin{itemize}[itemsep=-2pt, parsep=1pt, leftmargin=30pt]
 }{
   \end{itemize}
 }

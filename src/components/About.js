@@ -28,13 +28,12 @@ const Container = styled.div`
 `;
 
 const SectionTitle = styled(motion.h2)`
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: 2.5rem;
+  line-height: 1.25;
+  @media (max-width: 768px) { font-size: 2rem; }
   text-align: center;
   margin-bottom: 4rem;
-  background: ${(props) => props.theme.colors.gradient};
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: ${(props) => props.theme.colors.text};
 `;
 
 const Content = styled.div`

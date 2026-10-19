@@ -23,13 +23,12 @@ const Container = styled.div`
 `;
 
 const SectionTitle = styled(motion.h2)`
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: 2.5rem;
+  line-height: 1.25;
+  @media (max-width: 768px) { font-size: 2rem; }
   text-align: center;
   margin-bottom: 4rem;
-  background: ${(props) => props.theme.colors.gradient};
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: ${(props) => props.theme.colors.text};
 `;
 
 const Timeline = styled.div`
@@ -46,7 +45,7 @@ const Timeline = styled.div`
     transform: translateX(-50%);
 
     @media (max-width: ${(props) => props.theme.breakpoints.tablet}) {
-      left: 2rem;
+      left: 8px;
     }
   }
 `;
@@ -66,7 +65,7 @@ const TimelineItem = styled(motion.div)`
   }
 
   @media (max-width: ${(props) => props.theme.breakpoints.tablet}) {
-    margin-left: 4rem;
+    padding-left: 2rem;
   }
 `;
 
@@ -93,7 +92,7 @@ const TimelineDot = styled.div`
   }
 
   @media (max-width: ${(props) => props.theme.breakpoints.tablet}) {
-    left: 2rem;
+    left: 8px;
   }
 `;
 
@@ -107,7 +106,9 @@ const ExperienceCard = styled(motion.div)`
   margin: 0 2rem;
 
   @media (max-width: ${(props) => props.theme.breakpoints.tablet}) {
-    width: calc(100% - 4rem);
+    width: 100%;
+    min-width: 0;
+    padding: 1.25rem;
     margin: 0;
   }
 `;

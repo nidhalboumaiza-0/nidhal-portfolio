@@ -51,12 +51,11 @@ const SectionHeader = styled(motion.div)`
 `;
 
 const SectionTitle = styled.h2`
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: 2.5rem;
+  line-height: 1.25;
+  @media (max-width: 768px) { font-size: 2rem; }
   margin-bottom: 0.8rem;
-  background: ${(props) => props.theme.colors.gradient};
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: ${(props) => props.theme.colors.text};
 `;
 
 const SectionSubtitle = styled.p`
@@ -523,7 +522,7 @@ const Projects = () => {
       type: t("projects.liveProduct"),
       featured: true,
       cover: barberioCover,
-      coverFit: "cover",
+      coverFit: "contain",
       coverPosition: "center",
       logo: "B",
       color: "linear-gradient(135deg, #101820, #8b5cf6)",

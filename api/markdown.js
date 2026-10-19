@@ -30,10 +30,10 @@ Flutter, Dart, BLoC, React 19, Next.js 16, Laravel 12, Node.js, Express.js, Dock
 - **Evolve'Com** (01/2022 - 02/2022): Stage d'Initiation
 
 ## CV Downloads
-- English Modern: https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_EN.pdf
-- French Modern: https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_FR.pdf
-- English Classic: https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_EN.pdf
-- French Classic: https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_FR.pdf
+- Canadian Resume (English): https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CANADA.pdf
+- Canadian Resume (French): https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CANADA_FR.pdf
+- Classic CV Format (English): https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_EN.pdf
+- Classic CV Format (French): https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_FR.pdf
 `;
     }
 

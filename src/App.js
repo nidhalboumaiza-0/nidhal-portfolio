@@ -1,9 +1,8 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
-import { motion } from "framer-motion";
+import { MotionConfig } from "framer-motion";
 import { LanguageProvider } from "./contexts/LanguageContext";
-import LanguageToggle from "./components/LanguageToggle";
 
 // Components
 import ParticleBackground from "./components/ParticleBackground";
@@ -20,15 +19,15 @@ import Contact from "./components/Contact";
 // Theme
 const theme = {
   colors: {
-    primary: "#8B5CF6",
-    secondary: "#22D3EE",
+    primary: "#B5A5FF",
+    secondary: "#86E5C4",
     accent: "#F472B6",
-    background: "#05060E",
-    surface: "#0D1020",
-    card: "rgba(17, 21, 38, 0.72)",
-    border: "rgba(255, 255, 255, 0.08)",
+    background: "#090D12",
+    surface: "#11171F",
+    card: "#161E28",
+    border: "rgba(255, 255, 255, 0.14)",
     text: "#F4F6FF",
-    textSecondary: "#9BA3C2",
+    textSecondary: "#AFB9C8",
     gradient:
       "linear-gradient(120deg, #A78BFA 0%, #8B5CF6 30%, #22D3EE 100%)",
     glow: "rgba(139, 92, 246, 0.35)",
@@ -56,6 +55,8 @@ const GlobalStyles = createGlobalStyle`
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+    color-scheme: dark;
   }
 
   body {
@@ -70,7 +71,21 @@ const GlobalStyles = createGlobalStyle`
 
   h1, h2, h3, h4 {
     font-family: ${(props) => props.theme.fonts.display};
-    letter-spacing: -0.02em;
+    letter-spacing: 0;
+  }
+
+  button, input, textarea { font-family: inherit; }
+  a { text-underline-offset: 4px; }
+  section { overflow-x: clip; }
+  h1, h2, h3, h4, p, li { overflow-wrap: break-word; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 
   ::selection {
@@ -104,7 +119,7 @@ const AppContainer = styled.div`
   min-height: 100vh;
 `;
 
-const MainContent = styled(motion.main)`
+const MainContent = styled.main`
   position: relative;
   z-index: 1;
 `;
@@ -115,12 +130,14 @@ const ProgressBar = styled.div`
   top: 0;
   left: 0;
   height: 3px;
-  width: ${(props) => props.progress}%;
+  width: 100%;
+  transform: scaleX(${(props) => props.$progress / 100});
+  transform-origin: left;
   background: linear-gradient(90deg, #8b5cf6, #22d3ee, #f472b6);
   z-index: 2000;
   border-radius: 0 999px 999px 0;
   box-shadow: 0 0 12px rgba(139, 92, 246, 0.7);
-  transition: width 0.08s linear;
+  transition: transform 0.08s linear;
 `;
 
 function App() {
@@ -139,19 +156,15 @@ function App() {
   }, []);
 
   return (
+    <MotionConfig reducedMotion="user">
     <ThemeProvider theme={theme}>
       <GlobalStyles />
       <LanguageProvider>
         <AppContainer>
           <ParticleBackground />
-          <ProgressBar progress={progress} />
-          <LanguageToggle />
+          <ProgressBar $progress={progress} aria-hidden="true" />
           <Header />
-          <MainContent
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8 }}
-          >
+          <MainContent>
             <Routes>
               <Route
                 path="/"
@@ -173,6 +186,7 @@ function App() {
         </AppContainer>
       </LanguageProvider>
     </ThemeProvider>
+    </MotionConfig>
   );
 }
 

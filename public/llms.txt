@@ -9,11 +9,10 @@
 - Location: Tunis, Tunisia (International Mobility)
 
 ## Primary Documents
-- [Curriculum Vitae (Canadian Format MTecknology PDF)](https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CANADA.pdf): Canadian & North American ATS optimized CV (LaTeX MTecknology Style).
-- [Curriculum Vitae (English Modern PDF)](https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_EN.pdf): ATS & AI optimized CV.
-- [Curriculum Vitae (French Modern PDF)](https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_FR.pdf): Version française moderne.
-- [Curriculum Vitae (English Classic PDF)](https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_EN.pdf): 2-column format with photo.
-- [Curriculum Vitae (French Classic PDF)](https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_FR.pdf): Format classique français 2 colonnes avec photo.
+- [Canadian Resume (English)](https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CANADA.pdf): Single-column Canadian resume in English.
+- [Canadian Resume (French)](https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CANADA_FR.pdf): Version française du CV canadien.
+- [Classic CV Format (English)](https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_EN.pdf): 2-column format with photo.
+- [Classic CV Format (French)](https://nidhal-portfolio.vercel.app/NIDHAL_BOUMAIZA_CV_CLASSIC_FR.pdf): Format classique français 2 colonnes avec photo.
 - [Candidate Profile API](https://nidhal-portfolio.vercel.app/api/profile): Machine-readable JSON summary.
 - [MCP Server Card](https://nidhal-portfolio.vercel.app/.well-known/mcp/server-card.json): Model Context Protocol server capabilities.
 - [Agent Skills](https://nidhal-portfolio.vercel.app/.well-known/agent-skills/index.json): Discovery index for AI agent skills.

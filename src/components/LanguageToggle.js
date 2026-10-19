@@ -1,108 +1,36 @@
 import React from "react";
 import styled from "styled-components";
-import { motion } from "framer-motion";
 import { useLanguage } from "../contexts/LanguageContext";
 
-const ToggleContainer = styled(motion.button)`
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  z-index: 9999;
-  display: flex;
-  align-items: center;
+const Group = styled.div`
+  display: inline-flex;
   gap: 2px;
-  background: linear-gradient(135deg, #8b5cf6 0%, #22d3ee 100%);
-  border: none;
-  border-radius: 25px;
-  padding: 4px;
-  cursor: pointer;
-  box-shadow: 
-    0 4px 15px rgba(139, 92, 246, 0.3),
-    0 2px 8px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-
-  &:hover {
-    transform: translateY(-2px);
-    box-shadow: 
-      0 6px 20px rgba(139, 92, 246, 0.4),
-      0 3px 10px rgba(0, 0, 0, 0.3);
-  }
-
-  &:active {
-    transform: translateY(0px);
-  }
-
-  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
-    top: 15px;
-    right: 15px;
-    padding: 3px;
-  }
+  padding: 3px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 6px;
+  flex-shrink: 0;
 `;
 
-const LanguageOption = styled(motion.div)`
-  min-width: 40px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 22px;
-  font-size: 13px;
+const Option = styled.button`
+  min-width: 42px;
+  min-height: 38px;
+  border: 0;
+  border-radius: 3px;
+  background: ${(props) => props.$active ? "#86e5c4" : "transparent"};
+  color: ${(props) => props.$active ? "#071d16" : props.theme.colors.textSecondary};
+  font: inherit;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  transition: all 0.3s ease;
-  background: ${(props) => (props.active ? "#ffffff" : "transparent")};
-  color: ${(props) => (props.active ? "#22d3ee" : "rgba(255, 255, 255, 0.9)")};
-  box-shadow: ${(props) =>
-    props.active ? "0 2px 8px rgba(0, 0, 0, 0.15)" : "none"};
-  padding: 0 12px;
-
-  &:hover {
-    background: ${(props) =>
-      props.active ? "#ffffff" : "rgba(255, 255, 255, 0.15)"};
-  }
-
-  @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
-    min-width: 35px;
-    height: 28px;
-    font-size: 11px;
-    padding: 0 10px;
-  }
+  cursor: pointer;
+  &:hover { background: ${(props) => props.$active ? "#9aeccc" : "rgba(255,255,255,0.08)"}; }
 `;
 
-
-const LanguageToggle = () => {
+export default function LanguageToggle() {
   const { language, toggleLanguage } = useLanguage();
-
   return (
-    <ToggleContainer
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{
-        duration: 0.4,
-        type: "spring",
-        stiffness: 200,
-      }}
-      onClick={toggleLanguage}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-    >
-      <LanguageOption
-        active={language === "en"}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        EN
-      </LanguageOption>
-      <LanguageOption
-        active={language === "fr"}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-      >
-        FR
-      </LanguageOption>
-    </ToggleContainer>
+    <Group role="group" aria-label={language === "fr" ? "Langue du site" : "Site language"}>
+      <Option type="button" $active={language === "en"} aria-pressed={language === "en"} aria-label="English" title="English" onClick={() => { if (language !== "en") toggleLanguage(); }}>EN</Option>
+      <Option type="button" $active={language === "fr"} aria-pressed={language === "fr"} aria-label="Français" title="Français" onClick={() => { if (language !== "fr") toggleLanguage(); }}>FR</Option>
+    </Group>
   );
-};
-
-export default LanguageToggle;
+}

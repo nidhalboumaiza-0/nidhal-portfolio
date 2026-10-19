@@ -37,7 +37,7 @@
     },
     {
       "name": "get_cv_downloads",
-      "description": "Returns direct PDF download URLs for English/French modern and classic CVs."
+      "description": "Returns direct PDF download URLs for English/French Canadian and classic CVs."
     }
   ]
 }

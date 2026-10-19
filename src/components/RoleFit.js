@@ -12,13 +12,10 @@ import {
 import { useLanguage } from "../contexts/LanguageContext";
 
 const Section = styled.section`
-  padding: 4rem 2rem 6rem;
-  background:
-    radial-gradient(circle at 18% 20%, rgba(244, 114, 182, 0.12), transparent 28%),
-    linear-gradient(180deg, rgba(5, 6, 14, 0) 0%, rgba(139, 92, 246, 0.05) 100%);
+  padding: 2rem 2rem 5rem;
 
   @media (max-width: ${(props) => props.theme.breakpoints.mobile}) {
-    padding: 3rem 1rem 4rem;
+    padding: 1.5rem 1.25rem 3rem;
   }
 `;
 
@@ -40,20 +37,13 @@ const Header = styled(motion.div)`
   }
 `;
 
-const Label = styled.p`
-  color: ${(props) => props.theme.colors.primary};
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-size: 0.78rem;
-  margin-bottom: 0.8rem;
-`;
-
 const Title = styled.h2`
   color: ${(props) => props.theme.colors.text};
-  font-size: clamp(2rem, 5vw, 3.6rem);
-  line-height: 1.05;
-  max-width: 780px;
+  font-size: 2.25rem;
+  line-height: 1.3;
+  max-width: 720px;
+  text-wrap: balance;
+  @media (max-width: 768px) { font-size: 1.75rem; }
 `;
 
 const Summary = styled.p`
@@ -65,7 +55,7 @@ const Summary = styled.p`
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem;
+  gap: 1rem 2rem;
 
   @media (max-width: ${(props) => props.theme.breakpoints.tablet}) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -78,11 +68,8 @@ const Grid = styled.div`
 
 const Card = styled(motion.div)`
   min-height: 160px;
-  padding: 1.4rem;
-  border-radius: 18px;
-  background: rgba(15, 19, 36, 0.86);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+  padding: 1.4rem 0;
+  border-top: 1px solid ${(props) => props.theme.colors.border};
 
   svg {
     color: ${(props) => props.theme.colors.primary};
@@ -147,7 +134,6 @@ const RoleFit = () => {
           viewport={{ once: true }}
         >
           <div>
-            <Label>{content.label}</Label>
             <Title>{content.title}</Title>
           </div>
           <Summary>{content.summary}</Summary>
@@ -161,7 +147,6 @@ const RoleFit = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55, delay: index * 0.07 }}
               viewport={{ once: true }}
-              whileHover={{ y: -6 }}
             >
               {icon}
               <h3>{title}</h3>
