@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { FiCode, FiDownload, FiExternalLink, FiFileText, FiX } from "react-icons/fi";
+import { FiDownload, FiExternalLink, FiFileText, FiX } from "react-icons/fi";
 import { useLanguage } from "../contexts/LanguageContext";
 
 const Overlay = styled(motion.div)`
@@ -121,14 +121,13 @@ const Action = styled.a`
     color: #071d16;
     &:hover { background: #a3efda; }
   }
-  &.source { width: 44px; padding: 0; font-size: 1.05rem; }
 `;
 
 const cvOptions = [
-  { id: "canada-en", title: "Canadian Resume (English)", titleFr: "CV canadien (anglais)", file: "NIDHAL_BOUMAIZA_CV_CANADA", source: true,
+  { id: "canada-en", title: "Canadian Resume (English)", titleFr: "CV canadien (anglais)", file: "NIDHAL_BOUMAIZA_CV_CANADA",
     description: "English resume in a single-column, no-photo format for Canada and the US.",
     descriptionFr: "CV en anglais, sur une colonne et sans photo, pour le Canada et les États-Unis." },
-  { id: "canada-fr", title: "Canadian Resume (French)", titleFr: "CV canadien (français)", file: "NIDHAL_BOUMAIZA_CV_CANADA_FR", source: true,
+  { id: "canada-fr", title: "Canadian Resume (French)", titleFr: "CV canadien (français)", file: "NIDHAL_BOUMAIZA_CV_CANADA_FR",
     description: "French version of the Canadian resume, with the same experience and projects.",
     descriptionFr: "Version française du CV canadien, avec les mêmes expériences et projets." },
   { id: "classic-en", title: "Classic CV Format (English)", titleFr: "CV classique (anglais)", file: "NIDHAL_BOUMAIZA_CV_CLASSIC_EN",
@@ -204,7 +203,6 @@ export default function CvModal({ isOpen, onClose }) {
                   <Actions>
                     <Action className="download" href={`/${option.file}.pdf`} download={`${option.file}.pdf`}><FiDownload aria-hidden="true" /> {french ? "Télécharger (PDF)" : "Download (PDF)"}</Action>
                     <Action href={`/${option.file}.pdf`} target="_blank" rel="noopener noreferrer"><FiExternalLink aria-hidden="true" /> {french ? "Aperçu" : "Preview"}</Action>
-                    {option.source && <Action className="source" href={`/${option.file}.tex`} download={`${option.file}.tex`} title={french ? "Télécharger la source LaTeX (.tex)" : "Download LaTeX source (.tex)"} aria-label={french ? "Télécharger la source LaTeX (.tex)" : "Download LaTeX source (.tex)"}><FiCode aria-hidden="true" /></Action>}
                   </Actions>
                 </Option>
               ))}

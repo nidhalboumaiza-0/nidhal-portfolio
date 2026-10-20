@@ -32,6 +32,7 @@ test("CV offers only Canadian and Classic formats in English and French", () => 
   const downloads = within(dialog).getAllByRole("link", { name: "Download (PDF)" });
   expect(downloads).toHaveLength(4);
   expect(within(dialog).getAllByRole("link", { name: "Preview" })).toHaveLength(4);
+  expect(within(dialog).getAllByRole("link")).toHaveLength(8);
   [
     ["Canadian Resume (English)", "NIDHAL_BOUMAIZA_CV_CANADA.pdf"],
     ["Canadian Resume (French)", "NIDHAL_BOUMAIZA_CV_CANADA_FR.pdf"],
@@ -55,7 +56,7 @@ test("French labels keep the correct language-specific CV files", () => {
   expect(dialog).toHaveAccessibleName("Télécharger le CV");
   const option = within(dialog).getByRole("article", { name: "CV canadien (français)" });
   expect(within(option).getByRole("link", { name: "Télécharger (PDF)" })).toHaveAttribute("href", "/NIDHAL_BOUMAIZA_CV_CANADA_FR.pdf");
-  expect(within(option).getByRole("link", { name: "Télécharger la source LaTeX (.tex)" })).toHaveAttribute("href", "/NIDHAL_BOUMAIZA_CV_CANADA_FR.tex");
+  expect(within(option).getAllByRole("link")).toHaveLength(2);
 });
 
 test("CV traps focus, closes with Escape, and restores focus and scrolling", async () => {
